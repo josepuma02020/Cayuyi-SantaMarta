@@ -25,10 +25,12 @@ if ($_SESSION['usuario']) {
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
-        <?php include_once('diseno/navegadoradmin.php'); ?>
     </head>
 
     <body>
+        <header>
+            <?php include_once('diseno/navegadoradmin.php'); ?>
+        </header>
         <main>
             <div class=" container container-md" style="min-height: 40% " align="left">
                 <?php
@@ -144,17 +146,19 @@ if ($_SESSION['usuario']) {
                             </div>
                             <input type="hidden" id="idu" name="idu">
                             <div class="modal-body" align="center">
-                                <div class="form-row">
-                                    <div class="form-group col-sm-4">
-                                        <label>Dinero Recogido:</label>
-                                        <input autocomplete="off" type="hidden" style="font-size: medium" class="form-control input-group-sm" id="idu" name="idu" />
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="dinero" name="dinero">
+                                <form action="">
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-4">
+                                            <label>Dinero Recogido:</label>
+                                            <input autocomplete="off" type="hidden" style="font-size: medium" class="form-control input-group-sm" id="idu" name="idu" />
+                                            <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="dinero" name="dinero">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button id="recoger" type="button" class="btn btn-primary">Aceptar</button>
-                                </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button id="recoger" type="button" class="btn btn-primary">Aceptar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -179,9 +183,9 @@ if ($_SESSION['usuario']) {
                     </div>
                 </div>
         </main>
-<footer>
-      <?php include_once("diseno/footer.php")  ?> 
-</footer>
+        <footer>
+            <?php include_once("diseno/footer.php")  ?>
+        </footer>
     </body>
 
     </HTML>
