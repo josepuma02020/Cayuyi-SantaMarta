@@ -13,7 +13,6 @@ $arreglo = mysqli_fetch_array($query);
 $clave2 = $arreglo['clave'];
 $fecha = date("Y" . "-" . "m" . "-" . "d");
 //ruta
-$consultaruta="";
 if (password_verify($clave1, $clave2)) {
     echo 1;
     $_SESSION['id_usuario'] = $arreglo['id_usuario'];
@@ -27,6 +26,7 @@ if (password_verify($clave1, $clave2)) {
     $_SESSION['ultimaconexion'] = $arreglo['ult_conexion'];
     $consultaactconex = "update usuarios set ult_conexion = '$fecha' where id_usuario = $_SESSION[id_usuario]  ";
     $query = mysqli_query($link, $consultaactconex) or die($consultaactconex);
+    header('Location: '."diario.php");
 } else {
     echo "<script type=''>
       alert('usuario o contraseña no validos');

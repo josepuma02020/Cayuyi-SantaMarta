@@ -7,8 +7,7 @@
     <meta charset="utf-8">
     <meta name="description" content="Software para manejar y optimizar el proceso de tus rutas de cobro y prestamos.">
     <meta name="robots" context="index,follow">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="diseno/defecto.css">
+    <link rel="stylesheet" href="./diseno/login/cel.css"  />
     <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css">
@@ -17,57 +16,36 @@
     <SCRIPT src="librerias/alertify/alertify.js"></script>
     <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
     <script src="librerias/bootstrap/js/bootstrap.js"></script>
-    <style>
-        @media screen and (max-width:1200px) {
-            .textoadapatable {
-                font-size: 5vw;
-                width: 50%;
-
-            }
-        }
-    </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <main>
-        <br>
-        <br><br>
-        <br>
-        <div class="container">
-            <center>
-                <h1 class="textoadapatable"><b>ORION</b></h1>
-                <img src="../../ORION/orion.png" style="width: 8%;position:absolute ;left: 630px" align="middle">
-                <br>
-                <br>
-                <br>
-                <br>
-                <form action="verificarsesion.php" method="POST">
-                    <label for="usuario">
-                        <h4 class="textoadapatable"><b>Usuario:</b></h4>
-                        <input required type="text" style="width: 100%" class=" form-control " id="usuario" placeholder="Ingrese su Usuario" name="usuario">
-                    </label>
-                    <br>
-                    <label for="clave">
-                        <h4 class="textoadapatable"><b>Clave:</b></h4>
-                        <input required type="password" style="width: 100%" class="form-control " id="clave" placeholder="Ingrese su Contraseña" name="clave">
-                    </label>
-                    <br>
-                    <br>
-                    <input type="submit" id="iniciar" class="btn btn-default" value="Iniciar sesion">
-                </form>
-            </center>
+    <header>
+    </header>
+    <main class="container-login">
+        <div class="titulo">
+            <h1>ORION</h1>
         </div>
+        <form  action="verificarsesion.php" method="POST">
+            <label class="form-item" for="usuario">
+                <h3 class="">Usuario:</h3>
+                <input required type="text"  class=" form-control " id="usuario" placeholder="Ingrese su Usuario" name="usuario">
+            </label>
+            <label class="form-item" for="clave">
+                <h3 class="">Clave:</h3>
+                <input required type="password"  class="form-control " id="clave" placeholder="Ingrese su Contraseña" name="clave">
+            </label>   
+            <input type="submit" id="iniciar" class="btn btn-default" value="Iniciar sesion">
+        </form>
     </main>
 </body>
 <footer>
-    <center>
         <p>Author: Pumasoft<br>
             <a href="https://www.pumasoft.co">pumasoft.co</a>
         </p>
-    </center>
+  
 </footer>
 
 </html>
