@@ -9,9 +9,7 @@ if (isset($_SESSION['usuario'])) {
         <title style="font-family: cursive">Pumasoft</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="diseno/menu.css" />
     </head>
 
     <body>
@@ -19,7 +17,6 @@ if (isset($_SESSION['usuario'])) {
             <div align="left">
                 <span style="font-size:30px;cursor:pointer; align-self: flex-end" onclick="openNav()">&#9776; MENU
                 </span>
-                <h3 align="center" style="width: 20%;position: relative ;left: 1100px;bottom: 60px;"><a href="usuarios.php"><?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellido'] . '  ' . $_SESSION['Rol'] ?></a></h3>
             </div>
 
             <div id="mimenu" class="sidenav" style="width: 0;">

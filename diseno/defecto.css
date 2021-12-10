@@ -1,20 +1,32 @@
-
-
-
 /*-------*/
+
 @-webkit-keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
 @keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
+
 /* On smaller screens, decrease text size */
+
 @media only screen and (max-width: 300px) {
-    .prev, .next,.text {font-size: 11px}
+    .prev,
+    .next,
+    .text {
+        font-size: 11px
+    }
 }
 
 .modal .modal-dialog {
@@ -22,7 +34,7 @@
 }
 
 .ui-autocomplete-input {
-    border: none; 
+    border: none;
     font-size: 14px;
     width: 300px;
     height: 24px;
@@ -33,9 +45,11 @@
     z-index: 1511;
     position: relative;
 }
+
 .ui-menu .ui-menu-item a {
     font-size: 12px;
 }
+
 .ui-autocomplete {
     position: absolute;
     top: 0;
@@ -65,7 +79,8 @@
     *border-right-width: 2px;
     *border-bottom-width: 2px;
 }
-.ui-menu-item > a.ui-corner-all {
+
+.ui-menu-item>a.ui-corner-all {
     display: block;
     padding: 3px 15px;
     clear: both;
@@ -75,7 +90,9 @@
     white-space: nowrap;
     text-decoration: none;
 }
-.ui-state-hover, .ui-state-active {
+
+.ui-state-hover,
+.ui-state-active {
     color: #ffffff;
     text-decoration: none;
     background-color: #0088cc;
@@ -85,173 +102,165 @@
     background-image: none;
 }
 
-body{
-    font-family: Arial,Helvetica,sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url(../img/bg.jpeg) no-repeat center top;
-    background-size: cover;
-    font-family: sans-serif;
-    height: 100vh;
-}
-#captar{
+#captar {
     caption-side: top;
-
-}
-form{
-    margin :50px auto;
-    width : 500px;
 }
 
+form {
+    margin: 50px auto;
+    width: 500px;
+}
 
 hr {
     height: 10px;
     background-color: red;
 }
-.imagenproducto{
+
+.imagenproducto {
     transition: transform .5s;
 }
-.imagenproducto:hover{
+
+.imagenproducto:hover {
     transform: scale(10);
-    content : "Factura";
+    content: "Factura";
 }
 
-button{
-    background-color:#fff;
-    border:none;
-    border-radius:30px;
+button {
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
     font-size: 1.7em;
-    padding:10px 25px;
-    outline:none;
+    padding: 10px 25px;
+    outline: none;
     text-align: center;
-    position:relative;
-    display:inline-block;
-
+    position: relative;
+    display: inline-block;
 }
-.botonmenu:hover{
+
+.botonmenu:hover {
     background-color: #a1caff;
 }
-.select{
-    width:200px;
-    padding:5px 25px;
+
+.select {
+    width: 200px;
+    padding: 5px 25px;
     text-align: center;
 }
-.container-ruta{
-    border-radius: 30px;
-    border-color: blue;
-    background-color: whitesmoke;
-    padding: 22px;
-    width:  100%; 
-    margin: 0 auto;     
-    display:block;
-    box-sizing: border-box;
-}
-.container{
+
+.container {
     border-radius: 30px;
     border-color: blue;
     background-color: #eee;
     padding: 22px;
-    width:  100%; 
-    margin: 0 auto;     
-    display:block;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
 }
-.container #formulario{
+
+.container #formulario {
     border-radius: 30px;
     border-color: blue;
     background-color: #eee;
     padding: 20px;
-    width: 100%; 
-    margin: 0 auto; 
-    display:block;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
 }
 
-.autocompletar{
-    position:relative;
-    display:inline-block;
+.autocompletar {
+    position: relative;
+    display: inline-block;
 }
 
-tr th{
+tr th {
     text-align: center;
-
-
 }
-td{
+
+td {
     height: 30px;
     text-align: center;
 }
-strong{
-    color:black;
+
+strong {
+    color: black;
 }
-input{
-    background-color:#fff;
-    border:none;
-    border-radius:30px;
+
+input {
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
     font-size: 1em;
-    padding:10px 25px;
-    outline:none;
+    padding: 10px 25px;
+    outline: none;
     text-align: center;
-    position:relative;
-    display:inline-block;
+    position: relative;
+    display: inline-block;
 }
 
-
-table{
+table {
     width: 100%;
 }
-#producto{
-    background-color:#fff;
-    border:none;
-    border-radius:30px;
+
+#producto {
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
     font-size: 1em;
-    padding:10px 10px;
-    outline:none;
-    width:400px;
+    padding: 10px 10px;
+    outline: none;
+    width: 400px;
 }
 
-.lista-autocompletar-items{
-    color:#ccc;
-    position: absolute;   
-    border-bottom:none;
+.lista-autocompletar-items {
+    color: #ccc;
+    position: absolute;
+    border-bottom: none;
     z-index: 99;
-    top:100%;
-    left:0px;
+    top: 100%;
+    left: 0px;
     right: 0;
-    width:100%;
+    width: 100%;
 }
-.lista-autocompletar-items div{
-    padding:5px 30px;
-    cursor:pointer;
-    background-color:#fff;
-    border-bottom:1px solid #d4d4d4;
+
+.lista-autocompletar-items div {
+    padding: 5px 30px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
     text-align-last: center;
-    border-radius:30px;
+    border-radius: 30px;
     text-align: center;
 }
-.lista-autocompletar-items div:hover{
+
+.lista-autocompletar-items div:hover {
     background-color: dodgerblue;
 }
-.autocompletar-active{
+
+.autocompletar-active {
     background-color: blue !important;
-    color:#a1caff;
+    color: #a1caff;
 }
-.autocompletar-active strong{
-    color:#fff;
-}
-.agregaractivo:hover{
-    background-color: #A98989
-        ;
 
+.autocompletar-active strong {
+    color: #fff;
 }
-.submit{
-    background-color : greenyellow;
-}
-.reset{
 
-    background-color : coral;
+.agregaractivo:hover {
+    background-color: #A98989;
 }
-.w3-modal-content{
-    border-radius:30px;
+
+.submit {
+    background-color: greenyellow;
 }
+
+.reset {
+    background-color: coral;
+}
+
+.w3-modal-content {
+    border-radius: 30px;
+}
+
 .sidenav {
     height: 100%;
     width: 200px;
@@ -264,8 +273,11 @@ table{
     padding-top: 20px;
 }
 
+
 /* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-btn {
+
+.sidenav a,
+.dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -296,7 +308,7 @@ table{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color:  #818181;
+    color: #818181;
     display: block;
     transition: 0.3s;
 }
@@ -304,14 +316,20 @@ table{
 .sidenav a:hover {
     color: black;
 }
-.sidenav a:hover, .dropdown-btn:hover {
+
+.sidenav a:hover,
+.dropdown-btn:hover {
     color: black;
 }
+
 .main {
-    margin-left: 200px; /* Same as the width of the sidenav */
-    font-size: 20px; /* Increased text to enable scrolling */
+    margin-left: 200px;
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
+
 .sidenav .closebtn {
     position: absolute;
     top: 0;
@@ -319,23 +337,31 @@ table{
     font-size: 36px;
     margin-left: 50px;
 }
+
 .active {
     background-color: #818181;
     color: white;
 }
+
 .dropdown-container {
     display: none;
     background-color: #eee;
     padding-left: 8px;
 }
 
+
 /* Optional: Style the caret down icon */
+
 .fa-caret-down {
     float: right;
     padding-right: 8px;
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }
