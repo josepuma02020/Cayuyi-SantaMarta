@@ -20,13 +20,13 @@ if ($_SESSION['usuario']) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="./usuarios/usuarios.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
         <?php include_once('diseno/navegadoradmin.php'); ?>
     </head>
 
     <body>
-        <div class=" container container-md" style="min-height: 40% " align="left">
+        <div class=" container container-md" style="min-height: 40% ">
             <div class="card-body">
 
                 <span class="btn btn-primary" data-toggle="modal" style="font-size: medium" data-target="#nuevousuario">

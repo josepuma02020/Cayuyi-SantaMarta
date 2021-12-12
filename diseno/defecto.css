@@ -37,6 +37,10 @@ footer {
     text-align: center;
 }
 
+.aviso1 {
+    background-color: rgb(243, 243, 72);
+}
+
 .modal .modal-dialog {
     width: 80%;
 }
