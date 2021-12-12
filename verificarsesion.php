@@ -5,7 +5,7 @@ include('conexion/conexion.php');
 include('funciones/funciones.php');
 $usuario = htmlentities($_POST['usuario']);
 $clave1 = htmlentities($_POST['clave']);
-$consulta = "SELECT a.*,b.id_ruta,b.ruta FROM usuarios a inner join rutas b on b.encargado = a.id_usuario
+echo $consulta = "SELECT a.*,b.id_ruta,b.ruta FROM usuarios a left join rutas b on b.encargado = a.id_usuario
 WHERE usuario='$usuario' ";
 $query = mysqli_query($link, $consulta) or die($consulta);
 $arreglo = mysqli_fetch_array($query);

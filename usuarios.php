@@ -112,7 +112,7 @@ if ($_SESSION['usuario']) {
 
             </div>
             <div id="recarga">
-                <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
+                <TABLE class="table table-striped  table-responsive-lg" id="tablageneral">
                     <THEAD>
                         <tr>
                             <th> Cedula </th>
@@ -130,7 +130,7 @@ if ($_SESSION['usuario']) {
                         while ($filas1 = mysqli_fetch_array($query)) {
                         ?>
                             <TR>
-                                <TD><?php echo $filas1['usuario']; ?> </TD>
+                                <TD><?php echo $filas1['cedula']; ?> </TD>
                                 <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
                                 <TD><?php echo $filas1['usuario']; ?> </TD>
                                 <TD><?php echo $filas1['Rol']; ?> </TD>
@@ -261,10 +261,10 @@ if ($_SESSION['usuario']) {
 }
 ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
-
-        tabla = $('#tablaproductos').DataTable({
+        tabla = $('#tablageneral').DataTable({
             language: {
                 url: '../vendor/datatables/es-ar.json',
                 lengthMenu: "Mostrar _MENU_ Registros",
@@ -280,10 +280,6 @@ if ($_SESSION['usuario']) {
                 },
             }
         });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#editarusuario').click(function() {
             a = 0;
             cedula = $('#cedulau').val();
