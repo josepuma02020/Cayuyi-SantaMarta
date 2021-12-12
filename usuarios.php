@@ -113,10 +113,11 @@ if ($_SESSION['usuario']) {
                     <TABLE class="table table-striped  table-responsive-lg"  id="tablaproductos"  >                   
                         <THEAD>
                             <tr>
-                                <th> CEDULA </th>
-                                <th> NOMBRE  </th>
-                                <th> USUARIO  </th>    
-                                <th> ACCIONES  </th>
+                                <th> Cedula </th>
+                                <th> Nombre  </th>
+                                <th> Usuario  </th>
+                                <th> Tipo de Usuario  </th>    
+                                <th> Acciones  </th>
                             </tr>
                         </THEAD>
                         <TBODY>
@@ -130,6 +131,7 @@ if ($_SESSION['usuario']) {
                                     <TD><?php echo $filas1['usuario']; ?> </TD>
                                     <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
                                     <TD><?php echo $filas1['usuario']; ?> </TD> 
+                                    <TD><?php echo $filas1['Rol']; ?> </TD> 
                                     <TD> 
                                         <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
                                         <button onclick="agregardatosusuario(<?php echo $filas1['id_usuario'] ?>)"    type="button" id="actualiza"  class="btn btn-primary" data-toggle="modal" data-target="#editar" >
