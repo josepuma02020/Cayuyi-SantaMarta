@@ -29,6 +29,14 @@
     }
 }
 
+title {
+    padding-top: 1.5rem;
+}
+
+footer {
+    text-align: center;
+}
+
 .modal .modal-dialog {
     width: 80%;
 }
@@ -122,6 +130,10 @@ hr {
 .imagenproducto:hover {
     transform: scale(10);
     content: "Factura";
+}
+
+.danger {
+    background-color: rgb(238, 238, 66);
 }
 
 button {

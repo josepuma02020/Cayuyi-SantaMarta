@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="description" content="Software para manejar y optimizar el proceso de tus rutas de cobro y prestamos.">
     <meta name="robots" context="index,follow">
-    <link rel="stylesheet" href="./diseno/login/cel.css"  />
+    <link rel="stylesheet" href="./diseno/login/cel.css" />
     <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css">
@@ -25,27 +25,42 @@
     <header>
     </header>
     <main class="container-login">
+        <?php
+        if(isset($_GET['m'])){
+        $m = $_GET['m'];
+        switch ($m) {
+            case 1:
+        ?>
+                <script>
+                    alertify.alert('Atencion!!', 'El usuario se encuentra Inactivo', function() {
+                        alertify.success('Ok');
+                    });
+                </script>
+        <?php
+                break;
+        }}
+        ?>
         <div class="titulo">
             <h1>ORION</h1>
         </div>
-        <form  action="verificarsesion.php" method="POST">
+        <form action="verificarsesion.php" method="POST">
             <label class="form-item" for="usuario">
                 <h3 class="">Usuario:</h3>
-                <input required type="text"  class=" form-control " id="usuario" placeholder="Ingrese su Usuario" name="usuario">
+                <input required type="text" class=" form-control " id="usuario" placeholder="Ingrese su Usuario" name="usuario">
             </label>
             <label class="form-item" for="clave">
                 <h3 class="">Clave:</h3>
-                <input required type="password"  class="form-control " id="clave" placeholder="Ingrese su Contraseña" name="clave">
-            </label>   
+                <input required type="password" class="form-control " id="clave" placeholder="Ingrese su Contraseña" name="clave">
+            </label>
             <input type="submit" id="iniciar" class="btn btn-default" value="Iniciar sesion">
         </form>
     </main>
 </body>
 <footer>
-        <p>Author: Pumasoft<br>
-            <a href="https://www.pumasoft.co">pumasoft.co</a>
-        </p>
-  
+    <p>Author: Pumasoft<br>
+        <a href="https://www.pumasoft.co">pumasoft.co</a>
+    </p>
+
 </footer>
 
 </html>

@@ -1,6 +1,5 @@
 
 <?php
-
 session_start();
 include('conexion/conexion.php');
 include('funciones/funciones.php');
@@ -10,6 +9,9 @@ $consulta = "SELECT a.*,b.id_ruta,b.ruta FROM usuarios a inner join rutas b on b
 WHERE usuario='$usuario' ";
 $query = mysqli_query($link, $consulta) or die($consulta);
 $arreglo = mysqli_fetch_array($query);
+if($arreglo['Rol'] == "Inactivo"){
+    header('Location: '."index.php?m=1");
+}else{
 $clave2 = $arreglo['clave'];
 $fecha = date("Y" . "-" . "m" . "-" . "d");
 //ruta
@@ -27,11 +29,9 @@ if (password_verify($clave1, $clave2)) {
     $consultaactconex = "update usuarios set ult_conexion = '$fecha' where id_usuario = $_SESSION[id_usuario]  ";
     $query = mysqli_query($link, $consultaactconex) or die($consultaactconex);
     header('Location: '."diario.php");
-} else {
-    echo "<script type=''>
-      alert('usuario o contraseña no validos');
-        window.location='index.php';
-    </script>";
+}else{
+
+}
 }
 
 
