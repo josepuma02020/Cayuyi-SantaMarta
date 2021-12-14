@@ -131,7 +131,7 @@ if ($_SESSION['usuario']) {
                                 </button>
                             </div>
                             <input type="hidden" id="idu1" name="idu1">
-                            <div class="modal-body" align="center">
+                            <div class="modal-body" >
                                 <h3>Se registrará que el cliente no pago la cuota</h3>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -151,7 +151,7 @@ if ($_SESSION['usuario']) {
                                 </button>
                             </div>
                             <input type="hidden" id="idu" name="idu">
-                            <div class="modal-body" align="center">
+                            <div class="modal-body" >
                                 <form action="">
                                     <div class="form-row">
                                         <div class="form-group col-sm-4">
