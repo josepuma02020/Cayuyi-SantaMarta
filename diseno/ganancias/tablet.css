@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+}
+
+footer {
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 1.2rem;
+}
+
+.container {
+    border-radius: 30px;
+    border-color: blue;
+    background-color: #eee;
+    padding: 22px;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.tablas {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.tabla-valores {
+    text-align: center;
+    width: 46%;
+    margin-top: 3%;
+    margin-bottom: 8%;
+    margin-right: 3%;
+}
+
+.titulo-tabla {
+    padding-bottom: 2%;
+    font-family: serif;
+    font-size: 3rem;
+}
+
+thead,
+tbody,
+th,
+td {
+    border: 1px solid black;
+    height: 25px;
+}
+
+thead {
+    font-size: 1.6rem;
+}
+
+.titulo-pagina {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 1.4rem;
+}
+
+.cuenta,
+.valor {
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+.titulo-modal {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.panel-botones {
+    width: 100%;
+    text-align: left;
+}
+
+.btn-transaccion {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 300px;
+    height: 50px;
+    font-size: 1.5rem;
+}
+
+.modal-mediano {
+    width: 11rem;
+}
+
+.modal-largo {
+    width: 23rem;
+}
+
+
+/* modal */

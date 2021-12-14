@@ -66,7 +66,6 @@ if ($_SESSION['usuario']) {
                                     <div class="form-group col-md-4">
                                         <label>Direccion:</label>
                                         <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="direccion" name="direccion">
-
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Telefono:</label>

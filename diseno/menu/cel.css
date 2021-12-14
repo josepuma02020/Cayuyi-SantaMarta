@@ -1,14 +1,5 @@
 /*-------*/
 
-@-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
-    to {
-        opacity: 1
-    }
-}
-
 @keyframes fade {
     from {
         opacity: .4
@@ -29,8 +20,18 @@
     }
 }
 
-.modal .modal-dialog {
-    width: 80%;
+.menu {
+    text-align: left;
+}
+
+.titulo-menu {
+    font-size: 1.8rem;
+    cursor: pointer;
+    align-self: flex-end
+}
+
+.cerrar {
+    align-items: flex-end;
 }
 
 .ui-menu .ui-menu-item a {
@@ -93,6 +94,10 @@
     caption-side: top;
 }
 
+footer {
+    text-align: center;
+}
+
 form {
     margin: 50px auto;
     width: 500px;
@@ -147,15 +152,6 @@ button {
     display: inline-block;
 }
 
-tr th {
-    text-align: center;
-}
-
-td {
-    height: 30px;
-    text-align: center;
-}
-
 strong {
     color: black;
 }
@@ -170,10 +166,6 @@ input {
     text-align: center;
     position: relative;
     display: inline-block;
-}
-
-table {
-    width: 100%;
 }
 
 #producto {
@@ -238,7 +230,7 @@ table {
 
 .sidenav {
     height: 100%;
-    width: 200px;
+    width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -255,7 +247,7 @@ table {
 .dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.2rem;
     color: #818181;
     display: block;
     border: none;
@@ -282,10 +274,11 @@ table {
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 1rem;
     color: #818181;
     display: block;
     transition: 0.3s;
+    padding-right: 10%;
 }
 
 .sidenav a:hover {

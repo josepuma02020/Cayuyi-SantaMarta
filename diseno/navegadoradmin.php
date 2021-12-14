@@ -9,45 +9,42 @@ if (isset($_SESSION['usuario'])) {
         <title style="font-family: cursive">Pumasoft</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="diseno/menu.css" />
+        <link rel="stylesheet" href="./diseno/menu/cel.css" media="screen and (min-width:200px)" />
+        <link rel="stylesheet" href="./diseno/menu/tablet.css" media="screen and (min-width:700px)" />
+        <link rel="stylesheet" href="./diseno/menu/desktop.css" media="screen and (min-width:1025px)" />
     </head>
 
     <body>
-        <main>
-            <div align="left">
-                <span style="font-size:30px;cursor:pointer; align-self: flex-end" onclick="openNav()">&#9776; MENU
-                </span>
-            </div>
-
+        <main class="menu">
+            <span class="titulo-menu" onclick="openNav()">&#9776; MENU
+            </span>
             <div id="mimenu" class="sidenav" style="width: 0;">
-                <a href="javascript:void(0)" class="closebtn" style="align-items: flex-end;left:100px  " onclick="closeNav()">&times;</a>
-                <br>
-                <br>
+                <a class="cerrar" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <button class="dropdown-btn">Recorridos
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <?php if ($_SESSION['Rol'] == 'Cobrador') {
                 ?>
                     <div class="dropdown-container">
-                        <a href="../../ORION/diario.php" style="font-size: medium ">Diario</a>
-                        <a href="../../ORION/recorridosc.php" style="font-size: medium ">Editar Ruta</a>
-                        <a href="../../ORION/cuotas.php" style="font-size: medium ">Cuotas Registradas</a>
+                        <a href="../../ORION/diario.php">Diario</a>
+                        <a href="../../ORION/recorridosc.php">Editar Ruta</a>
+                        <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
                     </div>
                 <?php } else { ?>
                 <?php } ?>
                 <div class="dropdown-container">
-                    <a href="../../ORION/diario.php" style="font-size: medium ">Diario</a>
-                    <a href="../../ORION/recorridos.php" style="font-size: medium ">Recorridos</a>
-                    <a href="../../ORION/recorridosc.php" style="font-size: medium ">Editar Ruta</a>
-                    <a href="../../ORION/cuotas.php" style="font-size: medium ">Cuotas Registradas</a>
+                    <a href="../../ORION/diario.php">Diario</a>
+                    <a href="../../ORION/recorridos.php">Recorridos</a>
+                    <a href="../../ORION/recorridosc.php">Editar Ruta</a>
+                    <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
                 </div>
                 <?php if ($_SESSION['Rol'] == 'Supervisor') { ?>
                     <button class="dropdown-btn">Rutas
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-container">
-                        <a href="../../ORION/rutas.php" style="font-size: medium ">Rutas</a>
-                        <a href="../../ORION/gastos.php" style="font-size: medium ">Gastos</a>
+                        <a href="../../ORION/rutas.php">Rutas</a>
+                        <a href="../../ORION/gastos.php">Gastos</a>
 
                     </div>
                 <?php  } ?>
@@ -56,8 +53,8 @@ if (isset($_SESSION['usuario'])) {
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-container">
-                        <a href="../../ORION/rutas.php" style="font-size: medium ">Rutas</a>
-                        <a href="../../ORION/gastos.php" style="font-size: medium ">Gastos</a>
+                        <a href="../../ORION/rutas.php">Rutas</a>
+                        <a href="../../ORION/gastos.php">Gastos</a>
 
                     </div>
                 <?php } ?>
@@ -66,12 +63,12 @@ if (isset($_SESSION['usuario'])) {
                 </button>
                 <div class="dropdown-container">
                     <?php if ($_SESSION['Rol'] == 'Cobrador') { ?>
-                        <a href="../../ORION/clientesc.php" style="font-size: medium ">Clientes Activos</a>
+                        <a href="../../ORION/clientesc.php">Clientes Activos</a>
                     <?php } else { ?>
-                        <a href="../../ORION/prestamos.php" style="font-size: medium ">Activos</a>
-                        <a href="../../ORION/prestamos.php?id=1" style="font-size: medium ">Cancelados</a>
-                        <a href="../../ORION/clientes.php" style="font-size: medium ">Clientes</a>
-                        <a href="../../ORION/clientesc.php" style="font-size: medium ">Clientes Activos</a>
+                        <a href="../../ORION/prestamos.php">Activos</a>
+                        <a href="../../ORION/prestamos.php?id=1">Cancelados</a>
+                        <a href="../../ORION/clientes.php">Clientes</a>
+                        <a href="../../ORION/clientesc.php">Clientes Activos</a>
 
 
                     <?php } ?>
@@ -80,9 +77,9 @@ if (isset($_SESSION['usuario'])) {
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-container">
-                        <a href="../../ORION/ganancias.php" style="font-size: medium ">Balance </a>
-                        <a href="../../ORION/contabilidad.php" style="font-size: medium "> Informe Contable </a>
-                        <a href="../../ORION/transacciones.php" style="font-size: medium ">Transacciones</a>
+                        <a href="../../ORION/ganancias.php">Contabilidad x Rutas </a>
+                        <a href="../../ORION/contabilidad.php"> Informe Contable </a>
+                        <a href="../../ORION/transacciones.php">Transacciones</a>
                     </div>
                     <button class="dropdown-btn" id="usuarios">Usuarios
                     </button>
@@ -93,7 +90,7 @@ if (isset($_SESSION['usuario'])) {
                     </button>
                     <div class="dropdown-container">
 
-                        <a href="../../ORION/contabilidad.php" style="font-size: medium "> Informe Contable </a>
+                        <a href="../../ORION/contabilidad.php"> Informe Contable </a>
 
                     </div>
                     <button class="dropdown-btn" id="usuarios">Usuarios
@@ -107,7 +104,7 @@ if (isset($_SESSION['usuario'])) {
                 </button>
             </div>
         </main>
-        
+
     </body>
 
     </html>
@@ -147,7 +144,7 @@ if (isset($_SESSION['usuario'])) {
 </script>
 <script>
     function openNav() {
-        document.getElementById("mimenu").style.width = "250px";
+        document.getElementById("mimenu").style.width = "40%";
     }
 
     function closeNav() {

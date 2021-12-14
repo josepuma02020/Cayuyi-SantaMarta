@@ -15,20 +15,17 @@ if ($_SESSION['usuario']) {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="./diseno/diario/cel.css" />
-        <link rel="stylesheet" href="./diseno/diario/tablet.css" media="screen and (min-width:500px)" />
+        <link rel="stylesheet" href="./diseno/diario/cel.css" media="screen and (min-width:200px)" />
+        <link rel="stylesheet" href="./diseno/diario/tablet.css" media="screen and (min-width:450px)" />
         <link rel="stylesheet" href="./diseno/diario/desktop.css" media="screen and (min-width:950px)" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-     
+        <script src="librerias/bootstrap/js/bootstrap.js"></script>
+
     </head>
 
     <body>
@@ -36,7 +33,7 @@ if ($_SESSION['usuario']) {
             <?php include_once('diseno/navegadoradmin.php'); ?>
         </header>
         <main>
-            <div class=" container container-md" style="min-height: 40% " align="left">
+            <div class=" container container-md" style="min-height: 40% ">
                 <?php
                 $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado =  $_SESSION[id_usuario] and (a.valorapagar - a.abonado) > 0  order by a.posicion_ruta";
                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
@@ -78,14 +75,14 @@ if ($_SESSION['usuario']) {
                             $aviso = "";
                         }
                 ?>
-                        <div class="container-ruta " >
+                        <div class="container-ruta ">
                             <div class="form-row">
                                 <b><?php echo $filas2['nombre'] . ' ' . $filas2['apellido'] ?></b>
                             </div>
                             <div class="form-row">
                                 <b> Dias Atrasados:</b><?php echo $diasatrasados ?>
                             </div>
-                            <div class="form-row" >
+                            <div class="form-row">
                                 <b>Telefono:</b> <?php echo $filas2['telefono'] ?>
                                 <a class="boton-diario" href="tel:+<?php echo $filas2['telefono'] ?>"><button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-outbound" viewBox="0 0 16 16">
@@ -106,14 +103,14 @@ if ($_SESSION['usuario']) {
                             </div>
 
                             <div class="botones">
-                                <div class="boton-diario"> 
+                                <div class="boton-diario">
                                     <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" class="btn btn-success" id="cobrar" data-toggle="modal" data-target="#cc">Cobrar Cuota</button>
-                               </div>
-                               <div class="boton-diario">
+                                </div>
+                                <div class="boton-diario">
                                     <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" class="btn btn-danger" id="nopago" data-toggle="modal" data-target="#nopaga">No Pagó</button>
-                               </div>
+                                </div>
 
-                      <a href="historialcuotasc.php?id=<?php echo $filas1['id_prestamo'] ?>"><button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                <a href="historialcuotasc.php?id=<?php echo $filas1['id_prestamo'] ?>"><button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                                             <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
                                             <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
