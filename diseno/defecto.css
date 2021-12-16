@@ -37,6 +37,11 @@ footer {
     text-align: center;
 }
 
+.boton-tabla {
+    width: 1rem;
+    height: 1rem;
+}
+
 .aviso1 {
     background-color: rgb(243, 243, 72);
 }
