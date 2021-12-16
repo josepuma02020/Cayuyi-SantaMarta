@@ -13,8 +13,9 @@ if ($_SESSION['usuario']) {
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="diseno/defecto.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="./diseno/defecto/cel.css" />
+        <link rel="stylesheet" type="text/css" href="./diseno/defecto/tablet.css" media="screen and (min-width:450px)" />
+        <link rel="stylesheet" type="text/css" href="./diseno/defecto/desktop.css" media="screen and (min-width:1000px)" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -22,82 +23,75 @@ if ($_SESSION['usuario']) {
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="./usuarios/usuarios.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
-        <?php include_once('diseno/navegadoradmin.php'); ?>
+
     </head>
 
     <body>
-        <div class=" container container-md" style="min-height: 40% ">
+        <header>
+            <?php include_once('diseno/navegadoradmin.php'); ?>
+        </header>
+        <div class=" container container-md">
             <div class="card-body">
 
-                <span class="btn btn-primary" data-toggle="modal" style="font-size: medium" data-target="#nuevousuario">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
+                <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
                         <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
                         <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                     </svg> Nuevo Usuario<span class="fa fa-plus-circle"></span>
                 </span>
                 <div class="modal fade" id="nuevousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" align="center">
-                        <div class="modal-content" align="center">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Usuario</b></h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body" align="center">
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Cedula:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="cedula" name="cedula">
+                            <div class="modal-body">
 
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Nombre:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="nombre" name="nombre">
-
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Apellido:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="apellido" name="apellido   ">
-
-                                    </div>
+                                <div class="form-group normal">
+                                    <label>Nombre:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Direccion:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="direccion" name="direccion">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Telefono:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="telefono" name="telefono">
-
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Rol:</label>
-                                        <select id="rol" class="form-control input-sm">
-                                            <option value="0"></option>
-                                            <option value="Administrador">Administrador</option>
-                                            <option value="Supervisor">Supervisor</option>
-                                            <option value="Cobrador">Cobrador</option>
-
-                                        </select>
-                                    </div>
+                                <div class="form-group normal">
+                                    <label>Apellido:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellido" name="apellido   ">
+                                </div>
+                                <div class="form-group normal">
+                                    <label>Cedula:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="cedula" name="cedula">
+                                </div>
+                                <div class="form-group normal">
+                                    <label>Rol:</label>
+                                    <select id="rol" class="form-control input-sm">
+                                        <option value="0"></option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Supervisor">Supervisor</option>
+                                        <option value="Cobrador">Cobrador</option>
+                                    </select>
+                                </div>
+                                <div class="form-group largo">
+                                    <label>Direccion:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
+                                </div>
+                                <div class="form-group normal">
+                                    <label>Telefono:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefono" name="telefono">
 
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Usuario:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="usuario" name="usuario   ">
+                                <div class="form-group normal">
+                                    <label>Usuario:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="usuario" name="usuario   ">
 
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Clave:</label>
-                                        <input autocomplete="off" type="password" style="font-size: medium" class="form-control input-group-sm" id="clave" name="clave">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Confirmar Clave:</label>
-                                        <input autocomplete="off" type="password" style="font-size: medium" class="form-control input-group-sm" id="confimarclave" name="confimarclave">
-                                    </div>
+                                </div>
+                                <div class="form-group normal">
+                                    <label>Clave:</label>
+                                    <input autocomplete="off" type="password" class="form-control input-group-sm" id="clave" name="clave">
+                                </div>
+                                <div class="form-group normal">
+                                    <label>Confirmar Clave:</label>
+                                    <input autocomplete="off" type="password" class="form-control input-group-sm" id="confimarclave" name="confimarclave">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -135,12 +129,11 @@ if ($_SESSION['usuario']) {
                                 <TD><?php echo $filas1['Rol']; ?> </TD>
                                 <TD>
                                     <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                    <button onclick="agregardatosusuario(<?php echo $filas1['id_usuario'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
-                                        <svg class="boton-tabla" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <button class="btn btn-tabla  btn-primary" onclick="agregardatosusuario(<?php echo $filas1['id_usuario'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                        <svg viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                                         </svg>
                                     </button>
-
                                 </TD>
 
                             </TR>
@@ -161,75 +154,59 @@ if ($_SESSION['usuario']) {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label>Cedula:</label>
-                                <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="cedulau" name="cedulau">
-                                <input autocomplete="off" type="hidden" style="font-size: medium" class="form-control input-group-sm" id="idu" name="idu" />
 
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Nombre:</label>
-                                <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="nombreu" name="nombreu">
-
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Apellido:</label>
-                                <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="apellidou" name="apellidou">
-
-                            </div>
+                        <div class="form-group normal ">
+                            <label>Nombre:</label>
+                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label>Direccion:</label>
-                                <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="direccionu" name="direccionu">
+                        <div class="form-group normal ">
+                            <label>Apellido:</label>
+                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellidou" name="apellidou">
+                        </div>
+                        <div class="form-group  normal">
+                            <label>Cedula:</label>
+                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="cedulau" name="cedulau">
+                            <input autocomplete="off" type="hidden" class="form-control input-group-sm" id="idu" name="idu" />
+                        </div>
+                        <div class="form-group normal">
+                            <label>Telefono:</label>
+                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefonou" name="telefonou">
+                        </div>
+                        <div class="form-group largo">
+                            <label>Direccion:</label>
+                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccionu" name="direccionu">
+                        </div>
+                        <div class="form-group normal">
+                            <label>Rol Actual:</label>
+                            <input autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rolactual" name="rolactual">
+                        </div>
+                        <div class="form-group normal ">
+                            <label>Nuevo Rol:</label>
+                            <select id="rolu" class="form-control input-sm">
+                                <option value="0"></option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Supervisor">Supervisor</option>
+                                <option value="Cobrador">Cobrador</option>
+                                <option class="danger" value="Inactivo">Inactivo</option>
 
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Telefono:</label>
-                                <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="telefonou" name="telefonou">
-
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label>Rol Actual:</label>
-                                <input autocomplete="off" disabled type="text" style="font-size: medium" class="form-control input-group-sm" id="rolactual" name="rolactual">
-
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label>Nuevo Rol:</label>
-                                <select id="rolu" class="form-control input-sm">
-                                    <option value="0"></option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Supervisor">Supervisor</option>
-                                    <option value="Cobrador">Cobrador</option>
-                                    <option class="danger" value="Inactivo">Inactivo</option>
-
-                                </select>
-                            </div>
+                            </select>
+                        </div>
+                        <div class="form-group normal ">
+                            <label>Ultima conexion:</label>
+                            <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="ultima" name="ultima   ">
+                        </div>
+                        <div class="form-group normal ">
+                            <label>Usuario:</label>
+                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="usuariou" name="usuario   ">
 
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label>Usuario:</label>
-                                <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="usuariou" name="usuario   ">
-
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Nueva Clave:</label>
-                                <input autocomplete="off" type="password" style="font-size: medium" class="form-control input-group-sm" id="claveu" name="claveu">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Confirmar Clave:</label>
-                                <input autocomplete="off" type="password" style="font-size: medium" class="form-control input-group-sm" id="confimarclaveu" name="confimarclaveu">
-                            </div>
+                        <div class="form-group normal">
+                            <label>Nueva Clave:</label>
+                            <input autocomplete="off" type="password" class="form-control input-group-sm" id="claveu" name="claveu">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label>Ultima conexion:</label>
-                                <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="ultima" name="ultima   ">
-
-                            </div>
-
+                        <div class="form-group normal">
+                            <label>Confirmar Clave:</label>
+                            <input autocomplete="off" type="password" class="form-control input-group-sm" id="confimarclaveu" name="confimarclaveu">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -269,7 +246,7 @@ if ($_SESSION['usuario']) {
                 lengthMenu: "Mostrar _MENU_ Registros",
                 loadingRecords: "Cargando...",
                 search: "Buscar:",
-                info: "Mostrando lista de Ventas",
+                info: "Mostrando lista de Usuarios",
                 zeroRecords: "Sin Resultados",
                 paginate: {
                     first: "Primera pagina",

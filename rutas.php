@@ -81,7 +81,7 @@ if ($_SESSION['usuario']) {
                 <hr>
 
             </div>
-            <div align="center" id="recarga">
+            <div id="recarga">
 
                 <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
                     <THEAD>
@@ -107,11 +107,11 @@ if ($_SESSION['usuario']) {
                             $consultaatrasados = "select sum(`valorapagar`/`dias_prestamo`)'recaudo',COUNT(id_prestamo)'atrasados' from prestamos where dias_atraso > 0 and ruta =$filas1[id_ruta]  and valorapagar>abonado";
                             $query1 = mysqli_query($link, $consultaatrasados) or die($consultaatrasados);
                             $atrasados = mysqli_fetch_array($query1);
-                            $clientesatrasados=$atrasados['atrasados'];
-                            if($clientesatrasados>=5){
+                            $clientesatrasados = $atrasados['atrasados'];
+                            if ($clientesatrasados >= 5) {
                                 $clase = "aviso1";
-                            }else{
-                                $clase="";
+                            } else {
+                                $clase = "";
                             }
                         ?>
                             <TR>
@@ -128,7 +128,7 @@ if ($_SESSION['usuario']) {
                                     ?></TD>
                                 <TD><?php echo $recaudo['prestado']; ?> </TD>
                                 <TD><?php echo $recaudo['intereses']; ?> </TD>
-                                
+
                                 <TD>
                                     <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
                                     <button onclick="agregardatosruta(<?php echo $filas1['id_ruta'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
@@ -159,7 +159,7 @@ if ($_SESSION['usuario']) {
                     </div>
                     <input type="hidden" value="<?php echo $filas1['id_ruta'] ?>" id="idruta" name="idruta">
 
-                    <div class="modal-body" >
+                    <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label>Nombre de Ruta:</label>
@@ -193,11 +193,11 @@ if ($_SESSION['usuario']) {
         </div>
     </body>
     <footer>
-      
-            <p>Author: Pumasoft<br>
-                <a href="https://www.pumasoft.co">pumasoft.co</a>
-            </p>
-     
+
+        <p>Author: Pumasoft<br>
+            <a href="https://www.pumasoft.co">pumasoft.co</a>
+        </p>
+
     </footer>
 
     </HTML>
