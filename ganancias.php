@@ -38,7 +38,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 'Administrador') {
             <input type="hidden" value="<?php echo $mes ?>" id="mes" />
             <input type="hidden" value="<?php echo $año ?>" id="año" />
             <div class="titulo-pagina">
-                <h1 style="font-family:  monospace;">Contabilidad de Rutas</h1>
+                <h1 class="titulo-tabla">Contabilidad de Rutas</h1>
             </div>
             <div class="panel-botones">
                 <span class="btn btn-success btn-transaccion" data-toggle="modal" data-target="#retirardinero">
@@ -121,8 +121,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 'Administrador') {
                     <table class="tabla-valores">
                         <thead>
                             <tr>
-                                <th class="titulo-tabla" colspan="2">
-                                    <h2 class="titulo-tabla"><?php echo $filas1['ruta'] ?></h2>
+                                <th colspan="2">
+                                    <h2 class="titulo-tabla-detalles"><?php echo $filas1['ruta'] ?></h2>
                                 </th>
                             </tr>
                             <tr>

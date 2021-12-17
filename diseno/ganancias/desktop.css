@@ -38,10 +38,10 @@ footer {
     margin-right: 3%;
 }
 
-.titulo-tabla {
+.titulo-tabla-detalles {
     padding-bottom: 2%;
     font-family: serif;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 thead,
@@ -60,6 +60,7 @@ thead {
     margin-top: 2%;
     margin-bottom: 2%;
     font-size: 1.2rem;
+    text-align: center;
 }
 
 .cuenta,

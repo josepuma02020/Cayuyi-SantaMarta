@@ -2583,6 +2583,20 @@ textarea.form-control.is-invalid {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.titulo-pagina {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 1.2rem;
+    text-align: center;
+    font-family: serif;
+}
+
+.titulo-tabla {
+    padding-bottom: 2%;
+    font-family: serif;
+    font-size: 3rem;
+}
+
 .btn-tabla {
     width: 45%;
     padding-left: 5%;
