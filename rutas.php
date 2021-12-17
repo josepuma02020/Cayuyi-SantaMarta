@@ -16,9 +16,6 @@ if ($_SESSION['usuario']) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
         <link rel="stylesheet" href="diseno/defecto/desktop.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
@@ -31,9 +28,12 @@ if ($_SESSION['usuario']) {
         <header>
             <?php include_once($_SESSION['menu']); ?>
         </header>
-        <div class=" container container-md" style="min-height: 40% ">
+        <div class=" container container-md">
+            <section class="titulo-pagina">
+                <h1>Tabla de Rutas</h1>
+            </section>
             <div class="card-body">
-                <span class="btn btn-primary" data-toggle="modal" style="font-size: medium" data-target="#nuevousuario">
+                <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
                         <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
@@ -207,10 +207,7 @@ if ($_SESSION['usuario']) {
 
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 

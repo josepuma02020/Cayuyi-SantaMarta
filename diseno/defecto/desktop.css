@@ -2049,6 +2049,14 @@ pre code {
     width: 46%;
 }
 
+.tres {
+    width: 30%;
+}
+
+.cuatro {
+    width: 15%;
+}
+
 .completo {
     width: 98%;
 }
@@ -2057,6 +2065,7 @@ pre code {
     display: block;
     width: 100%;
     height: auto;
+    font-size: 1rem;
     padding: 0.375rem 0.75rem;
     font-weight: 400;
     line-height: 1.5;
@@ -2598,10 +2607,15 @@ textarea.form-control.is-invalid {
 
 .titulo-pagina {
     margin-top: 2%;
-    margin-bottom: 2%;
-    font-size: 1.2rem;
+    margin-bottom: 0;
+    font-size: 1.6rem;
     text-align: center;
     font-family: serif;
+    font-weight: none;
+}
+
+.titulo-pagina * {
+    margin: 0;
 }
 
 .titulo-tabla {
@@ -10610,13 +10624,8 @@ footer {
 
 .ui-autocomplete-input {
     border: none;
-    font-size: 14px;
-    width: 300px;
-    height: 24px;
-    margin-bottom: 5px;
-    padding-top: 2px;
-    border: 1px solid #DDD !important;
-    padding-top: 0px !important;
+    border: 1px solid #DDD;
+    padding-top: 0px;
     z-index: 1511;
     position: relative;
 }

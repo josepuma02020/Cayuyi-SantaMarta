@@ -22,7 +22,7 @@ if ($_SESSION['usuario']) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="./rutas/rutas.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
 
     </head>
@@ -112,20 +112,17 @@ if ($_SESSION['usuario']) {
         </div>
     </body>
     <footer>
-       
-            <p>Author: Pumasoft<br>
-                <a href="https://www.pumasoft.co">pumasoft.co</a>
-            </p>
-     
+
+        <p>Author: Pumasoft<br>
+            <a href="https://www.pumasoft.co">pumasoft.co</a>
+        </p>
+
     </footer>
 
     </HTML>
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>

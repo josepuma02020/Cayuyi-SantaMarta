@@ -28,9 +28,12 @@ if ($_SESSION['usuario']) {
 
     <body>
         <header>
-            <?php include_once($_SESSION['menu']);?>
+            <?php include_once($_SESSION['menu']); ?>
         </header>
-        <div class=" container container-md" style="min-height: 40% ">
+        <div class=" container container-md">
+            <section class="titulo-pagina">
+                <h1>Tabla de Gastos</h1>
+            </section>
             <div class="card-body">
                 <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
@@ -193,10 +196,7 @@ if ($_SESSION['usuario']) {
     </HTML>
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>

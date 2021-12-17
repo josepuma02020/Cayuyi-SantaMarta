@@ -230,10 +230,7 @@ if ($_SESSION['usuario']) {
 
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>

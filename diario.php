@@ -23,9 +23,8 @@ if ($_SESSION['usuario']) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="./prestamos/prestamos.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
-
     </head>
 
     <body>
@@ -33,11 +32,13 @@ if ($_SESSION['usuario']) {
             <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
-            <div class=" container container-md" style="min-height: 40% ">
+            <div class=" container container-md">
                 <?php
                 $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado =  $_SESSION[id_usuario] and (a.valorapagar - a.abonado) > 0  order by a.posicion_ruta";
                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
+                $a = 0;
                 while ($filas1 = mysqli_fetch_array($query)) {
+                    $a++;
                     $diaspago = $filas1['formapago'];
                     switch ($diaspago) {
                         case 1:
@@ -116,8 +117,12 @@ if ($_SESSION['usuario']) {
                                         </svg></button></a>
                             </div>
                         </div>
-                <?php
+                    <?php
                     }
+                }
+                if ($a > 0) {
+                    ?><h3> Has completado tu ruta el dia de hoy </h3>
+                <?php
                 }
                 ?>
                 <div class="modal fade" id="nopaga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

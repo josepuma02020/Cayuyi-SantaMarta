@@ -417,10 +417,7 @@ if ($_SESSION['usuario']) {
 
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 <script type="text/javascript">
