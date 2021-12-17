@@ -2034,6 +2034,7 @@ pre code {
 .form-group {
     margin: 1%;
     display: inline-block;
+    text-align: center;
 }
 
 .normal {

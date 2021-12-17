@@ -2034,6 +2034,7 @@ pre code {
 .form-group {
     margin: 1%;
     display: inline-block;
+    text-align: center;
 }
 
 .normal {
@@ -2047,7 +2048,7 @@ pre code {
 .form-control {
     display: block;
     width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
+    height: auto;
     padding: 0.375rem 0.75rem;
     font-weight: 400;
     line-height: 1.5;
@@ -2581,6 +2582,10 @@ textarea.form-control.is-invalid {
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.parametros {
+    margin-bottom: 3%;
 }
 
 .titulo-pagina {

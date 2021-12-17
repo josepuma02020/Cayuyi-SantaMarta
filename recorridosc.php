@@ -4,6 +4,17 @@ if ($_SESSION['usuario']) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
     setlocale(LC_ALL, "es_CO");
+    //rutainfo
+    $rutaactiva = $_SESSION['nruta'];
+    if (isset($_GET['rutaa'])) {
+        $rutainfo = $_GET['rutaa'];
+    } else {
+        $rutainfo = $_SESSION['ruta'];
+    }
+    $consultanombreruta = "select ruta from rutas where id_ruta=$rutainfo";
+    $query1 = mysqli_query($link, $consultanombreruta) or die($consultanombreruta);
+    $filas2 = mysqli_fetch_array($query1);
+    $nomrutainfo = $filas2['ruta'];
 ?>
     <HTML>
 
@@ -16,13 +27,11 @@ if ($_SESSION['usuario']) {
         <link rel="stylesheet" type="text/css" href="./diseno/defecto/cel.css" />
         <link rel="stylesheet" type="text/css" href="./diseno/defecto/tablet.css" media="screen and (min-width:450px)" />
         <link rel="stylesheet" type="text/css" href="./diseno/defecto/desktop.css" media="screen and (min-width:1000px)" />
-        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="funciones/rutas.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
 
     </head>
@@ -32,9 +41,44 @@ if ($_SESSION['usuario']) {
             <?php include_once('diseno/navegadoradmin.php'); ?>
         </header>
         <div class=" container container-md">
-            <div class="titulo-pagina">
+            <section class="titulo-pagina">
                 <h1>Editar Recorrido</h1>
-            </div>
+            </section>
+
+            <?php
+            if ($_SESSION['Rol'] == 1) {
+            ?>
+                <section class="parametros">
+                    <div class="form-group col-md-3">
+                        <h3>Buscar Ruta:</h3>
+                        <select id="ruta" class="form-control input-sm">
+                            <?php
+                            $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
+                            $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
+                            ?> <option value="0"></option>
+                            <?php
+                            while ($filas1 = mysqli_fetch_array($query)) {
+                            ?>
+                                <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['recorridos'] . '-' . $filas1['ruta'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <h3>Mostrando:</h3>
+                        <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $nomrutainfo; ?>">
+                    </div>
+                    <button type="button" id="buscar" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
+                </section>
+            <?php
+            }
+            ?>
+
             <div id="recarga">
                 <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
                     <THEAD>
@@ -48,7 +92,7 @@ if ($_SESSION['usuario']) {
                     </THEAD>
                     <TBODY>
                         <?php
-                        $consultarutas = "SELECT a.id_prestamo,c.direccion,b.ruta,d.nombre 'nencargado',d.apellido 'aencargado' ,c.nombre,c.apellido,a.valorapagar,a.abonado,a.dias_atraso,a.posicion_ruta FROM prestamos a inner join rutas b on a.ruta=b.id_ruta inner join clientes c on c.id_cliente=a.cliente inner join usuarios d on d.id_usuario=b.encargado where a.valorapagar - a.abonado > 0 and a.ruta =  $_SESSION[ruta]";
+                        $consultarutas = "SELECT a.id_prestamo,c.direccion,b.ruta,d.nombre 'nencargado',d.apellido 'aencargado' ,c.nombre,c.apellido,a.valorapagar,a.abonado,a.dias_atraso,a.posicion_ruta FROM prestamos a inner join rutas b on a.ruta=b.id_ruta inner join clientes c on c.id_cliente=a.cliente inner join usuarios d on d.id_usuario=b.encargado where a.valorapagar - a.abonado > 0 and a.ruta =  $rutainfo";
                         $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                         while ($filas1 = mysqli_fetch_array($query)) {
                         ?>
@@ -87,7 +131,7 @@ if ($_SESSION['usuario']) {
                         </button>
                     </div>
                     <input type="hidden" id="idu" name="idu">
-                    <div class="modal-body" align="center">
+                    <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Ruta Actual:</label>
@@ -109,45 +153,21 @@ if ($_SESSION['usuario']) {
         </div>
     </body>
     <footer>
-        <center>
-            <p>Author: Pumasoft<br>
-                <a href="https://www.pumasoft.co">pumasoft.co</a>
-            </p>
-        </center>
+
+        <p>Author: Pumasoft<br>
+            <a href="https://www.pumasoft.co">pumasoft.co</a>
+        </p>
+
     </footer>
 
     </HTML>
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <SCRIPT type="text/javascript">
-    $(document).ready(function() {
-
-        tabla = $('#tablaproductos').DataTable({
-            language: {
-                url: '../vendor/datatables/es-ar.json',
-                lengthMenu: "Mostrar _MENU_ Registros",
-                loadingRecords: "Cargando...",
-                search: "Buscar:",
-                info: "Mostrando lista de Ventas",
-                zeroRecords: "Sin Resultados",
-                paginate: {
-                    first: "Primera pagina",
-                    previous: "Anterior",
-                    next: "Siguiente",
-                    last: "Ultima"
-                },
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
     $(document).ready(function() {
         $('#editarruta').click(function() {
             a = 0;
@@ -165,5 +185,36 @@ if ($_SESSION['usuario']) {
                 window.location.reload();
             }
         })
-    })
+        $('#buscar').click(function() {
+            a = 0;
+            ruta = $('#ruta').val();
+            fecha = $('#fechabuscar').val();
+            if (ruta == 0) {
+                a = 1
+                alertify.alert('ATENCION!!', 'Seleccione una ruta para buscar', function() {
+                    alertify.success('Ok');
+                });
+            }
+            console.log(ruta);
+            if (a == 0) {
+                location.href = `recorridosc.php?rutaa=${ruta}`;
+            }
+        })
+        tabla = $('#tablaproductos').DataTable({
+            language: {
+                url: '../vendor/datatables/es-ar.json',
+                lengthMenu: "Mostrar _MENU_ Registros",
+                loadingRecords: "Cargando...",
+                search: "Buscar:",
+                info: "Mostrando lista de Ventas",
+                zeroRecords: "Sin Resultados",
+                paginate: {
+                    first: "Primera pagina",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Ultima"
+                },
+            }
+        });
+    });
 </script>
