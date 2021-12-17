@@ -28,7 +28,8 @@ if ($_SESSION['usuario']) {
 
     <body>
         <header>
-            <?php include_once('diseno/navegadoradmin.php'); ?>
+            <?php
+            include_once($_SESSION['menu']); ?>
         </header>
         <div class=" container container-md">
             <div class="card-body">
@@ -64,9 +65,9 @@ if ($_SESSION['usuario']) {
                                     <label>Rol:</label>
                                     <select id="rol" class="form-control input-sm">
                                         <option value="0"></option>
-                                        <option value="Administrador">Administrador</option>
-                                        <option value="Supervisor">Supervisor</option>
-                                        <option value="Cobrador">Cobrador</option>
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Supervisor</option>
+                                        <option value="3">Cobrador</option>
                                     </select>
                                 </div>
                                 <div class="form-group largo">
@@ -182,10 +183,10 @@ if ($_SESSION['usuario']) {
                             <label>Nuevo Rol:</label>
                             <select id="rolu" class="form-control input-sm">
                                 <option value="0"></option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Supervisor">Supervisor</option>
-                                <option value="Cobrador">Cobrador</option>
-                                <option class="danger" value="Inactivo">Inactivo</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Supervisor</option>
+                                <option value="3">Cobrador</option>
+                                <option class="4" value="Inactivo">Inactivo</option>
 
                             </select>
                         </div>

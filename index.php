@@ -26,19 +26,38 @@
     </header>
     <main class="container-login">
         <?php
-        if(isset($_GET['m'])){
-        $m = $_GET['m'];
-        switch ($m) {
-            case 1:
+        if (isset($_GET['m'])) {
+            $m = $_GET['m'];
+            switch ($m) {
+                case 1:
         ?>
-                <script>
-                    alertify.alert('Atencion!!', 'El usuario se encuentra Inactivo', function() {
-                        alertify.success('Ok');
-                    });
-                </script>
+                    <script>
+                        alertify.alert('Atencion!!', 'El usuario se encuentra Inactivo', function() {
+                            alertify.success('Ok');
+                        });
+                    </script>
+                <?php
+                    break;
+                case 2:
+                ?>
+                    <script>
+                        alertify.alert('Atencion!!', 'Usuario o clave de ingreso incorrecto', function() {
+                            alertify.success('Ok');
+                        });
+                    </script>
+                <?php
+                    break;
+                case 3:
+                ?>
+                    <script>
+                        alertify.alert('Atencion!!', 'Favor iniciar sesión', function() {
+                            alertify.success('Ok');
+                        });
+                    </script>
         <?php
-                break;
-        }}
+                    break;
+            }
+        }
         ?>
         <div class="titulo">
             <h1>ORION</h1>
