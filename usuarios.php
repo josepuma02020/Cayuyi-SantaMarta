@@ -29,7 +29,8 @@ if ($_SESSION['usuario']) {
     <body>
         <header>
             <?php
-            include_once($_SESSION['menu']); ?>
+            include_once($_SESSION['menu']);
+            ?>
         </header>
         <div class=" container container-md">
             <div class="card-body">

@@ -48,10 +48,13 @@ if ($_SESSION['usuario']) {
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="./rutas/rutas.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
-        <?php include_once('diseno/navegadoradmin.php'); ?>
+
     </head>
 
     <body>
+        <header>
+            <?php include_once($_SESSION['menu']); ?>
+        </header>
         <input type="hidden" value="<?php echo $mes ?>" id="mes" />
         <input type="hidden" value="<?php echo $año ?>" id="año" />
         <div class="container">

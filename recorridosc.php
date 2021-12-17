@@ -38,7 +38,7 @@ if ($_SESSION['usuario']) {
 
     <body>
         <header>
-            <?php include_once('diseno/navegadoradmin.php'); ?>
+            <?php include_once($_SESSION['menu']); ?>
         </header>
         <div class=" container container-md">
             <section class="titulo-pagina">

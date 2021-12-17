@@ -15,7 +15,7 @@ if ($_SESSION['usuario']) {
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="diseno/defecto.css" />
+        <link rel="stylesheet" href="diseno/defecto/desktop.css" />
         <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
@@ -28,6 +28,9 @@ if ($_SESSION['usuario']) {
     </head>
 
     <body>
+        <header>
+            <?php include_once($_SESSION['menu']); ?>
+        </header>
         <div class=" container container-md" style="min-height: 40% ">
             <div class="card-body">
                 <span class="btn btn-primary" data-toggle="modal" style="font-size: medium" data-target="#nuevousuario">
@@ -37,33 +40,33 @@ if ($_SESSION['usuario']) {
                     </svg> Nueva Ruta<span class="fa fa-plus-circle"></span>
                 </span>
                 <div class="modal fade" id="nuevousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" align="center">
-                        <div class="modal-content" align="center">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Nueva Ruta</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body" align="center">
+                            <div class="modal-body">
                                 <div class="form-row">
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group mitad">
                                         <label>Nombre de Ruta:</label>
-                                        <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="nombre" name="nombre">
-
+                                        <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                     </div>
-                                    <div class="form-group col-md-5">
+                                    <div class="form-group mitad">
                                         <label>Encargado:</label>
                                         <select id="encargado" class="form-control input-sm">
                                             <?php
                                             $consultausuarios = "select * from usuarios";
                                             $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
-                                            ?> <option value="0"></option> <?php
-                                                                            while ($filas1 = mysqli_fetch_array($query)) {
-                                                                            ?>
+                                            ?> <option value="0"></option>
+                                            <?php
+                                            while ($filas1 = mysqli_fetch_array($query)) {
+                                            ?>
                                                 <option value="<?php echo $filas1['id_usuario'] ?>"><?php echo $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
                                             <?php
-                                                                            }
+                                            }
                                             ?>
 
 
@@ -161,11 +164,11 @@ if ($_SESSION['usuario']) {
 
                     <div class="modal-body">
                         <div class="form-row">
-                            <div class="form-group col-md-5">
+                            <div class="form-group mitad">
                                 <label>Nombre de Ruta:</label>
                                 <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="nombreu" name="nombreu">
                             </div>
-                            <div class="form-group col-md-5">
+                            <div class="form-group mitad">
                                 <label>Encargado:</label>
                                 <select id="encargadou" class="form-control input-sm">
                                     <?php

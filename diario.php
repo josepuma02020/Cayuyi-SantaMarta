@@ -30,7 +30,7 @@ if ($_SESSION['usuario']) {
 
     <body>
         <header>
-            <?php include_once('diseno/navegadoradmin.php'); ?>
+            <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
             <div class=" container container-md" style="min-height: 40% ">

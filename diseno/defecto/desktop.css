@@ -2032,9 +2032,9 @@ pre code {
 }
 
 .form-group {
-    margin: 1%;
     display: inline-block;
     text-align: center;
+    margin: 2%;
 }
 
 .normal {
@@ -2043,6 +2043,14 @@ pre code {
 
 .largo {
     width: 63%;
+}
+
+.mitad {
+    width: 46%;
+}
+
+.completo {
+    width: 98%;
 }
 
 .form-control {
@@ -2212,7 +2220,7 @@ textarea.form-control {
     flex-wrap: nowrap;
     margin-right: -5px;
     margin-left: -5px;
-    margin-top: 3%;
+    margin-top: 0;
     text-align: center;
     font-size: 1rem;
 }
@@ -6328,6 +6336,7 @@ a.close.disabled {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1rem;
+    text-align: center;
 }
 
 .modal-footer {
