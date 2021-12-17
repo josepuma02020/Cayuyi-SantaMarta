@@ -112,11 +112,11 @@ if ($_SESSION['usuario']) {
         </div>
     </body>
     <footer>
-        <center>
+       
             <p>Author: Pumasoft<br>
                 <a href="https://www.pumasoft.co">pumasoft.co</a>
             </p>
-        </center>
+     
     </footer>
 
     </HTML>

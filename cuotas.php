@@ -46,7 +46,7 @@ if ($_SESSION['usuario']) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="./rutas/rutas.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
         <?php include_once('diseno/navegadoradmin.php'); ?>
     </head>
@@ -294,40 +294,40 @@ if ($_SESSION['usuario']) {
                 <table class="table table-bordered" style=" width:90% ">
                     <thead>
                         <tr>
-                            <th style="width: 50%">
+                            <th>
                                 Base
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Cobro
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Pleno
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Prestamos
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Papelería
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Gastos
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Efectivo
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Cli.Nuevos
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Entrantes
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Saliente?
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Clientes
                             </th>
-                            <th style="width: 50%">
+                            <th>
                                 Aprobar
                             </th>
                         </tr>
@@ -389,9 +389,7 @@ if ($_SESSION['usuario']) {
                                 <input type="hidden" id="efectivo" name="efectivo" value="<?php echo $efectivo ?>" />
                                 <input type="hidden" id="pleno" name="pleno" value="<?php echo $pleno ?>" />
                                 <input type="hidden" id="papeleria" name="pleno" value="<?php echo $sumpapelerias ?>" />
-                                <input type="hidden" id="idrevisar" name="idrevisar" value="<?php echo $nrutaactiva ?>" />
-                                <script lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                <?php ?>
+                                <input type="hidden" id="idrevisar" name="idrevisar" value="<?php echo $rutainfo ?>" />
                                 <button <?php echo $activo ?> type="button" id="revisar" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                                         <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
@@ -405,6 +403,11 @@ if ($_SESSION['usuario']) {
             </div>
         </div>
         </div>
+        <footer>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
+        </footer>
     </body>
 
     </html>
@@ -440,6 +443,7 @@ if ($_SESSION['usuario']) {
     $(document).ready(function() {
         $('#revisar').click(function() {
             ide = $('#idrevisar').val();
+            console.log(ide);
             pleno = $('#pleno').val();
             base = $('#base').val();
             cobro = $('#cobro').val();
@@ -452,9 +456,9 @@ if ($_SESSION['usuario']) {
             papeleria = $('#papeleria').val();
             efectivo = $('#efectivo').val();
             fecha = $('#fechabuscar').val();
-            console.log(clientes);
+
             revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha);
-            window.location.reload();
+            //window.location.reload();
         })
     })
 </script>
