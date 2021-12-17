@@ -32,7 +32,6 @@ if ($_SESSION['usuario']) {
         </header>
         <div class=" container container-md">
             <div class="card-body">
-
                 <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
                         <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
@@ -49,7 +48,6 @@ if ($_SESSION['usuario']) {
                                 </button>
                             </div>
                             <div class="modal-body">
-
                                 <div class="form-group normal">
                                     <label>Nombre:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">

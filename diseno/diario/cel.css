@@ -41,3 +41,19 @@ button {
     display: inline;
     position: static;
 }
+
+.normal {
+    width: 47%;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    text-align: center;
+    width: 90%;
+    font-size: 1.2rem;
+}
+
+.largo {
+    width: 100%;
+}

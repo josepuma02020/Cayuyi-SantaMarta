@@ -53,11 +53,10 @@ if ($_SESSION['usuario']) {
                             $formadepago = 'Mensual';
                             break;
                     }
-                    $consultaforma = "select max(fecha)'desde' from registros_cuota where prestamo = $filas1[id_prestamo] and cuota > 0";
+                    $consultaforma = "select max(fecha)'desde' from registros_cuota where prestamo = $filas1[id_prestamo]";
                     $query1 = mysqli_query($link, $consultaforma) or die($consultaforma);
                     $filas5 = mysqli_fetch_array($query1);
                     $fecha1 = $filas5['desde'];
-
                     $dateDifference = abs(strtotime($fecha_actual) - strtotime($fecha1));
                     $years = floor($dateDifference / (365 * 60 * 60 * 24));
                     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
@@ -122,7 +121,7 @@ if ($_SESSION['usuario']) {
                 }
                 ?>
                 <div class="modal fade" id="nopaga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-md modal-dialog " style="width:25%;">
+                    <div class="modal-md modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel"><b>Esta seguro?</b></h5>
@@ -131,7 +130,7 @@ if ($_SESSION['usuario']) {
                                 </button>
                             </div>
                             <input type="hidden" id="idu1" name="idu1">
-                            <div class="modal-body" >
+                            <div class="modal-body">
                                 <h3>Se registrará que el cliente no pago la cuota</h3>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -142,7 +141,7 @@ if ($_SESSION['usuario']) {
                     </div>
                 </div>
                 <div class="modal fade" id="cc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-md modal-dialog " style="width:25%;">
+                    <div class="modal-md modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel"><b>Recoger Cuota</b></h5>
@@ -151,20 +150,16 @@ if ($_SESSION['usuario']) {
                                 </button>
                             </div>
                             <input type="hidden" id="idu" name="idu">
-                            <div class="modal-body" >
-                                <form action="">
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-4">
-                                            <label>Dinero Recogido:</label>
-                                            <input autocomplete="off" type="hidden" style="font-size: medium" class="form-control input-group-sm" id="idu" name="idu" />
-                                            <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="dinero" name="dinero">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button id="recoger" type="button" class="btn btn-primary">Aceptar</button>
-                                    </div>
-                                </form>
+                            <div class="modal-body">
+                                <div class="form-group largo">
+                                    <label>Dinero Recogido:</label>
+                                    <input autocomplete="off" type="hidden" class="form-control input-group-sm" id="idu" name="idu" />
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="dinero" name="dinero">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button id="recoger" type="button" class="btn btn-primary">Aceptar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -179,7 +174,7 @@ if ($_SESSION['usuario']) {
                                 </button>
                             </div>
                             <input type="hidden" id="idu" name="idu">
-                            <div class="modal-body" align="center">
+                            <div class="modal-body">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                     <button id="no" type="button" class="btn btn-primary">Aceptar</button>
