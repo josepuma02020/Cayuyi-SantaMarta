@@ -185,8 +185,7 @@ img {
 svg {
     overflow: hidden;
     vertical-align: middle;
-    width: 16;
-    height: 16;
+    width: 30;
 }
 
 table {
@@ -228,6 +227,7 @@ textarea {
     margin: 0;
     font-family: inherit;
     line-height: inherit;
+    font-size: 1.1rem;
 }
 
 button,
@@ -2032,36 +2032,54 @@ pre code {
 }
 
 .form-group {
-    margin: 1%;
     display: inline-block;
-}
-
-.parametros {
     text-align: center;
-    display: block;
+    margin: 2%;
 }
 
 .normal {
-    width: 47%;
+    width: 30%;
 }
 
 .largo {
-    width: 100%;
+    width: 63%;
+}
+
+.mitad {
+    width: 46%;
+}
+
+.tres {
+    width: 30%;
+}
+
+.cuatro {
+    width: 15%;
+}
+
+.completo {
+    width: 98%;
 }
 
 .form-control {
     display: block;
     width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
+    height: auto;
+    font-size: 1rem;
     padding: 0.375rem 0.75rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-control {
+        transition: none;
+    }
 }
 
 .form-control::-ms-expand {
@@ -2109,7 +2127,6 @@ pre code {
 
 .form-control:disabled,
 .form-control[readonly] {
-    background-color: #e9ecef;
     opacity: 1;
 }
 
@@ -2210,8 +2227,9 @@ textarea.form-control {
     flex-wrap: nowrap;
     margin-right: -5px;
     margin-left: -5px;
-    margin-top: 3%;
+    margin-top: 0;
     text-align: center;
+    font-size: 1rem;
 }
 
 .form-row>.col,
@@ -2500,7 +2518,70 @@ textarea.form-control.is-invalid {
     width: 100%;
 }
 
-.btn-nav {
+@media (min-width: 576px) {
+    .form-inline label {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+    .form-inline .form-group {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    .form-inline .form-control {
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+    }
+    .form-inline .form-control-plaintext {
+        display: inline-block;
+    }
+    .form-inline .input-group,
+    .form-inline .custom-select {
+        width: auto;
+    }
+    .form-inline .form-check {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: auto;
+        padding-left: 0;
+    }
+    .form-inline .form-check-input {
+        position: relative;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        margin-top: 0;
+        margin-right: 0.25rem;
+        margin-left: 0;
+    }
+    .form-inline .custom-control {
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    .form-inline .custom-control-label {
+        margin-bottom: 0;
+    }
+}
+
+.btn {
+    font-size: 0.9rem;
     display: inline-block;
     font-weight: 400;
     color: #212529;
@@ -2518,43 +2599,42 @@ textarea.form-control.is-invalid {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.parametros {
+    margin-bottom: 3%;
+    text-align: left;
+}
+
+.titulo-pagina {
+    margin-top: 2%;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+    text-align: center;
+    font-family: serif;
+    font-weight: none;
+}
+
+.titulo-pagina * {
+    margin: 0;
+}
+
+.titulo-tabla {
+    padding-bottom: 2%;
+    font-family: serif;
+    font-size: 3rem;
+}
+
+.input-disabled-vencido {
+    background-color: lightcoral;
+}
+
+.input-disabled-normal {
+    background-color: #e9ecef;
+}
+
 .btn-tabla {
-    display: inline-block;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    vertical-align: middle;
-    width: 50%;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.btn-parametro {
-    margin-top: 4%;
-    margin-bottom: 4%;
-}
-
-.btn {
-    font-size: 1rem;
-    display: inline-block;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 45%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6148,18 +6228,11 @@ a.close.disabled {
     transform: translate(0, -50px);
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .modal.fade .modal-dialog {
-        transition: none;
-    }
-}
-
 .modal.show .modal-dialog {
-    -webkit-transform: none;
     transform: none;
-    width: 90%;
-    margin-right: 5%;
-    margin-left: 5%;
+    width: 100%;
+    margin-right: 20%;
+    margin-left: 20%;
 }
 
 .modal.modal-static .modal-dialog {
@@ -6275,7 +6348,8 @@ a.close.disabled {
     line-height: 1.5;
     text-align: center;
     width: 90%;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    margin-top: 0;
 }
 
 .modal-body {
@@ -6283,6 +6357,7 @@ a.close.disabled {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1rem;
+    text-align: center;
 }
 
 .modal-footer {
@@ -10556,13 +10631,8 @@ footer {
 
 .ui-autocomplete-input {
     border: none;
-    font-size: 14px;
-    width: 300px;
-    height: 24px;
-    margin-bottom: 5px;
-    padding-top: 2px;
-    border: 1px solid #DDD !important;
-    padding-top: 0px !important;
+    border: 1px solid #DDD;
+    padding-top: 0px;
     z-index: 1511;
     position: relative;
 }

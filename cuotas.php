@@ -40,13 +40,10 @@ if ($_SESSION['usuario']) {
         <link rel="stylesheet" type="text/css" href="./diseno/revisioncuotas/cel.css" />
         <link rel="stylesheet" type="text/css" href="./diseno/revisioncuotas/tablet.css" media="screen and (min-width:450px)" />
         <link rel="stylesheet" type="text/css" href="./diseno/revisioncuotas/desktop.css" media="screen and (min-width:1000px)" />
-        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="./rutas/rutas.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="./prestamos/prestamos.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
 
     </head>
@@ -93,7 +90,7 @@ if ($_SESSION['usuario']) {
                 </button>
             </section>
             <div id="recarga">
-                <table class="table table-bordered" id="tablaproductos">
+                <table class="table table-bordered" id="tablacuotas">
                     <thead>
                         <tr>
                             <th>
@@ -135,7 +132,7 @@ if ($_SESSION['usuario']) {
                     <TBODY>
 
                         <?php
-                        $consultarutas = "select a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',a.fecha,c.nombre,c.apellido,b.cliente from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
+                        $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',a.fecha,c.nombre,c.apellido,b.cliente from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
                         $query = mysqli_query($link, $consultarutas) or die($consultarutas);
 
 
@@ -158,9 +155,22 @@ if ($_SESSION['usuario']) {
                             }
                             $dias = $filas1['dias_atraso'];
                             $cuota = $filas1['cuota'];
+                            $idprestamo = $filas1['id_prestamo'];
+                            //verficiar prestamo vencido
+                            $consultacuota = "SELECT max(a.diasvence)'diasvence',a.prestamo FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $idprestamo";
+                            $query3 = mysqli_query($link, $consultacuota) or die($consultacuota);
+                            $filasvencido = mysqli_fetch_array($query3);
+                            $diasvencido = $filasvencido['diasvence'];
+                            $diasvencido = $diasvencido * -1;
+
+                            if ($diasvencido < 0) {
+                                $class = "vencido";
+                            } else {
+                                $class = "";
+                            }
                         ?>
                             <TR>
-                                <TD><?php echo $filas1['fecha']; ?> </TD>
+                                <TD class="<?php echo $class ?>"><?php echo $filas1['fecha']; ?> </TD>
                                 <TD><a href="prestamos.php">
                                         <?php
                                         $consultaprestamo = "select a.valor_prestamo,a.papeleria from prestamos a where a.cliente = $filas1[cliente] and a.fecha = '$filas1[fecha]' ";
@@ -294,7 +304,7 @@ if ($_SESSION['usuario']) {
                 <h1 style="font-family:  monospace;">Resumen</h1>
             </div>
             <div id="recarga">
-                <table class="table table-bordered" style=" width:90% ">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>
@@ -467,7 +477,7 @@ if ($_SESSION['usuario']) {
 <script type="text/javascript">
     $(document).ready(function() {
 
-        tabla = $('#tablaproductos').DataTable({
+        tabla = $('#tablacuotas').DataTable({
             language: {
                 url: '../vendor/datatables/es-ar.json',
                 lengthMenu: "Mostrar _MENU_ Registros",

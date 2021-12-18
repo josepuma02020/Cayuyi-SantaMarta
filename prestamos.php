@@ -199,12 +199,12 @@ if ($_SESSION['usuario']) {
                         <tr>
                             <th> Ruta </th>
                             <th> Nombre </th>
-                            <th> Fecha Prestamo </th>
-                            <th> Valor Prestado </th>
-                            <th> Valor a Pagar </th>
+                            <th> F.Préstamo</th>
+                            <th> V.Prestado </th>
+                            <th> V.a pagar </th>
                             <th> Abonado </th>
                             <th> Saldo </th>
-                            <th> Dias Atrasados </th>
+                            <th> D.A </th>
                             <th> Acciones </th>
                         </tr>
                     </THEAD>

@@ -102,3 +102,31 @@ function agregarruta(nombre, encargado) {
         }
     });
 }
+
+function obtenerdatosprestamo(id) {
+    $.ajax({
+        type: "POST",
+        data: "id=" + id,
+        url: "prestamos/datosprestamo.php",
+        success: function(r) {
+            dato = jQuery.parseJSON(r);
+            console.log(dato);
+            $('#cedulau').val(dato['cedula']);
+            $('#nombreu').val(dato['nombrecliente']);
+            $('#rutaactual').val(dato['nombreruta']);
+            $('#posicionu').val(dato['posicion']);
+            $('#fechau').val(dato['fecha']);
+            $('#valoru').val(dato['valor']);
+            $('#totalpagaru').val(dato['pagar']);
+            $('#valorinteresesu').val(dato['intereses']);
+            $('#porcentajeu').val(dato['porcentaje'].toFixed(2));
+            $('#diasu').val(dato['dias']);
+            $('#cuotau').val((dato['cuota'] * dato['valorforma']).toFixed(2));
+            $('#idu').val(dato['id']);
+            $('#idu1').val(dato['id']);
+            $('#formau').val(dato['formapago']);
+            $('#abonou').val(dato['abonado']);
+            $('#atrasou').val(dato['atraso']);
+        }
+    });
+}

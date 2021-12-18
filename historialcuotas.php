@@ -6,6 +6,7 @@ if ($_SESSION['usuario']) {
     setlocale(LC_ALL, "es_CO");
     $fecha_actual = date("Y-m-j");
     $fecha_inicio = date("Y-m-01");
+
     $rutaactiva = $_SESSION['nruta'];
     $nrutaactiva = $_SESSION['ruta'];
     if (isset($_GET['cliente'])) {
@@ -33,158 +34,155 @@ if ($_SESSION['usuario']) {
     $filas1 = mysqli_fetch_array($query);
     $base = $filas1['base'];
     $clientesruta = $filas1['prestamos'];
-    ?>
+    //dias para vencimiento de prestamo activo
+    $consultavencimiento = "select dias_prestamo,fecha from prestamos where cliente=$cliente and abonado < valorapagar";
+    $queryvencimiento = mysqli_query($link, $consultavencimiento) or die($consultavencimiento);
+    $filasvencimiento = mysqli_fetch_array($queryvencimiento);
+    $diasprestamoactivo = $filasvencimiento['dias_prestamo'];
+    $fechaprestamoactivo = $filasvencimiento['fecha'];
+    $fechaprestamoactivo = date_create($fechaprestamoactivo);
+    date_add($fechaprestamoactivo, date_interval_create_from_date_string("$diasprestamoactivo days"));
+    $fechafinprestamo = date_format($fechaprestamoactivo, "d-m-Y");
+    $fecha_actual = date_create($fecha_actual);
+    $diff = $fecha_actual->diff($fechaprestamoactivo);
+    $vencimiento = $diff->days . ' dias';
+    if ($vencimiento <= 0) {
+        $class = 'input-disabled-vencido';
+    } else {
+        $class = 'input-disabled-normal';
+    }
+?>
     <html>
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-            <meta charset="utf-8"/>
-            <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-            <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"/>
-            <link rel="stylesheet" href="diseno/defecto.css" />
-            <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
-            <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
-            <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-            <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
-            <SCRIPT src="librerias/alertify/alertify.js"></script>
-            <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-            <script src="librerias/bootstrap/js/bootstrap.js"></script>
-            <?php include_once('diseno/navegadoradmin.php'); ?>
-        </head>
-        <body>
-            <input type="hidden" value="<?php echo $cliente ?>" id="cliente"/> 
 
-            <div  class="container" >
-                <div align="center"> 
-                    <h1 style="font-family:  monospace;">Historial de Cuotas</h1>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+        <link rel="stylesheet" type="text/css" href="./diseno/historialcuotas/cel.css" />
+        <link rel="stylesheet" type="text/css" href="./diseno/historialcuotas/desktop.css" media="screen and (min-width:1000px)" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
+        <SCRIPT src="librerias/alertify/alertify.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <script src="librerias/bootstrap/js/bootstrap.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+            <?php include_once($_SESSION['menu']); ?>
+        </header>
+        <input type="hidden" value="<?php echo $cliente ?>" id="cliente" />
+        <div class="container">
+            <section class="titulo-pagina">
+                <h1>Historial de Cuotas</h1>
+            </section>
+            <section class="parametros">
+                <div class="form-group col-sm-3">
+                    <h3>Cliente:</h3>
+                    <input disabled class="form-control input-sm input-disabled-normal" type="text" id="mostrando" value="<?php echo $nombrecliente; ?>">
                 </div>
-                <div class="card-body">
+                <div class="form-group col-sm-3">
+                    <h3>Vencimiento de préstamo activo:</h3>
+                    <input disabled class="form-control input-sm <?php echo $class ?>" type="text" id="mostrando" value="<?php echo $vencimiento; ?>">
+                </div>
+            </section>
+            <div id="recarga">
+                <table class="table table-bordered" id="tablahistorial">
+                    <thead>
+                        <tr>
+                            <th>
+                                Fecha
+                            </th>
+                            <th>
+                                Préstamo
+                            </th>
+                            <th>
+                                V.P
+                            </th>
+                            <th>
+                                Cuota
+                            </th>
+                            <th>
+                                Saldo
+                            </th>
+                            <th>
+                                Forma de Pago
+                            </th>
 
-
-                    <div class="form-group col-sm-3">
-                        <h3 style="font-family:  monospace;">Cliente:</h3>
-                        <input disabled class="form-control input-sm" style=" width: 70%" type="text" id="mostrando" value="<?php echo $nombrecliente; ?>">
-                    </div>      
-     
-                    <div  align="center" id="recarga">
-                        <br/>
-
-                        <table  class="table table-bordered" id="tablaproductos" style=" width:90% " align="center">     
-                            <thead>   
-
-                                <tr>
-                                    <th style="width: 20%">
-                                        Fecha
-                                    </th>                                 
-                                    <th style="width: 10%">
-                                        Préstamo
-                                    </th>
-                                    <th style="width: 15%">
-                                        V.P
-                                    </th>
-                                    <th style="width: 15%">
-                                        Cuota
-                                    </th>
-                                    <th style="width: 15%">
-                                        Saldo
-                                    </th>
-                                    <th style="width: 100%">
-                                        Forma de Pago
-                                    </th> 
-
-                                    <th style="width: 15%">
-                                        D.A  
-                                    </th>                       
-                                    <th style="width: 15%">
-                                        Vencimiento(dias);
-                                    </th>
-
-                                </tr>
-                            </thead>   
-                            <TBODY>
-
+                            <th>
+                                D.A
+                            </th>
+                        </tr>
+                    </thead>
+                    <TBODY>
+                        <?php
+                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+                        $query = mysqli_query($link, $consultacuota) or die($consultacuota);
+                        while ($filas1 = mysqli_fetch_array($query)) {
+                            $dias = $filas1['atraso'];
+                            $diascuota = $filas1['diasvence'];
+                            if ($diascuota <= 0) {
+                                $class = "vencido";
+                            }
+                        ?>
+                            <TR>
+                                <TD><?php echo $filas1['fecha']; ?> </TD>
+                                <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
+                                <TD><?php echo $filas1['valorapagar']; ?> </TD>
+                                <TD><?php echo $filas1['cuota']; ?> </TD>
                                 <?php
-                                if($id == 0){
-                                     if ($cliente != 0) {
-                                    $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where b.cliente = $cliente";
+                                $saldo = $filas1['saldo'];
+                                if ($saldo == 0) {
+                                    $color = "1DE97D";
                                 } else {
-                                    $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente ";
+                                    $color = "";
                                 }
-                                }else{
-                                         $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $id";
-                              
-                                }
-                               
-                                $query = mysqli_query($link, $consultacuota) or die($consultacuota);
+                                ?><TD style="background-color: <?php echo $color ?>"><?php echo $saldo; ?> </TD>
+                                <TD><?php
+                                    $diaspago = $filas1['formapago'];
+                                    switch ($diaspago) {
+                                        case 1:
+                                            $formadepago = 'D';
+                                            break;
+                                        case 15:
+                                            $formadepago = 'Q';
+                                            break;
+                                        case 7:
+                                            $formadepago = 'S';
+                                            break;
+                                        case 30:
+                                            $formadepago = 'M';
+                                            break;
+                                    }
+                                    echo $formadepago;
+                                    ?> </TD>
+                                <TD><?php echo $dias; ?> </TD>
+                            </TR>
+                        <?php } ?>
+                    </TBODY>
+                </table>
 
-                                while ($filas1 = mysqli_fetch_array($query)) {
-                                    $dias = $filas1['atraso'];
-                                    ?>
-                                    <TR>   
-                                        <TD><?php echo $filas1['fecha']; ?> </TD>
-                                                                                       
-                                        <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
-                                        <TD><?php echo $filas1['valorapagar']; ?> </TD>
-                                        <TD><?php echo $filas1['cuota']; ?> </TD>
-                                        <?php
-                                        $saldo = $filas1['saldo'];
-                                        if ($saldo == 0) {
-                                            $color = "1DE97D";
-                                        } else {
-                                            $color = "";
-                                        }
-                                        ?><TD style="background-color: <?php echo $color ?>"><?php echo $saldo; ?> </TD>
-                                        <TD><?php
-                                            $diaspago = $filas1['formapago'];
-                                            switch ($diaspago) {
-                                                case 1:
-                                                    $formadepago = 'D';
-                                                    break;
-                                                case 15:
-                                                    $formadepago = 'Q';
-                                                    break;
-                                                case 7:
-                                                    $formadepago = 'S';
-                                                    break;
-                                                case 30:
-                                                    $formadepago = 'M';
-                                                    break;
-                                            }
-                                            echo $formadepago;
-                                            ?> </TD>
-                                        <TD><?php echo $dias; ?> </TD>
-                                        <TD><?php
-                                        $diascuota = $filas1['diasvence'];
-                                          echo $diascuota;
-                                            ?> </TD>
-                                    </TR>
-                                <?php } ?>
-                            </TBODY>
-                        </table>
-
-                    </div>
-                </div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
 
-        </body>
+        </div>
+
+    </body>
+
     </html>
 
-    <?php
+<?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#buscar').click(function () {
+    $(document).ready(function() {
+        $('#buscar').click(function() {
             a = 0;
             desde = $('#desde').val();
             hasta = $('#hasta').val();
@@ -193,11 +191,7 @@ if ($_SESSION['usuario']) {
                 location.href = `historialcuotas.php?cliente=${cliente}`;
             }
         })
-    })
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#revisar').click(function () {
+        $('#revisar').click(function() {
             ide = $('#idrevisar').val();
             pleno = $('#pleno').val();
             base = $('#base').val();
@@ -212,14 +206,7 @@ if ($_SESSION['usuario']) {
             revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes);
             window.location.reload();
         })
-    })
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        tabla = $('#tablaproductos').DataTable({
+        tabla = $('#tablahistorial').DataTable({
             language: {
                 url: '../vendor/datatables/es-ar.json',
                 lengthMenu: "Mostrar _MENU_ Registros",
@@ -236,7 +223,4 @@ if ($_SESSION['usuario']) {
             }
         });
     });
-</script> 
-
-
-
+</script>

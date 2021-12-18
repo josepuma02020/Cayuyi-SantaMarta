@@ -47,6 +47,21 @@ html {
     line-height: 1.15;
 }
 
+.titulo-pagina {
+    font-family: serif;
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.tabla-cuotas-cel {
+    font-size: 0.8rem;
+}
+
+.vencido {
+    background-color: lightcoral;
+}
+
 article,
 aside,
 figcaption,
@@ -1699,6 +1714,7 @@ pre code {
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+    text-align: center;
 }
 
 .table thead th {
@@ -2057,7 +2073,6 @@ pre code {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
@@ -2109,7 +2124,6 @@ pre code {
 
 .form-control:disabled,
 .form-control[readonly] {
-    background-color: #e9ecef;
     opacity: 1;
 }
 
@@ -10707,18 +10721,6 @@ td {
 
 strong {
     color: black;
-}
-
-input {
-    background-color: #fff;
-    border: none;
-    border-radius: 30px;
-    font-size: 1em;
-    padding: 10px 25px;
-    outline: none;
-    text-align: center;
-    position: relative;
-    display: inline-block;
 }
 
 table {

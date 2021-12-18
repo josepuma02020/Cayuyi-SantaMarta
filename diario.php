@@ -38,7 +38,7 @@ if ($_SESSION['usuario']) {
                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                 $a = 0;
                 while ($filas1 = mysqli_fetch_array($query)) {
-                    $a++;
+                    $a = $a + 1;
                     $diaspago = $filas1['formapago'];
                     switch ($diaspago) {
                         case 1:
@@ -67,7 +67,18 @@ if ($_SESSION['usuario']) {
                     $query1 = mysqli_query($link, $consultadatos) or die($consultadatos);
                     $filas2 = mysqli_fetch_array($query1);
                     $diasatrasados = $filas1['atraso'];
-
+                    //verficiar prestamo vencido
+                    $consultacuota = "SELECT max(a.diasvence)'diasvence' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $filas1[id_prestamo]";
+                    $query3 = mysqli_query($link, $consultacuota) or die($consultacuota);
+                    $filasvencido = mysqli_fetch_array($query3);
+                    $diasvencido = $filasvencido['diasvence'];
+                    if ($diasvencido != "") {
+                        if ($diasvencido < 0) {
+                            $class = "vencido";
+                        }
+                    } else {
+                        $class = "";
+                    }
                     if ($filas2['formapago'] <= $diascuota) {
                         if ($filas2['dias_atraso'] > 5) {
                             $aviso = "EC1A3D";
@@ -75,7 +86,7 @@ if ($_SESSION['usuario']) {
                             $aviso = "";
                         }
                 ?>
-                        <div class="container-ruta ">
+                        <div class="container-ruta <?php echo $class ?>">
                             <div class="form-row">
                                 <b><?php echo $filas2['nombre'] . ' ' . $filas2['apellido'] ?></b>
                             </div>
@@ -109,7 +120,6 @@ if ($_SESSION['usuario']) {
                                 <div class="boton-diario">
                                     <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" class="btn btn-danger" id="nopago" data-toggle="modal" data-target="#nopaga">No Pagó</button>
                                 </div>
-
                                 <a href="historialcuotasc.php?id=<?php echo $filas1['id_prestamo'] ?>"><button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                                             <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
@@ -120,7 +130,7 @@ if ($_SESSION['usuario']) {
                     <?php
                     }
                 }
-                if ($a > 0) {
+                if ($a == 0) {
                     ?><h3> Has completado tu ruta el dia de hoy </h3>
                 <?php
                 }
@@ -158,7 +168,6 @@ if ($_SESSION['usuario']) {
                             <div class="modal-body">
                                 <div class="form-group largo">
                                     <label>Dinero Recogido:</label>
-                                    <input autocomplete="off" type="hidden" class="form-control input-group-sm" id="idu" name="idu" />
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="dinero" name="dinero">
                                 </div>
                                 <div class="modal-footer">
@@ -195,7 +204,6 @@ if ($_SESSION['usuario']) {
     </body>
 
     </HTML>
-
 <?php
 } else {
     header('Location: ' . "index.php?m=3");

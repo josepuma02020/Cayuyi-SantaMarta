@@ -31,7 +31,7 @@ if ($_SESSION['usuario']) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/rutas.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="rutas/rutas.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
 
     </head>
@@ -69,7 +69,7 @@ if ($_SESSION['usuario']) {
                         <h3>Mostrando:</h3>
                         <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $nomrutainfo; ?>">
                     </div>
-                    <button type="button" id="buscar" class="btn btn-primary">
+                    <button type="button" id="buscar" class="btn btn-primary btn-parametro">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                         </svg>
@@ -97,16 +97,11 @@ if ($_SESSION['usuario']) {
                         while ($filas1 = mysqli_fetch_array($query)) {
                         ?>
                             <TR>
-
                                 <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
                                 <TD><?php echo $filas1['direccion']; ?> </TD>
                                 <TD><?php echo $filas1['posicion_ruta']; ?> </TD>
-
-
-
                                 <TD><?php echo $filas1['valorapagar'] - $filas1['abonado']; ?> </TD>
                                 <TD>
-                                    <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
                                     <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
@@ -130,17 +125,18 @@ if ($_SESSION['usuario']) {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <input type="hidden" id="idu" name="idu">
+
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Ruta Actual:</label>
-                                <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
+                                <input type="text" id="idu" name="idu">
+                                <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
                             </div>
 
                             <div class="form-group col-md-4">
                                 <label>Posicion:</label>
-                                <input autocomplete="off" min="0" type="text" style="font-size: medium" class="form-control input-group-sm" id="posicionu" name="posicionu">
+                                <input autocomplete="off" min="0" type="text" class="form-control input-group-sm" id="posicionu" name="posicionu">
                             </div>
                         </div>
                     </div>
@@ -181,8 +177,9 @@ if ($_SESSION['usuario']) {
                 });
             }
             if (a == 0) {
+                console.log(idu);
                 editarrecorrido(idu, ruta, posicion);
-                window.location.reload();
+                //window.location.reload();
             }
         })
         $('#buscar').click(function() {
