@@ -6,7 +6,7 @@ if (isset($_SESSION['usuario'])) {
     <html>
 
     <head>
-        <title style="font-family: cursive">Pumasoft</title>
+        <title>Control de préstamos</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./diseno/menu/cel.css" media="screen and (min-width:200px)" />

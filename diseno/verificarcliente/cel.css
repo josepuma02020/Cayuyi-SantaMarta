@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+}
+
+main {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    width: 100vw;
+    text-align: center;
+}
+
+button {
+    font-size: 1rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.container {
+    border-radius: 30px black;
+    border-color: blue;
+    padding: 22px;
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+}
+
+.container-ruta {
+    display: inline-block;
+    width: 100%;
+    background-color: #eee;
+    border-radius: 15px;
+    margin: 1%;
+    padding: 3%;
+}
+
+.boton-diario {
+    width: 15%;
+    display: inline;
+    position: static;
+}
+
+.normal {
+    width: 47%;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    text-align: center;
+    width: 90%;
+    font-size: 1.2rem;
+}
+
+.largo {
+    width: 100%;
+}
