@@ -17,8 +17,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="./diseno/ganancias/cel.css" media="screen and (min-width:200px)" />
-        <link rel="stylesheet" href="./diseno/ganancias/tablet.css" media="screen and (min-width:480px)" />
+        <link rel="stylesheet" href="./diseno/ganancias/cel.css" media="screen and (max-width:650px)" />
+        <link rel="stylesheet" href="./diseno/ganancias/tablet.css" media="screen and (max-width:1000px)" />
         <link rel="stylesheet" href="./diseno/ganancias/desktop.css" media="screen and (min-width:1025px)" />
         <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
@@ -62,7 +62,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                             <form id="frmtransaccion" enctype="multipart/form-data" method="post" autocomplete="off">
                                 <div class="form-row">
                                     <div class="form-group modal-mediano">
-                                        <label>Tipo de Transacción:</label>
+                                        <label>T.Transacción:</label>
                                         <select class="form-control input-sm" id="tipo" name="tipo">
                                             <option value="0" selected>Seleccione</option>
                                             <option value="1">Retiro</option>
@@ -217,7 +217,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                     alertify.success('Ok');
                 });
             }
-            if (base < valorretiro) {
+            if (base > valorretiro) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'No es posible realizar la transacción', function() {
                     alertify.success('Ok');
