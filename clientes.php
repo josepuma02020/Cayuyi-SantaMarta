@@ -13,7 +13,7 @@ if ($_SESSION['usuario']) {
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="diseno/defecto.css" />
+        <link rel="stylesheet" href="diseno/defecto/desktop.css" />
         <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
@@ -27,12 +27,12 @@ if ($_SESSION['usuario']) {
 
     <body>
         <header>
-            <?php include_once('diseno/navegadoradmin.php'); ?>
+            <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
-            <div class=" container container-md" style="min-height: 40% " align="left">
+            <div class=" container container-md">
                 <div class="card-body">
-                    <span class="btn btn-primary" data-toggle="modal" style="font-size: medium" data-target="#nuevousuario">
+                    <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
                             <path d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
                             <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -49,17 +49,17 @@ if ($_SESSION['usuario']) {
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-row">
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group col-sm-3">
                                             <label>Nombre:</label>
-                                            <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="nombre" name="nombre">
+                                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-3">
                                             <label>Apellido:</label>
-                                            <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="apellido" name="apellido">
+                                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellido" name="apellido">
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Cedula:</label>
-                                            <input autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="cedula" name="cedula">
+                                            <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedula" name="cedula">
                                         </div>
                                     </div>
 
@@ -67,11 +67,11 @@ if ($_SESSION['usuario']) {
                                     <div class="form-row">
                                         <div class="form-group col-sm-4">
                                             <label>Telefono:</label>
-                                            <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="telefono" name="telefono">
+                                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefono" name="telefono">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Direccion:</label>
-                                            <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="direccion" name="direccion">
+                                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
                                         </div>
                                     </div>
                                 </div>
@@ -138,68 +138,65 @@ if ($_SESSION['usuario']) {
                             </button>
                         </div>
                         <input type="hidden" id="idu" name="idu">
-
-                        <div class="modal-body" align="center">
-                            <div class="form-row">
-                                <div class="form-group col-sm-4">
+                        <div class="modal-body">
+                            <div class="form-row autocompletar">
+                                <div class="form-group col-sm-3">
                                     <label>Nombre:</label>
-                                    <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="nombreu" name="nombreu">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-3">
                                     <label>Apellido:</label>
-                                    <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="apellidou" name="apellidou">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellidou" name="apellidou">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label>Cedula:</label>
-                                    <input autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="cedulau" name="cedulau">
+                                    <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedulau" name="cedulau">
                                 </div>
                             </div>
 
 
-                            <div class="form-row">
-                                <div class="form-group col-sm-4">
+                            <div class="form-row autocompletar">
+                                <div class="form-group col-sm-3">
                                     <label>Telefono:</label>
-                                    <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="telefonou" name="telefonou">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefonou" name="telefonou">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>Direccion:</label>
-                                    <input autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="direccionu" name="direccionu">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccionu" name="direccionu">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label>Activo?:</label>
-                                    <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="activou" name="activou">
+                                <div class="form-group col-md-3">
+                                    <label>Fecha Ult.Prestamo:</label>
+                                    <input autocomplete="off" disabled type="date" class="form-control input-group-sm" id="fechault" name="fechault">
                                 </div>
+
                             </div>
                             <div class="form-row autocompletar">
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-md-2">
+                                    <label>Activo?:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="activou" name="activou">
+                                </div>
+                                <div class="form-group col-sm-2">
                                     <label>Valor Ult.Préstamo:</label>
-                                    <input disabled autocomplete="off" type="numbre" style="font-size: medium" class="form-control input-group-sm" id="ultprestamo" name="ultprestamo">
+                                    <input disabled autocomplete="off" type="numbre" class="form-control input-group-sm" id="ultprestamo" name="ultprestamo">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label>Fecha Ult.Prestamo:</label>
-                                    <input autocomplete="off" disabled type="date" style="font-size: medium" class="form-control input-group-sm" id="fechault" name="fechault">
-                                </div>
+
                                 <div class="form-group col-md-2">
                                     <label>Plazo(dias):</label>
-                                    <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="plazoult" name="plazoult">
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="plazoult" name="plazoult">
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label>Dias de Atraso:</label>
-                                    <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="diasatraso" name="diasatraso">
+                                <div class="form-group col-sm-2">
+                                    <label>Saldo:</label>
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="debe" name="debe">
                                 </div>
                             </div>
                             <div class="form-row autocompletar">
-                                <div class="form-group col-sm-4">
-                                    <label>Debe:</label>
-                                    <input disabled autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="debe" name="debe">
+                                <div class="form-group col-md-2">
+                                    <label>D.A</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="diasatraso" name="diasatraso">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-">
                                     <label>Ruta:</label>
-                                    <input autocomplete="off" disabled type="text" style="font-size: medium" class="form-control input-group-sm" id="rutapre" name="rutapre">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Fecha de Cierre:</label>
-                                    <input disabled autocomplete="off" type="date" style="font-size: medium" class="form-control input-group-sm" id="fechacierre" name="fechacierre">
+                                    <input autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutapre" name="rutapre">
                                 </div>
                             </div>
                         </div>
@@ -212,7 +209,9 @@ if ($_SESSION['usuario']) {
             </div>
         </main>
         <footer>
-            <?php include_once("diseno/footer.php")  ?>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
         </footer>
     </body>
 

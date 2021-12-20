@@ -199,7 +199,9 @@ if ($_SESSION['usuario']) {
                 </div>
         </main>
         <footer>
-            <?php include_once("diseno/footer.php")  ?>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
         </footer>
     </body>
 

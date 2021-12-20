@@ -185,9 +185,10 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
 
         </main>
         <footer>
-            <footer>
-                <?php include_once("diseno/footer.php")  ?>
-            </footer>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
+        </footer>
     </body>
 
     </html>
@@ -217,7 +218,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                     alertify.success('Ok');
                 });
             }
-            if (base > valorretiro) {
+            if (base < valorretiro) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'No es posible realizar la transacción', function() {
                     alertify.success('Ok');

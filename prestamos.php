@@ -47,7 +47,7 @@ if ($_SESSION['usuario']) {
             include_once($_SESSION['menu']);
             ?>
         </header>
-        <div class=" container container-md">
+        <main class=" container container-md">
             <section class="titulo-pagina">
                 <h1>Tabla de Préstamos</h1>
             </section>
@@ -192,7 +192,7 @@ if ($_SESSION['usuario']) {
                 </div>
                 <hr>
             </div>
-            <br>
+
             <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
                 <THEAD>
                     <tr>
@@ -354,14 +354,15 @@ if ($_SESSION['usuario']) {
                 </div>
                 <hr>
             </div>
+        </main>
+        <footer>
+
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
+
+        </footer>
     </body>
-    <footer>
-
-        <p>Author: Pumasoft<br>
-            <a href="https://www.pumasoft.co">pumasoft.co</a>
-        </p>
-
-    </footer>
 
     </HTML>
 
