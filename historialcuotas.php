@@ -74,8 +74,8 @@ if ($_SESSION['usuario']) {
         <header>
             <?php include_once($_SESSION['menu']); ?>
         </header>
-        <input type="hidden" value="<?php echo $cliente ?>" id="cliente" />
-        <div class="container">
+        <main class="container">
+            <input type="hidden" value="<?php echo $cliente ?>" id="cliente" />
             <section class="titulo-pagina">
                 <h1>Historial de Cuotas</h1>
             </section>
@@ -89,86 +89,87 @@ if ($_SESSION['usuario']) {
                     <input disabled class="form-control input-sm <?php echo $class ?>" type="text" id="mostrando" value="<?php echo $vencimiento; ?>">
                 </div>
             </section>
-            <div id="recarga">
-                <table class="table table-bordered" id="tablahistorial">
-                    <thead>
-                        <tr>
-                            <th>
-                                Fecha
-                            </th>
-                            <th>
-                                Préstamo
-                            </th>
-                            <th>
-                                V.P
-                            </th>
-                            <th>
-                                Cuota
-                            </th>
-                            <th>
-                                Saldo
-                            </th>
-                            <th>
-                                Forma de Pago
-                            </th>
+            <table class="table table-bordered" id="tablahistorial">
+                <thead>
+                    <tr>
+                        <th>
+                            Fecha
+                        </th>
+                        <th>
+                            Préstamo
+                        </th>
+                        <th>
+                            V.P
+                        </th>
+                        <th>
+                            Cuota
+                        </th>
+                        <th>
+                            Saldo
+                        </th>
+                        <th>
+                            Forma de Pago
+                        </th>
 
-                            <th>
-                                D.A
-                            </th>
-                        </tr>
-                    </thead>
-                    <TBODY>
-                        <?php
-                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
-                        $query = mysqli_query($link, $consultacuota) or die($consultacuota);
-                        while ($filas1 = mysqli_fetch_array($query)) {
-                            $dias = $filas1['atraso'];
-                            $diascuota = $filas1['diasvence'];
-                            if ($diascuota <= 0) {
-                                $class = "vencido";
+                        <th>
+                            D.A
+                        </th>
+                    </tr>
+                </thead>
+                <TBODY>
+                    <?php
+                    $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+                    $query = mysqli_query($link, $consultacuota) or die($consultacuota);
+                    while ($filas1 = mysqli_fetch_array($query)) {
+                        $dias = $filas1['atraso'];
+                        $diascuota = $filas1['diasvence'];
+                        if ($diascuota <= 0) {
+                            $class = "vencido";
+                        }
+                    ?>
+                        <TR>
+                            <TD><?php echo $filas1['fecha']; ?> </TD>
+                            <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
+                            <TD><?php echo $filas1['valorapagar']; ?> </TD>
+                            <TD><?php echo $filas1['cuota']; ?> </TD>
+                            <?php
+                            $saldo = $filas1['saldo'];
+                            if ($saldo == 0) {
+                                $color = "1DE97D";
+                            } else {
+                                $color = "";
                             }
-                        ?>
-                            <TR>
-                                <TD><?php echo $filas1['fecha']; ?> </TD>
-                                <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
-                                <TD><?php echo $filas1['valorapagar']; ?> </TD>
-                                <TD><?php echo $filas1['cuota']; ?> </TD>
-                                <?php
-                                $saldo = $filas1['saldo'];
-                                if ($saldo == 0) {
-                                    $color = "1DE97D";
-                                } else {
-                                    $color = "";
+                            ?><TD style="background-color: <?php echo $color ?>"><?php echo $saldo; ?> </TD>
+                            <TD><?php
+                                $diaspago = $filas1['formapago'];
+                                switch ($diaspago) {
+                                    case 1:
+                                        $formadepago = 'D';
+                                        break;
+                                    case 15:
+                                        $formadepago = 'Q';
+                                        break;
+                                    case 7:
+                                        $formadepago = 'S';
+                                        break;
+                                    case 30:
+                                        $formadepago = 'M';
+                                        break;
                                 }
-                                ?><TD style="background-color: <?php echo $color ?>"><?php echo $saldo; ?> </TD>
-                                <TD><?php
-                                    $diaspago = $filas1['formapago'];
-                                    switch ($diaspago) {
-                                        case 1:
-                                            $formadepago = 'D';
-                                            break;
-                                        case 15:
-                                            $formadepago = 'Q';
-                                            break;
-                                        case 7:
-                                            $formadepago = 'S';
-                                            break;
-                                        case 30:
-                                            $formadepago = 'M';
-                                            break;
-                                    }
-                                    echo $formadepago;
-                                    ?> </TD>
-                                <TD><?php echo $dias; ?> </TD>
-                            </TR>
-                        <?php } ?>
-                    </TBODY>
-                </table>
+                                echo $formadepago;
+                                ?> </TD>
+                            <TD><?php echo $dias; ?> </TD>
+                        </TR>
+                    <?php } ?>
+                </TBODY>
+            </table>
 
-            </div>
-
-        </div>
-
+        </main>
+        <footer>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
+        </footer>
     </body>
 
     </html>
