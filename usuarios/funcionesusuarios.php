@@ -9,6 +9,20 @@ class usuarios
         $consultadatos = "select * from usuarios where id_usuario = $id";
         $query = mysqli_query($link, $consultadatos) or die($consultadatos);
         $ver = mysqli_fetch_row($query);
+        switch ($ver[9]) {
+            case 1:
+                $rol = "Administrador";
+                break;
+            case 2:
+                $rol = "Supervisor";
+                break;
+            case 3:
+                $rol = "Cobrador";
+                break;
+            case 4:
+                $rol = "Inactivos";
+                break;
+        }
         $datos = array(
             'id' => $id,
             'nombre' => $ver[1],
@@ -19,7 +33,7 @@ class usuarios
             'ultconexion' => $ver[6],
             'usuario' => $ver[7],
             'clave' => $ver[8],
-            'Rol' => $ver[9],
+            'Rol' => $rol,
         );
         return $datos;
     }

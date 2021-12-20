@@ -126,7 +126,22 @@ if ($_SESSION['usuario']) {
                             <TD><?php echo $filas1['cedula']; ?> </TD>
                             <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
                             <TD><?php echo $filas1['usuario']; ?> </TD>
-                            <TD><?php echo $filas1['Rol']; ?> </TD>
+                            <TD><?php
+                                switch ($filas1['Rol']) {
+                                    case 1:
+                                        $rol = "Administrador";
+                                        break;
+                                    case 2:
+                                        $rol = "Supervisor";
+                                        break;
+                                    case 3:
+                                        $rol = "Cobrador";
+                                        break;
+                                    case 4:
+                                        $rol = "Inactivos";
+                                        break;
+                                }
+                                echo $rol; ?> </TD>
                             <TD>
                                 <SCRIPT lang="javascript" type="text/javascript" src="usuarios/usuarios.js"></script>
                                 <button class="btn btn-tabla  btn-primary" onclick="agregardatosusuario(<?php echo $filas1['id_usuario'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
