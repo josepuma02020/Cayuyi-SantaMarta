@@ -39,9 +39,9 @@ if ($_SESSION['usuario']) {
                 <h1>Verificar cliente</h1>
             </section>
             <section class="parametros">
-                <div class="form-group parametro-80">
+                <div class="form-group">
                     <h3>Cedula:</h3>
-                    <input class="form-control input-sm" type="text" id="cedula" value="<?php echo $cedula; ?>">
+                    <input class=" form-control input-sm" type="text" id="cedula" value="<?php echo $cedula; ?>">
                 </div>
                 <button type="button" id="buscar" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -91,7 +91,7 @@ if ($_SESSION['usuario']) {
                                 $fechafinprestamo = date_format($fechaprestamoactivo, "d-m-Y");
                                 $fecha_actual = date_create($fecha_actual);
                                 $diff = $fecha_actual->diff($fechaprestamoactivo);
-                                $diasvenc = $diff->days  * -1;
+                                $diasvenc = $diff->days * -1;
                                 $vencimiento = $diasvenc . ' dias';
 
                                 if ($vencimiento <= 0) {
@@ -108,7 +108,7 @@ if ($_SESSION['usuario']) {
                                             <th>Abonado</th>
                                             <th>Fecha</th>
                                             <th>Ruta</th>
-                                            <th>Estado</th>
+                                            <th>Vigencia</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -28,6 +28,16 @@ if ($_SESSION['usuario']) {
     $query1 = mysqli_query($link, $consultanombreruta) or die($consultanombreruta);
     $filas2 = mysqli_fetch_array($query1);
     $nomrutainfo = $filas2['ruta'];
+    //consultacerrado
+    $consultaactivo = "SELECT fecha FROM `revisionesrutas` WHERE ruta=$rutainfo and fecha = '$fecha'";
+    $queryactivo = mysqli_query($link, $consultaactivo) or die($consultaactivo);
+    $filasactivo = mysqli_fetch_array($queryactivo);
+    if (isset($filasactivo)) {
+        $estado = "disabled";
+    } else {
+        $estado = "";
+    }
+
 ?>
     <html>
 
@@ -217,15 +227,12 @@ if ($_SESSION['usuario']) {
                                         ?></TD>
                                 <TD><a href="historialcuotas.php?cliente=<?php echo $filas1['cliente']; ?>">
                                         <?php
-
-
                                         if ($cuota > 0) {
                                             $clientes = $clientes + 1;
                                         }
                                         $sumcobro = $sumcobro + $cuota;
                                         echo $cuota;
                                         ?> </a></TD>
-
                                 <TD><?php
                                     echo $papeleria;
                                     ?> </TD>
@@ -266,7 +273,7 @@ if ($_SESSION['usuario']) {
                                 <TD><?php echo $dias; ?></TD>
                                 <TD>
                                     <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                    <button onclick="datoscuota(<?php echo $filas1['id_registro'] ?>)" type="button" id="eeeee" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
+                                    <button <?php echo $estado; ?> onclick="datoscuota(<?php echo $filas1['id_registro'] ?>)" type="button" id="eeeee" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                             <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
@@ -301,7 +308,7 @@ if ($_SESSION['usuario']) {
                 </div>
             </div>
             <div>
-                <h1 style="font-family:  monospace;">Resumen</h1>
+                <h1>Resumen</h1>
             </div>
             <div id="recarga">
                 <table class="table table-bordered">
@@ -430,6 +437,7 @@ if ($_SESSION['usuario']) {
     header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#buscar').click(function() {
@@ -447,10 +455,6 @@ if ($_SESSION['usuario']) {
                 location.href = `cuotas.php?rutaa=${ruta}&fecha=${fecha}`;
             }
         })
-    })
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#revisar').click(function() {
             ide = $('#idrevisar').val();
             console.log(ide);
@@ -466,9 +470,8 @@ if ($_SESSION['usuario']) {
             papeleria = $('#papeleria').val();
             efectivo = $('#efectivo').val();
             fecha = $('#fechabuscar').val();
-
             revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha);
-            //window.location.reload();
+            window.location.reload();
         })
     })
 </script>

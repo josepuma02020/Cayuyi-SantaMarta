@@ -47,6 +47,18 @@ html {
     line-height: 1.15;
 }
 
+.input-disabled-vencido {
+    background-color: lightcoral;
+}
+
+.input-disabled-normal {
+    background-color: #e9ecef;
+}
+
+.boton-parametro {
+    margin-bottom: 1rem;
+}
+
 .parametro-80 {
     width: 80%;
 }

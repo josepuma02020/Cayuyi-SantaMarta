@@ -51,7 +51,7 @@ if ($_SESSION['usuario']) {
             <section class="titulo-pagina">
                 <h1>Tabla de Préstamos</h1>
             </section>
-            <span class="btn btn-primary" data-toggle="modal" style="font-size: medium" data-target="#nuevousuario">
+            <span class="btn btn-primary boton-parametro" data-toggle="modal" data-target="#nuevoprestamo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
                     <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
@@ -61,7 +61,7 @@ if ($_SESSION['usuario']) {
                 <br>
             </span>
 
-            <div class="modal fade  " id="nuevousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade  " id="nuevoprestamo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg ">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -256,16 +256,16 @@ if ($_SESSION['usuario']) {
                             <div class="form-row ">
                                 <div class="form-group tres">
                                     <label>Cedula:</label>
-                                    <input disabled autocomplete="off" type="hidden" style="font-size: medium" class="form-control input-group-sm" id="idu" name="idu" />
-                                    <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="cedulau" name="cedulau">
+                                    <input disabled autocomplete="off" type="hidden" class="form-control input-group-sm" id="idu" name="idu" />
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="cedulau" name="cedulau">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Nombre:</label>
-                                    <input disabled autocomplete="off" disabled type="text" style="font-size: medium" class="form-control input-group-sm" id="nombreu" name="nombreu">
+                                    <input disabled autocomplete="off" disabled type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Ruta Actual:</label>
-                                    <input disabled autocomplete="off" disabled type="text" style="font-size: medium" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
+                                    <input disabled autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
                                 </div>
 
                             </div>
@@ -287,15 +287,15 @@ if ($_SESSION['usuario']) {
                                 </div>
                                 <div class="form-group tres">
                                     <label>Fecha de Inicio:</label>
-                                    <input disabled autocomplete="off" type="text" style="font-size: medium" class="form-control input-group-sm" id="fechau" name="fechau">
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="fechau" name="fechau">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Val.Préstamo:</label>
-                                    <input type="text" style="font-size: medium" class="form-control input-group-sm" id="valoru" name="valoru">
+                                    <input type="text" class="form-control input-group-sm" id="valoru" name="valoru">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Valor a Pagar:</label>
-                                    <input autocomplete="off" type="text" min="0" style="font-size: medium" class="form-control input-group-sm" id="totalpagaru" name="totalpagaru">
+                                    <input autocomplete="off" type="text" min="0" class="form-control input-group-sm" id="totalpagaru" name="totalpagaru">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -303,31 +303,31 @@ if ($_SESSION['usuario']) {
 
                                 <div class="form-group tres">
                                     <label>Valor de Intereses:</label>
-                                    <input disabled autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="valorinteresesu" name="valorinteresesu">
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="valorinteresesu" name="valorinteresesu">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Abonado:</label>
-                                    <input disabled autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="abonou" name="abonou">
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="abonou" name="abonou">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Dias Atrasados:</label>
-                                    <input disabled autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="atrasou" name="atrasou">
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="atrasou" name="atrasou">
                                 </div>
 
                             </div>
                             <div class="form-row">
                                 <div class="form-group tres">
                                     <label>Intereses(%):</label>
-                                    <input disabled autocomplete="off" type="number" style="font-size: medium" class="form-control input-group-sm" id="porcentajeu" name="porcentajeu">
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="porcentajeu" name="porcentajeu">
                                 </div>
 
                                 <div class="form-group cuatro">
                                     <label>Dias:</label>
-                                    <input autocomplete="off" min="0" type="number" style="font-size: medium" class="form-control input-group-sm" id="diasu" name="diasu">
+                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasu" name="diasu">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>For.Pago:</label>
-                                    <input disabled autocomplete="off" type="text" maxlength="5" style="font-size: medium" class="form-control input-group-sm" id="formau" name="formau">
+                                    <input disabled autocomplete="off" type="text" maxlength="5" class="form-control input-group-sm" id="formau" name="formau">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Nuev.For.Pago</label>
@@ -342,7 +342,7 @@ if ($_SESSION['usuario']) {
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Cuota:</label>
-                                    <input disabled autocomplete="off" type="number" maxlength="5" style="font-size: medium" class="form-control input-group-sm" id="cuotau" name="cuotau">
+                                    <input disabled autocomplete="off" type="number" maxlength="5" class="form-control input-group-sm" id="cuotau" name="cuotau">
                                 </div>
                             </div>
                             <div class="modal-footer">
