@@ -6,7 +6,7 @@ if (isset($_SESSION['usuario'])) {
     <html>
 
     <head>
-        <title style="font-family: cursive">Pumasoft</title>
+        <title>Control de préstamos</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./diseno/menu/cel.css" media="screen and (min-width:200px)" />
@@ -20,86 +20,20 @@ if (isset($_SESSION['usuario'])) {
             </span>
             <div id="mimenu" class="sidenav" style="width: 0;">
                 <a class="cerrar" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <button class="dropdown-btn">Recorridos
+                <button class="dropdown-btn">Rutas
                     <i class="fa fa-caret-down"></i>
                 </button>
-                <?php if ($_SESSION['Rol'] == 'Cobrador') {
-                ?>
-                    <div class="dropdown-container">
-                        <a href="../../ORION/diario.php">Diario</a>
-                        <a href="../../ORION/recorridosc.php">Editar Ruta</a>
-                        <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
-                    </div>
-                <?php } else { ?>
-                <?php } ?>
                 <div class="dropdown-container">
                     <a href="../../ORION/diario.php">Diario</a>
-                    <!-- <a href="../../ORION/recorridos.php">Recorridos</a> -->
-                    <a href="../../ORION/recorridosc.php">Editar Recorrido</a>
+                    <a href="../../ORION/recorridosc.php">Editar Ruta</a>
                     <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
                 </div>
-                <?php if ($_SESSION['Rol'] == 'Supervisor') { ?>
-                    <button class="dropdown-btn">Rutas
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="../../ORION/rutas.php">Rutas</a>
-                        <a href="../../ORION/gastos.php">Gastos</a>
-
-                    </div>
-                <?php  } ?>
-                <?php if ($_SESSION['Rol'] == 'Administrador') { ?>
-                    <button class="dropdown-btn">Rutas
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="../../ORION/rutas.php">Rutas</a>
-                        <a href="../../ORION/gastos.php">Gastos</a>
-
-                    </div>
-                <?php } ?>
                 <button class="dropdown-btn">Prestamos
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <?php if ($_SESSION['Rol'] == 'Cobrador') { ?>
-                        <a href="../../ORION/clientesc.php">Clientes Activos</a>
-                    <?php } else { ?>
-                        <a href="../../ORION/prestamos.php">Activos</a>
-                        <a href="../../ORION/prestamos.php?id=1">Cancelados</a>
-                        <a href="../../ORION/clientes.php">Clientes</a>
-                        <a href="../../ORION/clientesc.php">Clientes Activos</a>
-
-
-                    <?php } ?>
-                </div> <?php if ($_SESSION['Rol'] == 'Administrador') { ?>
-                    <button class="dropdown-btn">Contabilidad
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-                        <a href="../../ORION/ganancias.php">Contabilidad x Rutas </a>
-                        <a href="../../ORION/contabilidad.php"> Informe Contable </a>
-                        <a href="../../ORION/transacciones.php">Transacciones</a>
-                    </div>
-                    <button class="dropdown-btn" id="usuarios">Usuarios
-                    </button>
-                <?php } ?>
-                <?php if ($_SESSION['Rol'] == 'Supervisor') { ?>
-                    <button class="dropdown-btn">Contabilidad
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-container">
-
-                        <a href="../../ORION/contabilidad.php"> Informe Contable </a>
-
-                    </div>
-                    <button class="dropdown-btn" id="usuarios">Usuarios
-                    </button>
-                <?php } ?>
-                <?php if ($_SESSION['Rol'] == 'Supervisor') { ?>
-                    <button class="dropdown-btn" id="usuarios">Usuarios
-                    </button>
-                <?php } ?>
+                    <a href="../../ORION/verificarcliente.php">Verificar Cliente</a>
+                </div>
                 <button class="dropdown-btn" id="salir">Salir
                 </button>
             </div>
@@ -110,10 +44,7 @@ if (isset($_SESSION['usuario'])) {
     </html>
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "index.php?m=3");
 }
 ?>
 <script>
@@ -154,9 +85,7 @@ if (isset($_SESSION['usuario'])) {
 <script>
     $(document).ready(function() {
         $('#salir').click(function() {
-
             window.location.href = "usuarios/cerrarsesion.php";
-
         });
     });
 </script>

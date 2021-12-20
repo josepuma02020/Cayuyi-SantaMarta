@@ -1,7 +1,6 @@
 <?php
 if (isset($_SESSION['usuario'])) {
     setlocale(LC_ALL, "es_CO");
-    include_once 'funciones/funciones.php';
 ?>
     <html>
 
