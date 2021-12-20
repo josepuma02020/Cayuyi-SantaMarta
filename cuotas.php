@@ -53,6 +53,8 @@ if ($_SESSION['usuario']) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
+        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <SCRIPT lang="javascript" type="text/javascript" src="./prestamos/prestamos.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
 
@@ -446,7 +448,7 @@ if ($_SESSION['usuario']) {
             fecha = $('#fechabuscar').val();
             if (ruta == 0) {
                 a = 1
-                alertify.alert('ATENCION!!', 'Seleccione una ruta para buscar', function() {
+                alertify.alert('Atencion!!', 'Favot escoger una ruta', function() {
                     alertify.success('Ok');
                 });
             }
@@ -454,7 +456,7 @@ if ($_SESSION['usuario']) {
             if (a == 0) {
                 location.href = `cuotas.php?rutaa=${ruta}&fecha=${fecha}`;
             }
-        })
+        });
         $('#revisar').click(function() {
             ide = $('#idrevisar').val();
             console.log(ide);
