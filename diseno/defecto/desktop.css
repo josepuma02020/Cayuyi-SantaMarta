@@ -47,6 +47,15 @@ html {
     line-height: 1.15;
 }
 
+.parametro-80 {
+    width: 80%;
+}
+
+.info-cliente {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
 article,
 aside,
 figcaption,

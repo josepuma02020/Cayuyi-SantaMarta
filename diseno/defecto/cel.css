@@ -13,6 +13,19 @@
     width: 80%;
 }
 
+.info-cliente {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.input-disabled-vencido {
+    background-color: lightcoral;
+}
+
+.input-disabled-normal {
+    background-color: #e9ecef;
+}
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;

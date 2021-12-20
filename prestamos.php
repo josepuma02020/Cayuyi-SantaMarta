@@ -192,63 +192,57 @@ if ($_SESSION['usuario']) {
                 </div>
                 <hr>
             </div>
-            <div id="recarga">
-                <br>
-                <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
-                    <THEAD>
-                        <tr>
-                            <th> Ruta </th>
-                            <th> Nombre </th>
-                            <th> F.Préstamo</th>
-                            <th> V.Prestado </th>
-                            <th> V.a pagar </th>
-                            <th> Abonado </th>
-                            <th> Saldo </th>
-                            <th> D.A </th>
-                            <th> Acciones </th>
-                        </tr>
-                    </THEAD>
-                    <TBODY>
-                        <?php
-                        if ($id == 0) {
-                            $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,b.apellido,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where (a.valorapagar - a.abonado) > 0";
-                        } else {
-                            $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,b.apellido,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where (a.valorapagar - a.abonado) <= 0";
-                        }
-                        $query = mysqli_query($link, $consultarutas) or die($consultarutas);
-                        while ($filas1 = mysqli_fetch_array($query)) {
-                        ?>
-                            <TR>
-                                <TD><?php echo $filas1['nombreruta'] ?> </TD>
-                                <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
-                                <TD><?php echo $filas1['fecha']; ?> </TD>
-                                <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
-                                <TD><?php echo $filas1['valorapagar']; ?> </TD>
-                                <TD><a href="historialcuotas.php?id=<?php echo $filas1['id_prestamo'] ?>"><?php echo $filas1['abonado']; ?></a> </TD>
-                                <TD><?php echo $filas1['valorapagar'] - $filas1['abonado']; ?> </TD>
-                                <?php
-                                if ($filas1['dias_atraso'] > 10) {
-                                    $aviso = "EC1A3D";
-                                } else {
-                                    $aviso = "";
-                                }
-                                ?>
-                                <TD style="background-color: <?php echo $aviso ?>"><?php echo $filas1['dias_atraso']; ?> </TD>
-                                <TD>
-                                    <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                    <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                    </button>
-                                </TD>
-                            </TR>
-                        <?php } ?>
-                    </TBODY>
+            <br>
+            <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
+                <THEAD>
+                    <tr>
+                        <th> Ruta </th>
+                        <th> Nombre </th>
+                        <th> F.Préstamo</th>
+                        <th> V.Prestado </th>
+                        <th> V.a pagar </th>
+                        <th> Abonado </th>
+                        <th> Saldo </th>
+                        <th> D.A </th>
+                        <th> Acciones </th>
+                    </tr>
+                </THEAD>
+                <TBODY>
+                    <?php
+                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,b.apellido,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta";
+                    $query = mysqli_query($link, $consultarutas) or die($consultarutas);
+                    while ($filas1 = mysqli_fetch_array($query)) {
+                    ?>
+                        <TR>
+                            <TD><?php echo $filas1['nombreruta'] ?> </TD>
+                            <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
+                            <TD><?php echo $filas1['fecha']; ?> </TD>
+                            <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
+                            <TD><?php echo $filas1['valorapagar']; ?> </TD>
+                            <TD><a href="historialcuotas.php?id=<?php echo $filas1['id_prestamo'] ?>"><?php echo $filas1['abonado']; ?></a> </TD>
+                            <TD><?php echo $filas1['valorapagar'] - $filas1['abonado']; ?> </TD>
+                            <?php
+                            if ($filas1['dias_atraso'] > 10) {
+                                $aviso = "EC1A3D";
+                            } else {
+                                $aviso = "";
+                            }
+                            ?>
+                            <TD style="background-color: <?php echo $aviso ?>"><?php echo $filas1['dias_atraso']; ?> </TD>
+                            <TD>
+                                <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+                                <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </button>
+                            </TD>
+                        </TR>
+                    <?php } ?>
+                </TBODY>
 
-                </TABLE>
+            </TABLE>
 
-            </div>
             <div class="modal fade  " id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg  ">
                     <div class="modal-content">
