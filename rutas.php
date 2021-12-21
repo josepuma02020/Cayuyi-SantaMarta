@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['usuario']) {
+if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
 
     include_once('funciones/funciones.php');

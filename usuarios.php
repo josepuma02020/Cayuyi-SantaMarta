@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['usuario']) {
+if ($_SESSION['usuario'] && $_SESSION['Rol']) {
     include_once('conexion/conexion.php');
     include_once('usuarios/funcionesusuarios.php');
     setlocale(LC_ALL, "es_CO");

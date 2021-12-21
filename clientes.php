@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['usuario']) {
+if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
     setlocale(LC_ALL, "es_CO");
@@ -219,10 +219,7 @@ if ($_SESSION['usuario']) {
 
 <?php
 } else {
-    echo "<script type=''>
-        alert('favor iniciar sesion');
-        window.location='index.php';
-    </script>";
+    header('Location: ' . "usuarios/cerrarsesion.php");
 }
 ?>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
