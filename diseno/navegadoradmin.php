@@ -25,9 +25,9 @@ if (isset($_SESSION['usuario'])) {
                 <div class="dropdown-container">
                     <a href="../../ORION/diario.php">Diario</a>
                     <a href="../../ORION/recorridosc.php">Editar Ruta</a>
-                    <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
                     <a href="../../ORION/rutas.php">Rutas</a>
                     <a href="../../ORION/gastos.php">Gastos</a>
+                    <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
                 </div>
                 <button class="dropdown-btn">Prestamos
                     <i class="fa fa-caret-down"></i>

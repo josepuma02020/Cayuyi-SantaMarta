@@ -72,6 +72,7 @@ if ($_SESSION['usuario']) {
                     $query3 = mysqli_query($link, $consultacuota) or die($consultacuota);
                     $filasvencido = mysqli_fetch_array($query3);
                     $diasvencido = $filasvencido['diasvence'];
+                    $diasvencido = $diasvencido * -1;
                     if ($diasvencido != "") {
                         if ($diasvencido < 0) {
                             $class = "vencido";
