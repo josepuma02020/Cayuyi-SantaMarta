@@ -38,15 +38,21 @@ if ($_SESSION['usuario']) {
     $consultavencimiento = "select dias_prestamo,fecha from prestamos where cliente=$cliente and abonado < valorapagar";
     $queryvencimiento = mysqli_query($link, $consultavencimiento) or die($consultavencimiento);
     $filasvencimiento = mysqli_fetch_array($queryvencimiento);
-    $diasprestamoactivo = $filasvencimiento['dias_prestamo'];
-    $fechaprestamoactivo = $filasvencimiento['fecha'];
-    $fechaprestamoactivo = date_create($fechaprestamoactivo);
-    date_add($fechaprestamoactivo, date_interval_create_from_date_string("$diasprestamoactivo days"));
-    $fechafinprestamo = date_format($fechaprestamoactivo, "d-m-Y");
-    $fecha_actual = date_create($fecha_actual);
-    $diff = $fecha_actual->diff($fechaprestamoactivo);
-    $vencimiento = $diff->days . ' dias';
-    if ($vencimiento <= 0) {
+    if (isset($filasvencimiento)) {
+        $diasprestamoactivo = $filasvencimiento['dias_prestamo'];
+        $fechaprestamoactivo = $filasvencimiento['fecha'];
+        $fechaprestamoactivo = date_create($fechaprestamoactivo);
+        date_add($fechaprestamoactivo, date_interval_create_from_date_string("$diasprestamoactivo days"));
+        $fechafinprestamo = date_format($fechaprestamoactivo, "d-m-Y");
+        $fecha_actual = date_create($fecha_actual);
+        $diff = $fecha_actual->diff($fechaprestamoactivo);
+        $vencimiento = $diff->days;
+    } else {
+        $vencimiento = "0";
+    }
+
+
+    if ($vencimiento > 0) {
         $class = 'input-disabled-vencido';
     } else {
         $class = 'input-disabled-normal';
@@ -85,7 +91,7 @@ if ($_SESSION['usuario']) {
                     <input disabled class="form-control input-sm input-disabled-normal" type="text" id="mostrando" value="<?php echo $nombrecliente; ?>">
                 </div>
                 <div class="form-group col-sm-3">
-                    <h3>Vencimiento de préstamo activo:</h3>
+                    <h3>Dias Vencido:</h3>
                     <input disabled class="form-control input-sm <?php echo $class ?>" type="text" id="mostrando" value="<?php echo $vencimiento; ?>">
                 </div>
             </section>
