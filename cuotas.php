@@ -17,6 +17,7 @@ if ($_SESSION['usuario']) {
     } else {
         $fecha = $fecha_actual;
     }
+
     //consultabase
     $consultabase = "select a.base,COUNT(b.id_prestamo) 'prestamos' from rutas a inner join prestamos b on b.ruta=a.id_ruta where id_ruta =$rutainfo and (b.valorapagar-b.abonado > 0) group by a.ruta";
     $query = mysqli_query($link, $consultabase) or die($consultabase);
@@ -109,7 +110,7 @@ if ($_SESSION['usuario']) {
                         <thead>
                             <tr>
                                 <th>
-                                    Fecha
+                                    Venc.Préstamo
                                 </th>
                                 <th>
                                     N.Préstamo
@@ -147,10 +148,8 @@ if ($_SESSION['usuario']) {
                         <TBODY>
 
                             <?php
-                            $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',a.fecha,c.nombre,c.apellido,b.cliente from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
+                            $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',b.fecha,c.nombre,c.apellido,b.cliente,b.dias_prestamo from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
                             $query = mysqli_query($link, $consultarutas) or die($consultarutas);
-
-
                             $sumcobro = 0;
                             $sumprestamos = 0;
                             $pleno = 0;
@@ -159,36 +158,29 @@ if ($_SESSION['usuario']) {
                             $salientes = 0;
                             $clientes = 0;
                             $sumpapelerias = 0;
-
                             while ($filas1 = mysqli_fetch_array($query)) {
-
-                                $consultapleno = "select a.cuota from registros_cuota a inner join prestamos b on b.id_prestamo = a.prestamo where a.saldo > 0 and a.fecha = '$fecha' and b.cliente = $filas1[cliente] ";
-                                $query1 = mysqli_query($link, $consultapleno) or die($consultapleno);
-                                while ($filas2 = mysqli_fetch_array($query1)) {
-                                    if (isset($filas2)) {
-                                    }
-                                }
                                 $dias = $filas1['dias_atraso'];
                                 $cuota = $filas1['cuota'];
                                 $idprestamo = $filas1['id_prestamo'];
-                                //verficiar prestamo vencido
-                                $consultacuota = "SELECT max(a.diasvence)'diasvence',a.prestamo FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $idprestamo";
-                                $query3 = mysqli_query($link, $consultacuota) or die($consultacuota);
-                                $filasvencido = mysqli_fetch_array($query3);
-                                $diasvencido = $filasvencido['diasvence'];
-                                $diasvencido = $diasvencido * -1;
-
-                                if ($diasvencido < 0) {
-                                    $class = "vencido";
+                                $fechaprestamo = $filas1['fecha'];
+                                $diasprestamo = $filas1['dias_prestamo'];
+                                //verificar prestamo vencido
+                                $date = date("d-m-Y");
+                                //Incrementando 2 dias
+                                $mod_date = strtotime($fechaprestamo . "+" . $diasprestamo . " days");
+                                $fechavence = date("Y-m-d", $mod_date);
+                                if ($fechavence <  $fecha) {
+                                    echo  $class = "vencido";
                                 } else {
                                     $class = "";
                                 }
+                                $fechavence = date("d-m-Y", $mod_date);
                             ?>
                                 <TR>
-                                    <TD class="<?php echo $class ?>"><?php echo $filas1['fecha']; ?> </TD>
+                                    <TD class="<?php echo $class ?>"><?php echo $fechavence ?> </TD>
                                     <TD><a href="prestamos.php">
                                             <?php
-                                            $consultaprestamo = "select a.valor_prestamo,a.papeleria from prestamos a where a.cliente = $filas1[cliente] and a.fecha = '$filas1[fecha]' ";
+                                            $consultaprestamo = "select a.valor_prestamo,a.papeleria from prestamos a where a.cliente = $filas1[cliente] and a.fecha = '$fecha' ";
                                             $query1 = mysqli_query($link, $consultaprestamo) or die($consultaprestamo);
                                             $filas3 = mysqli_fetch_array($query1);
 
