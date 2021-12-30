@@ -170,7 +170,7 @@ if ($_SESSION['usuario']) {
                                 $mod_date = strtotime($fechaprestamo . "+" . $diasprestamo . " days");
                                 $fechavence = date("Y-m-d", $mod_date);
                                 if ($fechavence <  $fecha) {
-                                    echo  $class = "vencido";
+                                    $class = "vencido";
                                 } else {
                                     $class = "";
                                 }
