@@ -11,10 +11,18 @@ if ($_SESSION['usuario']) {
     } else {
         $rutainfo = $_SESSION['ruta'];
     }
+    if ($rutainfo == "") {
+        $rutainfo = 0;
+    }
     $consultanombreruta = "select ruta from rutas where id_ruta=$rutainfo";
     $query1 = mysqli_query($link, $consultanombreruta) or die($consultanombreruta);
     $filas2 = mysqli_fetch_array($query1);
-    $nomrutainfo = $filas2['ruta'];
+    if (isset($filas2)) {
+        $nomrutainfo = $filas2['ruta'];
+    } else {
+        $nomrutainfo = "";
+    }
+
 ?>
     <HTML>
 
@@ -130,7 +138,7 @@ if ($_SESSION['usuario']) {
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label>Ruta Actual:</label>
-                                <input type="text" id="idu" name="idu">
+                                <input type="hidden" id="idu" name="idu">
                                 <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
                             </div>
 
@@ -177,9 +185,8 @@ if ($_SESSION['usuario']) {
                 });
             }
             if (a == 0) {
-                console.log(idu);
                 editarrecorrido(idu, ruta, posicion);
-                //window.location.reload();
+                window.location.reload();
             }
         })
         $('#buscar').click(function() {
