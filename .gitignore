@@ -2,6 +2,5 @@
 *.pdf
 *.png
 *.jpeg
-conexion.php
-conexion/conexion.php
-conexion/
+/conexion/conexion.php
+/conexion/

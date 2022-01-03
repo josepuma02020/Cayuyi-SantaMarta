@@ -2,7 +2,6 @@
 session_start();
 if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
-    include_once('funciones/funciones.php');
     setlocale(LC_ALL, "es_CO");
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
     if (isset($_GET['id'])) {
@@ -29,7 +28,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
         <link rel="stylesheet" href="./diseno/defecto/desktop.css" />
-        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -71,24 +69,37 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             </button>
                         </div>
                         <div class="modal-body">
+                            <h4 class="modal-subtitle"> Datos Cliente</h4>
                             <div class="form-row ">
                                 <div class="form-group tres">
                                     <label>Cedula:</label>
                                     <input autocomplete="off" type="text" class="form-control" id="cedula" name="cedula">
                                 </div>
-
                                 <div class="form-group tres">
                                     <label>Nombre:</label>
-                                    <input autocomplete="off" disabled type="text" class="form-control input-group-sm" id="nombre" name="nombre">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                 </div>
+                                <div class="form-group tres">
+                                    <label>Apellido:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellido" name="apellido">
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="form-group tres">
+                                    <label>Telefono:</label>
+                                    <input autocomplete="off" type="text" class="form-control" id="telefono" name="telefono">
+                                </div>
+                                <div class="form-group largo">
+                                    <label>Direccion:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
+                                </div>
+                            </div>
+                            <h4 class="modal-subtitle">Ultimo préstamo</h4>
+                            <div class="form-row ">
                                 <div class="form-group tres">
                                     <label>Activo?:</label>
                                     <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="prestamos_activos" name="prestamos_activos">
                                 </div>
-
-
-                            </div>
-                            <div class="form-row ">
                                 <div class="form-group tres">
                                     <label>Valor Ult.Préstamo:</label>
                                     <input disabled autocomplete="off" type="numbre" class="form-control input-group-sm" id="ultprestamo" name="ultprestamo">
@@ -102,7 +113,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="plazoult" name="plazoult">
                                 </div>
                                 <div class="form-group cuatro">
-                                    <label>Dias de Atraso:</label>
+                                    <label>D.A:</label>
                                     <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="diasatraso" name="diasatraso">
                                 </div>
                             </div>
@@ -120,6 +131,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input disabled autocomplete="off" type="date" class="form-control input-group-sm" id="fechacierre" name="fechacierre">
                                 </div>
                             </div>
+                            <h4 class="modal-subtitle">Nuevo Préstamo</h4>
                             <div class="form-row">
                                 <div class="form-group tres">
                                     <label>Ruta:</label>
@@ -434,7 +446,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 data: "cliente=" + $('#cedula').val(),
                 success: function(r) {
                     dato = jQuery.parseJSON(r);
-                    $('#nombre').val(dato['nombre'] + ' ' + dato['apellido']);
+                    $('#nombre').val(dato['nombre']);
+                    $('#apellido').val(dato['apellido']);
                     $('#prestamos_activos').val(dato['prestamos']);
                     $('#ultprestamo').val(dato['valorultimo']);
                     $('#fechault').val(dato['fecha']);
@@ -443,6 +456,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     $('#rutapre').val(dato['ruta']);
                     $('#fechacierre').val(dato['cierre']);
                     $('#plazoult').val(dato['diasprestamo']);
+                    $('#telefono').val(dato['telefono']);
+                    $('#direccion').val(dato['direccion']);
 
                 }
             });
@@ -481,6 +496,34 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             totalpagar = $('#totalpagar').val();
             formapago = $('#formapago').val();
             dias = $('#dias').val();
+            direccion = $('#direccion').val();
+            telefono = $('#telefono').val();
+            nombre = $('#nombre').val();
+            apellido = $('#apellido').val();
+            if (apellido == "") {
+                a = 1;
+                alertify.alert('ATENCION!!', 'Favor completar el campo "Apellido" : Debe ser mayor de 4 Digitos ', function() {
+                    alertify.success('Ok');
+                });
+            }
+            if (nombre == "") {
+                a = 1;
+                alertify.alert('ATENCION!!', 'Favor completar el campo "Nombre" : Debe ser mayor de 4 Digitos ', function() {
+                    alertify.success('Ok');
+                });
+            }
+            if (direccion == "" || direccion.length < 4) {
+                a = 1;
+                alertify.alert('ATENCION!!', 'Favor completar el campo "Direccion" : Debe ser mayor de 4 Digitos ', function() {
+                    alertify.success('Ok');
+                });
+            }
+            if (telefono == "" || telefono.length < 4) {
+                a = 1;
+                alertify.alert('ATENCION!!', 'Favor completar el campo "Telefono" : Debe ser mayor de 4 Digitos ', function() {
+                    alertify.success('Ok');
+                });
+            }
             if (cedula == "" || cedula.length < 4) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Cedula" : Debe ser mayor de 4 Digitos ', function() {
@@ -518,8 +561,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria);
-                window.location.reload();
+                agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido);
+                //window.location.reload();
             }
         })
 

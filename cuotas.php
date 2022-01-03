@@ -166,7 +166,6 @@ if ($_SESSION['usuario']) {
                                 $diasprestamo = $filas1['dias_prestamo'];
                                 //verificar prestamo vencido
                                 $date = date("d-m-Y");
-                                //Incrementando 2 dias
                                 $mod_date = strtotime($fechaprestamo . "+" . $diasprestamo . " days");
                                 $fechavence = date("Y-m-d", $mod_date);
                                 if ($fechavence <  $fecha) {

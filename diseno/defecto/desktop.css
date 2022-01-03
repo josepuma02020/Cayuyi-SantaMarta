@@ -6378,6 +6378,15 @@ a.close.disabled {
 .modal-title {
     margin-bottom: 0;
     line-height: 1.5;
+    text-align: left;
+    width: 90%;
+    font-size: 1.3rem;
+    margin-top: 0;
+}
+
+.modal-subtitle {
+    margin-bottom: 0;
+    line-height: 1.5;
     text-align: center;
     width: 90%;
     font-size: 1.3rem;

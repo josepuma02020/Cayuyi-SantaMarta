@@ -72,8 +72,8 @@ function editarprestamo(idu, ruta, nformapago, totalpagar, dias, valoru) {
     });
 }
 
-function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria) {
-    cadenau = "cedula=" + cedula + "&formapago=" + formapago + "&ruta=" + ruta + "&papeleria=" + papeleria + "&posicion=" + posicion + "&fecha=" + fecha + "&valor=" + valor + "&totalpagar=" + totalpagar + "&dias=" + dias;
+function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido) {
+    cadenau = "cedula=" + cedula + "&nombre=" + nombre + "&apellido=" + apellido + "&formapago=" + formapago + "&ruta=" + ruta + "&papeleria=" + papeleria + "&posicion=" + posicion + "&fecha=" + fecha + "&valor=" + valor + "&direccion=" + direccion + "&telefono=" + telefono + "&totalpagar=" + totalpagar + "&dias=" + dias;
     $.ajax({
         type: "POST",
         url: "prestamos/agregarprestamo.php",
