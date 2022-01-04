@@ -116,7 +116,7 @@ if ($_SESSION['usuario']) {
                                     N.Préstamo
                                 </th>
                                 <th>
-                                    Pagó
+                                    P.Pagado
                                 </th>
                                 <th>
                                     Saldo
