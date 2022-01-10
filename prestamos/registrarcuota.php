@@ -5,8 +5,7 @@ if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
     $id = $_POST['idu'];
     $recoger = $_POST['recoger'];
-
-    echo $fecha_actual = date("Y-m-j");
+    $fecha_actual = date("Y-m-j");
     $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta from prestamos where id_prestamo=$id ";
     $query = mysqli_query($link, $consulta) or die($consulta);
     $filas1 = mysqli_fetch_array($query);
@@ -49,4 +48,3 @@ if ($_SESSION['usuario']) {
         window.location='index.php';
     </script>";
 }
-?>

@@ -186,7 +186,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>P.Domingo:</label>
-                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="dias" name="dias">
+                                    <input autocomplete="off" min="0" value="0" type="number" class="form-control input-group-sm" id="domingo" name="domingo">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>For.Pago:</label>
@@ -515,6 +515,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             telefono = $('#telefono').val();
             nombre = $('#nombre').val();
             apellido = $('#apellido').val();
+            domingo = $('#domingo').val();
             if (apellido == "") {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Apellido" : Debe ser mayor de 4 Digitos ', function() {
@@ -576,8 +577,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido);
-                window.location.reload();
+                agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo);
+                // window.location.reload();
             }
         })
 
