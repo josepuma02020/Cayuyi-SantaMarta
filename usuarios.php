@@ -118,7 +118,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol']) {
                 <TBODY>
 
                     <?php
-                    $consultarutas = "SELECT * FROM USUARIOS";
+                    $consultarutas = "SELECT * FROM usuarios";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
