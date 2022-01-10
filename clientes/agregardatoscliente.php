@@ -7,7 +7,7 @@ $consulta = "select * from clientes where id_cliente = $id";
 $query = mysqli_query($link, $consulta) or die($consulta);
 $arreglo = mysqli_fetch_array($query);
 //prestamos
-$consultaprestamos = "select a.*,b.ruta 'nruta' from prestamos a inner join rutas b on a.ruta=b.id_ruta where cliente = $id order by a.fechacierre desc limit 1  ";
+$consultaprestamos = "select a.*,b.ruta 'nruta' from prestamos a inner join rutas b on a.ruta=b.id_ruta where cliente = $id and valorapagar > abonado";
 $query = mysqli_query($link, $consultaprestamos) or die($consultaprestamos);
 $arreglo1 = mysqli_fetch_array($query);
 if(isset($arreglo1)){
@@ -49,4 +49,3 @@ $datos = array(
     "cierre" => $fechacierre,
 );
 echo json_encode($datos);
-?>

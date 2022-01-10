@@ -20,7 +20,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="clientes/clientes.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
 
     </head>
@@ -49,15 +49,15 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-row">
-                                        <div class="form-group col-sm-3">
+                                        <div class="form-group tres">
                                             <label>Nombre:</label>
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                         </div>
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group tres">
                                             <label>Apellido:</label>
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellido" name="apellido">
                                         </div>
-                                        <div class="form-group col-md-3">
+                                        <div class="form-group tres">
                                             <label>Cedula:</label>
                                             <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedula" name="cedula">
                                         </div>
@@ -65,11 +65,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 
 
                                     <div class="form-row">
-                                        <div class="form-group col-sm-4">
+                                        <div class="form-group tres">
                                             <label>Telefono:</label>
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefono" name="telefono">
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group tres">
                                             <label>Direccion:</label>
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
                                         </div>
@@ -139,65 +139,66 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         </div>
                         <input type="hidden" id="idu" name="idu">
                         <div class="modal-body">
-                            <div class="form-row autocompletar">
-                                <div class="form-group col-sm-3">
+                            <div class="form-row ">
+                                <div class="form-group tres">
                                     <label>Nombre:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group tres">
                                     <label>Apellido:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellidou" name="apellidou">
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group tres">
                                     <label>Cedula:</label>
                                     <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedulau" name="cedulau">
                                 </div>
                             </div>
 
 
-                            <div class="form-row autocompletar">
-                                <div class="form-group col-sm-3">
+                            <div class="form-row ">
+                                <div class="form-group tres">
                                     <label>Telefono:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefonou" name="telefonou">
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group tres">
                                     <label>Direccion:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccionu" name="direccionu">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label>Fecha Ult.Prestamo:</label>
-                                    <input autocomplete="off" disabled type="date" class="form-control input-group-sm" id="fechault" name="fechault">
-                                </div>
 
                             </div>
-                            <div class="form-row autocompletar">
-                                <div class="form-group col-md-2">
+                            <div class="form-row ">
+                                <div class="form-group cuatro">
                                     <label>Activo?:</label>
                                     <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="activou" name="activou">
                                 </div>
-                                <div class="form-group col-sm-2">
+                                <div class="form-group tres">
+                                    <label>Fecha Ult.Prestamo:</label>
+                                    <input autocomplete="off" disabled type="date" class="form-control input-group-sm" id="fechault" name="fechault">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Ruta:</label>
+                                    <input autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutapre" name="rutapre">
+                                </div>
+                                <div class="form-group tres">
                                     <label>Valor Ult.Préstamo:</label>
                                     <input disabled autocomplete="off" type="numbre" class="form-control input-group-sm" id="ultprestamo" name="ultprestamo">
                                 </div>
 
-                                <div class="form-group col-md-2">
-                                    <label>Plazo(dias):</label>
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="plazoult" name="plazoult">
-                                </div>
-                                <div class="form-group col-sm-2">
+                            </div>
+                            <div class="form-row ">
+                                <div class="form-group tres">
                                     <label>Saldo:</label>
                                     <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="debe" name="debe">
                                 </div>
-                            </div>
-                            <div class="form-row autocompletar">
-                                <div class="form-group col-md-2">
+                                <div class="form-group cuatro">
+                                    <label>Plazo(dias):</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="plazoult" name="plazoult">
+                                </div>
+                                <div class="form-group cuatro">
                                     <label>D.A</label>
                                     <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="diasatraso" name="diasatraso">
                                 </div>
-                                <div class="form-group col-md-">
-                                    <label>Ruta:</label>
-                                    <input autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutapre" name="rutapre">
-                                </div>
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -281,7 +282,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             if (telefono == "" || telefono.length < 4) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Telefono" ', function() {
-                    //              alertify.success('Ok');
+                    alertify.success('Ok');
                 });
             }
             if (a == 0) {
