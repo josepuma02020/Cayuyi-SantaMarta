@@ -151,7 +151,10 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                 </div>
                                 <div class="form-group tres">
                                     <label>Fecha de Inicio:</label>
-                                    <input autocomplete="off" value="<?php echo $fechahoyval ?>" type="date" class="form-control input-group-sm" id="fecha" name="fecha">
+                                    <?php
+                                    $fechahoyval = date('Y-m-d');
+                                    ?>
+                                    <input autocomplete="off" value="<?php echo $fechahoyval; ?>" type="date" class="form-control input-group-sm" id="fecha" name="fecha">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Papeleria:</label>
@@ -175,10 +178,14 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <div class="form-row">
                                 <div class="form-group tres">
                                     <label>Intereses(%):</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="porcentaje" name="porcentaje">
+                                    <input step="0.01" disabled autocomplete="off" type="number" class="form-control input-group-sm" id="porcentaje" name="porcentaje">
                                 </div>
-                                <div class="form-group tres">
-                                    <label>Dias para Pagar:</label>
+                                <div class="form-group cuatro">
+                                    <label>Dias:</label>
+                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="dias" name="dias">
+                                </div>
+                                <div class="form-group cuatro">
+                                    <label>P.Domingo:</label>
                                     <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="dias" name="dias">
                                 </div>
                                 <div class="form-group cuatro">
@@ -424,20 +431,28 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         $('#totalpagar').change(function() {
             valor = $('#valor').val();
             totalpagar = $('#totalpagar').val();
+            porcentaje = (((totalpagar - valor) * 100) / valor);
+            porcentaje = porcentaje.toFixed(2);
+            $('#porcentaje').val(porcentaje);
             $('#valorintereses').val((totalpagar - valor));
-            $('#porcentaje').val((((totalpagar - valor) * 100) / valor));
+
         });
         $('#totalpagaru').change(function() {
             valor = $('#valoru').val();
             totalpagar = $('#totalpagaru').val();
+            porcentaje = (((totalpagar - valor) * 100) / valor);
+            porcentaje = porcentaje.toFixed(2);
+            $('#porcentaje').val(porcentaje);
             $('#valorinteresesu').val((totalpagar - valor));
-            $('#porcentajeu').val((((totalpagar - valor) * 100) / valor));
+
         });
         $('#valor').change(function() {
             valor = $('#valor').val();
             totalpagar = $('#totalpagar').val();
+            porcentaje = (((totalpagar - valor) * 100) / valor);
+            porcentaje = porcentaje.toFixed(2);
             $('#valorintereses').val((totalpagar - valor));
-            $('#porcentaje').val((((totalpagar - valor) * 100) / valor));
+            $('#porcentaje').val(porcentaje);
         });
         $('#cedula').change(function() {
             $.ajax({
@@ -562,7 +577,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             }
             if (a == 0) {
                 agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido);
-                //window.location.reload();
+                window.location.reload();
             }
         })
 
