@@ -58,7 +58,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img src="../../puntodeventa/imagenes/dinero.png" width="100" height="100">
+                            <img src="imagenes/dinero.png" width="100" height="100">
                             <form id="frmtransaccion" enctype="multipart/form-data" method="post" autocomplete="off">
                                 <div class="form-row">
                                     <div class="form-group modal-mediano">
