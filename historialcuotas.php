@@ -47,6 +47,10 @@ if ($_SESSION['usuario']) {
         $fecha_actual = date_create($fecha_actual);
         $diff = $fecha_actual->diff($fechaprestamoactivo);
         $vencimiento = $diff->days;
+        $fechafinprestamo = date_create($fechafinprestamo);
+        if ($fechafinprestamo > $fecha_actual) {
+            $vencimiento = $vencimiento * -1;
+        }
     } else {
         $vencimiento = "0";
     }
