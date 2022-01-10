@@ -490,7 +490,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 lengthMenu: "Mostrar _MENU_ Registros",
                 loadingRecords: "Cargando...",
                 search: "Buscar:",
-                info: "Mostrando lista de Ventas",
+                info: "Mostrando lista de Préstamos",
                 zeroRecords: "Sin Resultados",
                 paginate: {
                     first: "Primera pagina",

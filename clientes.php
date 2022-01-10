@@ -226,14 +226,13 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <SCRIPT type="text/javascript">
     $(document).ready(function() {
-
         tabla = $('#tablaproductos').DataTable({
             language: {
                 url: '../vendor/datatables/es-ar.json',
                 lengthMenu: "Mostrar _MENU_ Registros",
                 loadingRecords: "Cargando...",
                 search: "Buscar:",
-                info: "Mostrando lista de Ventas",
+                info: "Mostrando lista de Clientes",
                 zeroRecords: "Sin Resultados",
                 paginate: {
                     first: "Primera pagina",

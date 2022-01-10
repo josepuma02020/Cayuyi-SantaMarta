@@ -137,7 +137,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 lengthMenu: "Mostrar _MENU_ Registros",
                 loadingRecords: "Cargando...",
                 search: "Buscar:",
-                info: "Mostrando lista de Cobros",
+                info: "Mostrando Historial de Transacciones",
                 zeroRecords: "Sin Resultados",
                 paginate: {
                     first: "Primera pagina",
