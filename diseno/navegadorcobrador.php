@@ -24,15 +24,15 @@ if (isset($_SESSION['usuario'])) {
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../../ORION/diario.php">Diario</a>
-                    <a href="../../ORION/recorridosc.php">Editar Ruta</a>
-                    <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
+                    <a href="diario.php">Diario</a>
+                    <a href="recorridosc.php">Editar Ruta</a>
+                    <a href="cuotas.php">Cuotas Registradas</a>
                 </div>
                 <button class="dropdown-btn">Prestamos
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../../ORION/verificarcliente.php">Verificar Cliente</a>
+                    <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
                 <button class="dropdown-btn" id="salir">Salir
                 </button>

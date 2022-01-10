@@ -23,27 +23,27 @@ if (isset($_SESSION['usuario'])) {
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../../ORION/diario.php">Diario</a>
-                    <a href="../../ORION/recorridosc.php">Editar Ruta</a>
-                    <a href="../../ORION/rutas.php">Rutas</a>
-                    <a href="../../ORION/gastos.php">Gastos</a>
-                    <a href="../../ORION/cuotas.php">Cuotas Registradas</a>
+                    <a href="diario.php">Diario</a>
+                    <a href="recorridosc.php">Editar Ruta</a>
+                    <a href="rutas.php">Rutas</a>
+                    <a href="gastos.php">Gastos</a>
+                    <a href="cuotas.php">Cuotas Registradas</a>
                 </div>
                 <button class="dropdown-btn">Prestamos
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../../ORION/prestamos.php">Lista de Préstamos</a>
-                    <a href="../../ORION/clientes.php">Clientes</a>
-                    <a href="../../ORION/verificarcliente.php">Verificar Cliente</a>
+                    <a href="prestamos.php">Lista de Préstamos</a>
+                    <a href="clientes.php">Clientes</a>
+                    <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
                 <button class="dropdown-btn">Contabilidad
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="../../ORION/ganancias.php">Contabilidad x Rutas </a>
-                    <a href="../../ORION/contabilidad.php"> Informe Contable </a>
-                    <a href="../../ORION/transacciones.php">Transacciones</a>
+                    <a href="ganancias.php">Contabilidad x Rutas </a>
+                    <a href="contabilidad.php"> Informe Contable </a>
+                    <a href="transacciones.php">Transacciones</a>
                 </div>
                 <button class="dropdown-btn" id="usuarios">Usuarios
                 </button>

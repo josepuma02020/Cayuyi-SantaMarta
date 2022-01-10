@@ -45,7 +45,7 @@ class PDF extends FPDF
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->Cell(50, 10, 'Ruta :' . $nombreruta, 0, 1, 'C', 0);
+$pdf->Cell(50, 10, 'Ruta :' . $nombreruta, 0    , 1, 'C', 0);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(50, 10, 'Nombre', 1, 0, 'C', 0);
 $pdf->Cell(30, 10, 'Fecha P', 1, 0, 'C', 0);
