@@ -218,6 +218,9 @@ if ($_SESSION['usuario']) {
             window.location.reload();
         })
         tabla = $('#tablahistorial').DataTable({
+            "order": [
+                [0, "desc"]
+            ],
             language: {
                 url: '../vendor/datatables/es-ar.json',
                 lengthMenu: "Mostrar _MENU_ Registros",
@@ -225,6 +228,7 @@ if ($_SESSION['usuario']) {
                 search: "Buscar:",
                 info: "Mostrando lista de Cobros",
                 zeroRecords: "Sin Resultados",
+
                 paginate: {
                     first: "Primera pagina",
                     previous: "Anterior",
@@ -232,6 +236,7 @@ if ($_SESSION['usuario']) {
                     last: "Ultima"
                 },
             }
+
         });
     });
 </script>
