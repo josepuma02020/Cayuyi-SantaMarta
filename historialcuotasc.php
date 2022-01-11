@@ -47,6 +47,7 @@ if ($_SESSION['usuario']) {
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
+        <link rel="shortcut  icon" href="imagenes/logop.png" type="image/x-icon" />
     </head>
 
     <body>
@@ -96,9 +97,9 @@ if ($_SESSION['usuario']) {
                         while ($filas1 = mysqli_fetch_array($query)) {
                             $dias = $filas1['atraso'];
                             $diascuota = $filas1['diasvence'];
-                            $diascuota=$diascuota*-1;
-                            if($diascuota < 0){
-                                $class="vencido";
+                            $diascuota = $diascuota * -1;
+                            if ($diascuota < 0) {
+                                $class = "vencido";
                             }
                         ?>
                             <TR>
@@ -115,8 +116,8 @@ if ($_SESSION['usuario']) {
 
                                 <TD><?php echo $dias; ?> </TD>
                                 <TD class="<?php echo $class ?>"><?php
-                                    echo $diascuota;
-                                    ?> </TD>
+                                                                    echo $diascuota;
+                                                                    ?> </TD>
                             </TR>
                         <?php } ?>
                     </tbody>

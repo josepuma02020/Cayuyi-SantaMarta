@@ -43,7 +43,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="librerias/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css" rel="Stylesheet" />
-
+        <link rel="shortcut  icon" href="imagenes/logop.png" type="image/x-icon" />
     </head>
 
     <body>

@@ -58,7 +58,7 @@ if ($_SESSION['usuario']) {
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <SCRIPT lang="javascript" type="text/javascript" src="./prestamos/prestamos.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
-
+        <link rel="shortcut  icon" href="imagenes/logop.png" type="image/x-icon" />
     </head>
 
     <body>

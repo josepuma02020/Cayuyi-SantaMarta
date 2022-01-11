@@ -5,13 +5,13 @@ if (isset($_SESSION['usuario'])) {
     <html>
 
     <head>
-        <title>Control de préstamos</title>
+        <link rel="shortcut  icon" href="../imagenes/logop.ico" type="image/x-icon" />
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./diseno/menu/cel.css" media="screen and (min-width:200px)" />
         <link rel="stylesheet" href="./diseno/menu/tablet.css" media="screen and (min-width:700px)" />
         <link rel="stylesheet" href="./diseno/menu/desktop.css" media="screen and (min-width:1025px)" />
-        <link rel="icon" href="../imagenes/logop.png" type="image/png">
+        <title>Control de préstamos</title>
     </head>
 
     <body>

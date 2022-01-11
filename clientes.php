@@ -22,7 +22,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="clientes/clientes.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
-
+        <link rel="shortcut  icon" href="imagenes/logop.png" type="image/x-icon" />
     </head>
 
     <body>
