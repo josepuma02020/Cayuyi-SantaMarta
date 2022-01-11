@@ -4,14 +4,10 @@
 // include class
 require('../librerias/fpdf/fpdf.php');
 require_once("../conexion/conexion.php");
-$ruta = $_GET['ruta'];
-$consultanombreruta = "select * from rutas where id_ruta=$ruta";
-$querynombreruta = mysqli_query($link, $consultanombreruta) or die($consultanombreruta);
-$filasnombreruta = mysqli_fetch_array($querynombreruta);
-$nombreruta = $filasnombreruta['ruta'];
+$fecha = $_GET['fecha'];
 $fecha_actual = date("Y-m-d");
-$consultaruta = "select a.*,b.nombre,b.apellido from prestamos a inner join clientes b on a.cliente=b.id_cliente  where a.ruta = $ruta and a.abonado < a.valorapagar ";
-$query = mysqli_query($link, $consultaruta) or die($consultaruta);
+$consultacobros = "select a.*,b.*,c.nombre,c.apellido from registros_cuota a inner join prestamos b on a.prestamo=b.id_prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha ='$fecha'";
+$query = mysqli_query($link, $consultacobros) or die($consultacobros);
 
 class PDF extends FPDF
 {
@@ -21,14 +17,13 @@ class PDF extends FPDF
         // Logo
         // $this->Image('logo.png', 10, 8, 33);
         // Arial bold 15
-        $this->SetFont('Arial', 'B', 15);
+        $this->SetFont('Arial', 'B', 20);
         // Movernos a la derecha
-        $this->Cell(80);
+        $this->Cell(100);
         // Título
-        $this->Cell(40, 10, 'Guia de Rutas', 1, 0, 'C');
-
+        $this->Cell(60, 10, 'Resumen de Cobros', 0, 0, 'C');
         // Salto de línea
-        $this->Ln(20);
+        $this->Ln(30);
         //cabecera
 
     }
@@ -48,7 +43,9 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->Image('../imagenes/logo1.png', 0, 0, 90);
-$pdf->Cell(50, 10, 'Ruta :' . $nombreruta, 0, 1, 'C', 0);
+$pdf->SetFont('Arial', 'B', 15);
+$pdf->Cell(50, 10, 'Fecha :' . $fecha, 0, 1, 'C', 0);
+$pdf->Ln(10);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(50, 10, 'Nombre', 1, 0, 'C', 0);
 $pdf->Cell(30, 10, 'Fecha P', 1, 0, 'C', 0);
@@ -61,7 +58,7 @@ $pdf->SetFont('Arial', '', 12);
 while ($filas1 = mysqli_fetch_array($query)) {
     //consulta cuota
     $fecha_actual = date("Y-m-d");
-    $consultacuota = "select cuota from registros_cuota where prestamo = $filas1[id_prestamo] and fecha='$fecha_actual'";
+    $consultacuota = "select cuota from registros_cuota where prestamo = $filas1[prestamo] and fecha='$fecha_actual'";
     $query1 = mysqli_query($link, $consultacuota) or die($consultacuota);
     $filacuota = mysqli_fetch_array($query1);
     if (isset($filacuota)) {

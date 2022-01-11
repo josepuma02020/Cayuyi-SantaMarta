@@ -11,6 +11,7 @@ if (isset($_SESSION['usuario'])) {
         <link rel="stylesheet" href="./diseno/menu/cel.css" media="screen and (min-width:200px)" />
         <link rel="stylesheet" href="./diseno/menu/tablet.css" media="screen and (min-width:700px)" />
         <link rel="stylesheet" href="./diseno/menu/desktop.css" media="screen and (min-width:1025px)" />
+        <link rel="icon" href="../imagenes/logop.png" type="image/png">
     </head>
 
     <body>
@@ -24,8 +25,8 @@ if (isset($_SESSION['usuario'])) {
                 </button>
                 <div class="dropdown-container">
                     <a href="diario.php">Diario</a>
-                    <a href="recorridosc.php">Editar Ruta</a>
                     <a href="rutas.php">Rutas</a>
+                    <a href="recorridosc.php">Editar Recorrido</a>
                     <a href="gastos.php">Gastos</a>
                     <a href="cuotas.php">Cuotas Registradas</a>
                 </div>
