@@ -30,11 +30,11 @@ if (isset($_SESSION['usuario'])) {
                     <a href="gastos.php">Gastos</a>
                     <a href="cuotas.php">Cuotas Registradas</a>
                 </div>
-                <button class="dropdown-btn">Prestamos
+                <button class="dropdown-btn">Préstamos
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="prestamos.php">Lista de Préstamos</a>
+                    <a href="prestamos.php">Préstamos</a>
                     <a href="clientes.php">Clientes</a>
                     <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
