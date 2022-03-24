@@ -66,7 +66,7 @@ class prestamos
     public function obtenerdatoscliente($cliente)
     {
         include('../conexion/conexion.php');
-        $consultadatos = "SELECT a.nombre,a.apellido,count(b.id_prestamo) 'prestamos',a.telefono,a.direccion from clientes a left join prestamos b on a.id_cliente = b.cliente where a.cedula = '$cliente'";
+        $consultadatos = "SELECT a.nombre,a.apellido,count(b.id_prestamo) 'prestamos',a.telefono,a.direccion,a.nota from clientes a left join prestamos b on a.id_cliente = b.cliente where a.cedula = '$cliente'";
         $query = mysqli_query($link, $consultadatos) or die($consultadatos);
         $ver = mysqli_fetch_row($query);
         $consultaultimo = "SELECT a.valor_prestamo,a.fecha,a.dias_atraso,a.fechacierre,(valorapagar-abonado) 'debe',c.ruta ,a.dias_prestamo  FROM prestamos a inner join clientes b on b.id_cliente=a.cliente inner join rutas c on c.id_ruta=a.ruta where b.cedula = '$cliente' order by fecha desc limit 1";
@@ -99,6 +99,7 @@ class prestamos
         $datos = array(
             'nombre' => $ver[0],
             'apellido' => $ver[1],
+            'nota' => $ver[5],
             'prestamos' => $activo,
             'valorultimo' => $valorultimo,
             'fecha' => $fecha,

@@ -1,5 +1,5 @@
-function editarcliente(idu, nombre, apellido, cedula, direccion, telefono) {
-    cadenau = "nombre=" + nombre + "&apellido=" + apellido + "&idu=" + idu + "&cedula=" + cedula + "&direccion=" + direccion + "&telefono=" + telefono;
+function editarcliente(idu, nombre, apellido, cedula, direccion, telefono, nota) {
+    cadenau = "nombre=" + nombre + "&apellido=" + apellido + "&nota=" + nota + "&idu=" + idu + "&cedula=" + cedula + "&direccion=" + direccion + "&telefono=" + telefono;
     $.ajax({
         type: "POST",
         url: "clientes/editarcliente.php",
@@ -38,6 +38,7 @@ function agregardatoscliente(id) {
             $('#debe').val(dato['debe']);
             $('#rutapre').val(dato['ruta']);
             $('#fechacierre').val(dato['cierre']);
+            $('#notau').val(dato['nota']);
 
 
 

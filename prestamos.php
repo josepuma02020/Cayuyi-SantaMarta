@@ -46,6 +46,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             ?>
         </header>
         <main class=" container container-md">
+
             <section class="titulo-pagina">
                 <h1>Tabla de Préstamos</h1>
             </section>
@@ -92,6 +93,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                 <div class="form-group largo">
                                     <label>Direccion:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="form-group completo">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="nota" name="nota">
                                 </div>
                             </div>
                             <h4 class="modal-subtitle">Ultimo préstamo</h4>
@@ -473,7 +479,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     $('#plazoult').val(dato['diasprestamo']);
                     $('#telefono').val(dato['telefono']);
                     $('#direccion').val(dato['direccion']);
-
+                    $('#nota').val(dato['nota']);
+                    console.log(dato['nombre']);
                 }
             });
         });

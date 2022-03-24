@@ -31,6 +31,9 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         </header>
         <main>
             <div class=" container container-md">
+                <section class="titulo-pagina">
+                    <h1>Clientes</h1>
+                </section>
                 <div class="card-body">
                     <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-person" viewBox="0 0 16 16">
@@ -62,8 +65,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                             <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedula" name="cedula">
                                         </div>
                                     </div>
-
-
                                     <div class="form-row">
                                         <div class="form-group tres">
                                             <label>Telefono:</label>
@@ -153,16 +154,19 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedulau" name="cedulau">
                                 </div>
                             </div>
-
-
                             <div class="form-row ">
                                 <div class="form-group tres">
                                     <label>Telefono:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefonou" name="telefonou">
                                 </div>
-                                <div class="form-group tres">
+                                <div class="form-group largo">
                                     <label>Direccion:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccionu" name="direccionu">
+                                </div>
+                            </div>
+                            <div class="form-row ">
+                                <div class="form-group completo">
+                                    <input placeholder="Ingrese aqui una nota para el cliente." autocomplete="off" type="text" class="form-control input-group-sm" id="notau" name="notau">
                                 </div>
 
                             </div>
@@ -254,6 +258,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             cedula = $('#cedulau').val();
             direccion = $('#direccionu').val();
             telefono = $('#telefonou').val();
+            nota = $('#notau').val();
             if (nombre == "" || nombre.length < 4) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Nombre" ', function() {
@@ -285,7 +290,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                editarcliente(idu, nombre, apellido, cedula, direccion, telefono);
+                editarcliente(idu, nombre, apellido, cedula, direccion, telefono, nota);
                 window.location.reload();
             }
         })

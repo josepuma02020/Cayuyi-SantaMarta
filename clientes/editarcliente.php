@@ -9,7 +9,8 @@ if ($_SESSION['usuario']) {
     $cedula = $_POST['cedula'];
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
-    $consulta="UPDATE `clientes` SET `nombre`='$nombre',`apellido`='$apellido',`cedula`='$cedula',`telefono`='$telefono',`direccion`='$direccion' WHERE id_cliente = '$id'";
+    $nota = $_POST['nota'];
+    $consulta="UPDATE `clientes` SET `nombre`='$nombre',`nota`='$nota',`apellido`='$apellido',`cedula`='$cedula',`telefono`='$telefono',`direccion`='$direccion' WHERE id_cliente = '$id'";
      $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
     echo "<script type=''>
@@ -17,4 +18,3 @@ if ($_SESSION['usuario']) {
         window.location='index.php';
     </script>";
 }
-?>

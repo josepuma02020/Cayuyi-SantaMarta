@@ -62,6 +62,10 @@ if ($_SESSION['usuario']) {
                 ?>
                         <section>
                             <label class="parametro-80">
+
+                                <h2 class="info-cliente"><?php echo $filas1['nota'] ?></h2>
+                            </label>
+                            <label class="parametro-80">
                                 <h4 class="info-cliente">Cedula:</h4>
                                 <p class="info-cliente"><?php echo $filas1['cedula'] ?></p>
                             </label>

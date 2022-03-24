@@ -10,28 +10,28 @@ $arreglo = mysqli_fetch_array($query);
 $consultaprestamos = "select a.*,b.ruta 'nruta' from prestamos a inner join rutas b on a.ruta=b.id_ruta where cliente = $id and valorapagar > abonado";
 $query = mysqli_query($link, $consultaprestamos) or die($consultaprestamos);
 $arreglo1 = mysqli_fetch_array($query);
-if(isset($arreglo1)){
-    $debe = $arreglo1['valorapagar'] -$arreglo1['abonado'];
+if (isset($arreglo1)) {
+    $debe = $arreglo1['valorapagar'] - $arreglo1['abonado'];
     $prestamo = $arreglo1['valor_prestamo'];
     $fecha = $arreglo1['fecha'];
     $diasprestamo = $arreglo1['dias_prestamo'];
     $atraso = $arreglo1['dias_atraso'];
     $nruta = $arreglo1['nruta'];
     $fechacierre = $arreglo1['fechacierre'];
-}else{
-    $debe= 0 ;
-    $prestamo =0;
+} else {
+    $debe = 0;
+    $prestamo = 0;
     $fecha = 0;
-    $diasprestamo =0;
-    $atraso=0;
-    $nruta=0;
-    $fechacierre=0;
+    $diasprestamo = 0;
+    $atraso = 0;
+    $nruta = 0;
+    $fechacierre = 0;
 }
 
-if($debe > 0 ){
+if ($debe > 0) {
     $activo = 'Si';
-}else{
-    $activo='No';
+} else {
+    $activo = 'No';
 }
 $datos = array(
     "nombre" => $arreglo['nombre'],
@@ -39,6 +39,7 @@ $datos = array(
     "cedula" => $arreglo['cedula'],
     "telefono" => $arreglo['telefono'],
     "direccion" => $arreglo['direccion'],
+    "nota" => $arreglo['nota'],
     "activo" => $activo,
     "ultprestamo" => $prestamo,
     "fecha" => $fecha,
