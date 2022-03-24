@@ -136,7 +136,7 @@ if (isset($_SESSION['usuario'])) {
     $(document).ready(function() {
         $('#cambiarestado').click(function() {
             estado = $('#estado').val();
-            alertify.alert('ATENCION!!', 'El valor de la Cuota debe ser mayor a 1', function() {
+            alertify.alert('ATENCION!!', 'Se cambiara el estado del sistema permitiendo o denegando permiso de ingreso a usuarios diferentes al administrador.', function() {
                 alertify.success('Ok');
                 window.location.href = "rutas/cambiarestadosistema.php?estado=" + estado;
             });

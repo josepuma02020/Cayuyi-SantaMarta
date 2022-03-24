@@ -55,6 +55,15 @@
                             alertify.success('Ok');
                         });
                     </script>
+                <?php
+                    break;
+                case 4:
+                ?>
+                    <script>
+                        alertify.alert('Atencion!!', 'El sistema se encuentra cerrado', function() {
+                            alertify.success('Ok');
+                        });
+                    </script>
         <?php
                     break;
             }
