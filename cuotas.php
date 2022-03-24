@@ -116,8 +116,11 @@ if ($_SESSION['usuario']) {
                     <table class="table table-bordered" id="tablacuotas">
                         <thead>
                             <tr>
-                                <th>
+                                <!-- <th>
                                     Venc.Préstamo
+                                </th> -->
+                                <th>
+                                    Cliente
                                 </th>
                                 <th>
                                     N.Préstamo
@@ -171,6 +174,7 @@ if ($_SESSION['usuario']) {
                                 $idprestamo = $filas1['id_prestamo'];
                                 $fechaprestamo = $filas1['fecha'];
                                 $diasprestamo = $filas1['dias_prestamo'];
+                                $nombrecliente = $filas1['nombre'] . ' ' . $filas1['apellido'];
                                 //verificar prestamo vencido
                                 $date = date("d-m-Y");
                                 $mod_date = strtotime($fechaprestamo . "+" . $diasprestamo . " days");
@@ -183,7 +187,8 @@ if ($_SESSION['usuario']) {
                                 $fechavence = date("d-m-Y", $mod_date);
                             ?>
                                 <TR>
-                                    <TD class="<?php echo $class ?>"><?php echo $fechavence ?> </TD>
+                                    <!-- <TD class="<?php echo $class ?>"><?php echo $fechavence ?> </TD> -->
+                                    <TD><?php echo $nombrecliente ?> </TD>
                                     <TD><a href="prestamos.php">
                                             <?php
                                             $consultaprestamo = "select a.valor_prestamo,a.papeleria from prestamos a where a.cliente = $filas1[cliente] and a.fecha = '$fecha' ";

@@ -6,11 +6,12 @@ function eliminarcuota(idu) {
         data: cadenau,
         success: function(r) {
             if (r == 11) {
-                console.log(r);
-                debugger;
+                // console.log(r);
+                //debugger;
+                window.location.reload();
             } else {
-                console.log(r);
-                debugger;
+                //  console.log(r);
+                // debugger;
             }
         }
     });
@@ -44,8 +45,9 @@ function registrarcuota(idu, recoger) {
         data: cadenau,
         success: function(r) {
             if (r == 11) {
-                console.log(r);
-                debugger;
+                //console.log(r);
+                //debugger;
+                window.location.reload();
             } else {
                 console.log(r);
                 debugger;
