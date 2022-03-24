@@ -229,8 +229,7 @@ if ($_SESSION['usuario']) {
             }
             if (a == 0) {
                 registrarcuota(idu, recoger);
-                window.location.href = "prestamos/recibo.php?id=" + idu;
-                //window.location.reload();
+                window.location.reload();
             }
         })
     })
