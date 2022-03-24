@@ -51,8 +51,30 @@ if (isset($_SESSION['usuario'])) {
                 <button class="dropdown-btn" id="salir">Salir
                 </button>
             </div>
+            <?php
+            if ($_SESSION['Rol'] == 1) {
+                $consultaestadosistema = "select activo from usuarios where id_usuario = $_SESSION[id_usuario]";
+                $queryestado = mysqli_query($link, $consultaestadosistema) or die($consultaestadosistema);
+                $filaestado = mysqli_fetch_array($queryestado);
+                $estado = $filaestado['activo'];
+                if ($estado == 0) {
+                    $clase = "success";
+                } else {
+                    $clase = "danger";
+                }
+            ?>
+                <section>
+                    <input type="hidden" id="estado" name="estado" value="<?php echo $estado ?>">
+                    <span class="btn btn-<?php echo $clase ?> boton-parametro" id="cambiarestado">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                            <path d="M7.5 1v7h1V1h-1z" />
+                            <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z" />
+                        </svg><span class="fa fa-plus-circle"></span>
+                    </span>
+                </section>
+            <?php }
+            ?>
         </main>
-
     </body>
 
     </html>
@@ -106,8 +128,18 @@ if (isset($_SESSION['usuario'])) {
 <script>
     $(document).ready(function() {
         $('#Inicio').click(function() {
-
             window.location.href = "home.php";
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#cambiarestado').click(function() {
+            estado = $('#estado').val();
+            alertify.alert('ATENCION!!', 'El valor de la Cuota debe ser mayor a 1', function() {
+                alertify.success('Ok');
+                window.location.href = "rutas/cambiarestadosistema.php?estado=" + estado;
+            });
 
         });
     });
