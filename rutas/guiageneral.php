@@ -6,7 +6,7 @@ require('../librerias/fpdf/fpdf.php');
 require_once("../conexion/conexion.php");
 $fecha = $_GET['fecha'];
 $fecha_actual = date("Y-m-d");
-$consultacobros = "select a.*,b.*,c.nombre,c.apellido from registros_cuota a inner join prestamos b on a.prestamo=b.id_prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha ='$fecha'";
+$consultacobros = "select a.*,b.*,c.nombre from registros_cuota a inner join prestamos b on a.prestamo=b.id_prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha ='$fecha'";
 $query = mysqli_query($link, $consultacobros) or die($consultacobros);
 
 class PDF extends FPDF
@@ -88,7 +88,7 @@ while ($filas1 = mysqli_fetch_array($query)) {
     } else {
         $class = 'input-disabled-normal';
     }
-    $pdf->Cell(50, 10, $filas1['nombre'] . ' ' . $filas1['apellido'], 1, 0, 'C', 0);
+    $pdf->Cell(50, 10, $filas1['nombre'], 1, 0, 'C', 0);
     $pdf->Cell(30, 10, $filas1['fecha'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $filas1['valor_prestamo'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $filas1['valorapagar'] - $filas1['abonado'], 1, 0, 'C', 0);
