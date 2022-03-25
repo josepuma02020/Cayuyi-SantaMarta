@@ -26,8 +26,7 @@ function revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes
         data: cadenau,
         success: function(r) {
             if (r == 11) {
-                console.log(r);
-                debugger;
+                window.location.reload();
             } else {
                 console.log(r);
                 debugger;
@@ -64,8 +63,7 @@ function editarprestamo(idu, ruta, nformapago, totalpagar, dias, valoru) {
         data: cadenau,
         success: function(r) {
             if (r == 1) {
-                console.log(r);
-                debugger;
+                window.location.reload();
             } else {
                 console.log(r);
                 debugger;
@@ -82,8 +80,7 @@ function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalp
         data: cadenau,
         success: function(r) {
             if (r == 1) {
-                console.log(r);
-                debugger
+                window.location.reload();
             } else {
                 console.log(r);
                 debugger;

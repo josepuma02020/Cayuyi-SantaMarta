@@ -207,7 +207,7 @@ if ($_SESSION['usuario']) {
         </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.12/sortable.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             window.onload = () => {
                 const sortable = new Sortable.default(document.querySelectorAll('section'), {
                     draggable: 'div'
@@ -234,7 +234,7 @@ if ($_SESSION['usuario']) {
                     }, 100);
                 });
             }
-        </script>
+        </script> -->
     </body>
 
     </HTML>

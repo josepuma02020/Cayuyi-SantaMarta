@@ -6,7 +6,7 @@ function editarcliente(idu, nombre, apellido, cedula, direccion, telefono, nota)
         data: cadenau,
         success: function(r) {
             if (r == 1) {
-
+                window.location.reload();
             } else {
                 console.log(r);
                 debugger;

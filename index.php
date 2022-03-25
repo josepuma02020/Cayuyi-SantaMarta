@@ -70,7 +70,8 @@
         }
         ?>
         <div class="titulo">
-            <h1>ORION</h1>
+            <h1>Inversiones Cayuyi
+            </h1>
         </div>
         <form action="verificarsesion.php" method="POST">
             <label class="form-item" for="usuario">
