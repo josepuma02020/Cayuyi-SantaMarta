@@ -10,7 +10,7 @@ $querynombreruta = mysqli_query($link, $consultanombreruta) or die($consultanomb
 $filasnombreruta = mysqli_fetch_array($querynombreruta);
 $nombreruta = $filasnombreruta['ruta'];
 $fecha_actual = date("Y-m-d");
-$consultaruta = "select a.*,b.nombre,b.apellido,b.nota from prestamos a inner join clientes b on a.cliente=b.id_cliente  where a.ruta = $ruta and a.abonado < a.valorapagar ";
+$consultaruta = "select a.*,b.nombre,b.nota from prestamos a inner join clientes b on a.cliente=b.id_cliente  where a.ruta = $ruta and a.abonado < a.valorapagar ";
 $query = mysqli_query($link, $consultaruta) or die($consultaruta);
 
 class PDF extends FPDF
@@ -48,7 +48,7 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->Image('../imagenes/logo1.png', 0, 0, 90);
-$pdf    ->SetFont('Arial', 'B', 14);
+$pdf->SetFont('Arial', 'B', 14);
 $pdf->Cell(50, 10, 'Ruta :' . $nombreruta, 0, 1, 'C', 0);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(45, 10, 'Nombre', 1, 0, 'C', 0);
@@ -93,7 +93,7 @@ while ($filas1 = mysqli_fetch_array($query)) {
     } else {
         $class = 'input-disabled-normal';
     }
-    $pdf->Cell(45, 10, $filas1['nombre'] . ' ' . $filas1['apellido'], 1, 0, 'C', 0);
+    $pdf->Cell(45, 10, $filas1['nombre'], 1, 0, 'C', 0);
     $pdf->Cell(40, 10, $filas1['nota'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $filas1['fecha'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $filas1['valor_prestamo'], 1, 0, 'C', 0);

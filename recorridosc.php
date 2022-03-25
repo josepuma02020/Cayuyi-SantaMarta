@@ -61,7 +61,7 @@ if ($_SESSION['usuario']) {
                         <h3>Buscar Ruta:</h3>
                         <select id="ruta" class="form-control input-sm">
                             <?php
-                            $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
+                            $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
                             $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
                             ?> <option value="0"></option>
                             <?php
@@ -100,12 +100,12 @@ if ($_SESSION['usuario']) {
                     </THEAD>
                     <TBODY>
                         <?php
-                        $consultarutas = "SELECT a.id_prestamo,c.direccion,b.ruta,d.nombre 'nencargado',d.apellido 'aencargado' ,c.nombre,c.apellido,a.valorapagar,a.abonado,a.dias_atraso,a.posicion_ruta FROM prestamos a inner join rutas b on a.ruta=b.id_ruta inner join clientes c on c.id_cliente=a.cliente inner join usuarios d on d.id_usuario=b.encargado where a.valorapagar - a.abonado > 0 and a.ruta =  $rutainfo";
+                        $consultarutas = "SELECT a.id_prestamo,c.direccion,b.ruta,d.nombre 'nencargado',d.apellido 'aencargado' ,c.nombre,a.valorapagar,a.abonado,a.dias_atraso,a.posicion_ruta FROM prestamos a inner join rutas b on a.ruta=b.id_ruta inner join clientes c on c.id_cliente=a.cliente inner join usuarios d on d.id_usuario=b.encargado where a.valorapagar - a.abonado > 0 and a.ruta =  $rutainfo";
                         $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                         while ($filas1 = mysqli_fetch_array($query)) {
                         ?>
                             <TR>
-                                <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
+                                <TD><?php echo $filas1['nombre']; ?> </TD>
                                 <TD><?php echo $filas1['direccion']; ?> </TD>
                                 <TD><?php echo $filas1['posicion_ruta']; ?> </TD>
                                 <TD><?php echo $filas1['valorapagar'] - $filas1['abonado']; ?> </TD>

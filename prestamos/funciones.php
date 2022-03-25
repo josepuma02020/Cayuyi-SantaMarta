@@ -17,7 +17,7 @@ class prestamos
     {
 
         include('../conexion/conexion.php');
-        $consultadatos = "select b.cedula,b.nombre,b.apellido,a.ruta,c.ruta,COUNT(a.id_prestamo) 'cuenta-ruta',d.nombre'nomencarg',d.apellido'apellencarg',a.posicion_ruta,a.fecha,a.valor_prestamo,a.valorapagar, (a.valorapagar-a.valor_prestamo) 'intereses',a.dias_prestamo,a.formapago,a.dias_atraso,a.abonado,a.fecrefinanciacion "
+        $consultadatos = "select b.cedula,b.nombre,a.ruta,c.ruta,COUNT(a.id_prestamo) 'cuenta-ruta',d.nombre'nomencarg',d.apellido'apellencarg',a.posicion_ruta,a.fecha,a.valor_prestamo,a.valorapagar, (a.valorapagar-a.valor_prestamo) 'intereses',a.dias_prestamo,a.formapago,a.dias_atraso,a.abonado,a.fecrefinanciacion "
             . "from prestamos a "
             . "inner join clientes b on a.cliente=b.id_cliente "
             . "inner join rutas c on c.id_ruta=a.ruta "
@@ -45,29 +45,29 @@ class prestamos
         $datos = array(
             'id' => $id,
             'cedula' => $ver[0],
-            'nombrecliente' => $ver[1] . ' ' . $ver[2],
-            'idruta' => $ver[3],
-            'nombreruta' => $ver[4] . '-' . $ver[6] . ' ' . $ver[7],
-            'posicion' => $ver[8],
-            'fecha' => $ver[9],
-            'valor' => $ver[10],
-            'pagar' => $ver[11],
-            'intereses' => $ver[12],
-            'dias' => $ver[13],
-            'cuota' => $ver[11] / $ver[13],
-            'porcentaje' => ((($ver[11] - $ver[10]) * 100) / $ver[11]),
+            'nombrecliente' => $ver[1],
+            'idruta' => $ver[2],
+            'nombreruta' => $ver[3] . '-' . $ver[5] . ' ' . $ver[6],
+            'posicion' => $ver[7],
+            'fecha' => $ver[8],
+            'valor' => $ver[9],
+            'pagar' => $ver[10],
+            'intereses' => $ver[11],
+            'dias' => $ver[12],
+            'cuota' => $ver[10] / $ver[12],
+            'porcentaje' => ((($ver[10] - $ver[9]) * 100) / $ver[10]),
             'formapago' => $forma,
-            'valorforma' => $ver[14],
-            'atraso' => $ver[15],
-            'abonado' => $ver[16],
-            'fecharef' => $ver[17],
+            'valorforma' => $ver[13],
+            'atraso' => $ver[14],
+            'abonado' => $ver[15],
+            'fecharef' => $ver[16],
         );
         return $datos;
     }
     public function obtenerdatoscliente($cliente)
     {
         include('../conexion/conexion.php');
-        $consultadatos = "SELECT a.nombre,a.apellido,count(b.id_prestamo) 'prestamos',a.telefono,a.direccion,a.nota from clientes a left join prestamos b on a.id_cliente = b.cliente where a.cedula = '$cliente'";
+        $consultadatos = "SELECT a.nombre,count(b.id_prestamo) 'prestamos',a.telefono,a.direccion,a.nota from clientes a left join prestamos b on a.id_cliente = b.cliente where a.cedula = '$cliente'";
         $query = mysqli_query($link, $consultadatos) or die($consultadatos);
         $ver = mysqli_fetch_row($query);
         $consultaultimo = "SELECT a.valor_prestamo,a.fecha,a.dias_atraso,a.fechacierre,(valorapagar-abonado) 'debe',c.ruta ,a.dias_prestamo  FROM prestamos a inner join clientes b on b.id_cliente=a.cliente inner join rutas c on c.id_ruta=a.ruta where b.cedula = '$cliente' order by fecha desc limit 1";
@@ -99,8 +99,7 @@ class prestamos
         }
         $datos = array(
             'nombre' => $ver[0],
-            'apellido' => $ver[1],
-            'nota' => $ver[5],
+            'nota' => $ver[4],
             'prestamos' => $activo,
             'valorultimo' => $valorultimo,
             'fecha' => $fecha,
@@ -109,8 +108,8 @@ class prestamos
             'cierre' => $fechavence,
             'ruta' => $ruta,
             'diasprestamo' => $diasprestamo,
-            'telefono' =>  $ver[3],
-            'direccion' =>  $ver[4],
+            'telefono' =>  $ver[2],
+            'direccion' =>  $ver[3],
         );
         return $datos;
     }

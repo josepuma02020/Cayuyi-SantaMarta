@@ -34,11 +34,10 @@ if ($_SESSION['usuario']) {
     $queryactivo = mysqli_query($link, $consultaactivo) or die($consultaactivo);
     $filasactivo = mysqli_fetch_array($queryactivo);
     if (isset($filasactivo)) {
-        $estado = "disabled";
+        $registrado = 1;
     } else {
-        $estado = "";
+        $registrado = 0;
     }
-
 ?>
     <html>
 
@@ -158,7 +157,7 @@ if ($_SESSION['usuario']) {
                         <TBODY>
 
                             <?php
-                            $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',b.fecha,c.nombre,c.apellido,b.cliente,b.dias_prestamo from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
+                            $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',b.fecha,c.nombre,b.cliente,b.dias_prestamo from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
                             $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                             $sumcobro = 0;
                             $sumprestamos = 0;
@@ -174,7 +173,7 @@ if ($_SESSION['usuario']) {
                                 $idprestamo = $filas1['id_prestamo'];
                                 $fechaprestamo = $filas1['fecha'];
                                 $diasprestamo = $filas1['dias_prestamo'];
-                                $nombrecliente = $filas1['nombre'] . ' ' . $filas1['apellido'];
+                                $nombrecliente = $filas1['nombre'];
                                 //verificar prestamo vencido
                                 $date = date("d-m-Y");
                                 $mod_date = strtotime($fechaprestamo . "+" . $diasprestamo . " days");
@@ -189,26 +188,26 @@ if ($_SESSION['usuario']) {
                                 <TR>
                                     <!-- <TD class="<?php echo $class ?>"><?php echo $fechavence ?> </TD> -->
                                     <TD><?php echo $nombrecliente ?> </TD>
-                                    <TD><a href="prestamos.php">
-                                            <?php
-                                            $consultaprestamo = "select a.valor_prestamo,a.papeleria from prestamos a where a.cliente = $filas1[cliente] and a.fecha = '$fecha' ";
-                                            $query1 = mysqli_query($link, $consultaprestamo) or die($consultaprestamo);
-                                            $filas3 = mysqli_fetch_array($query1);
+                                    <TD>
+                                        <?php
+                                        $consultaprestamo = "select a.valor_prestamo,a.papeleria from prestamos a where a.cliente = $filas1[cliente] and a.fecha = '$fecha' ";
+                                        $query1 = mysqli_query($link, $consultaprestamo) or die($consultaprestamo);
+                                        $filas3 = mysqli_fetch_array($query1);
 
-                                            if (isset($filas3)) {
-                                                $prestamos = $filas3['valor_prestamo'];
-                                                $papeleria = $filas3['papeleria'];
-                                                $sumpapelerias = $sumpapelerias + $papeleria;
-                                            } else {
-                                                $papeleria = 0;
-                                                $prestamos = 0;
-                                            }
-                                            if ($prestamos == 0) {
-                                                $pleno = $pleno + $cuota;
-                                            }
-                                            $sumprestamos = $sumprestamos + $prestamos;
-                                            echo $prestamos;
-                                            ?> </a>
+                                        if (isset($filas3)) {
+                                            $prestamos = $filas3['valor_prestamo'];
+                                            $papeleria = $filas3['papeleria'];
+                                            $sumpapelerias = $sumpapelerias + $papeleria;
+                                        } else {
+                                            $papeleria = 0;
+                                            $prestamos = 0;
+                                        }
+                                        if ($prestamos == 0) {
+                                            $pleno = $pleno + $cuota;
+                                        }
+                                        $sumprestamos = $sumprestamos + $prestamos;
+                                        echo $prestamos;
+                                        ?>
                                     </TD>
                                     <TD>
                                         <?php
@@ -280,13 +279,20 @@ if ($_SESSION['usuario']) {
                                     <TD><?php echo $saliente; ?></TD>
                                     <TD><?php echo $dias; ?></TD>
                                     <TD>
-                                        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                        <button <?php echo $estado; ?> onclick="datoscuota(<?php echo $filas1['id_registro'] ?>)" type="button" id="eeeee" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
-                                                <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
-                                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
-                                            </svg>
-                                        </button>
+                                        <?php
+
+                                        if ($registrado == 0) {
+
+                                        ?>
+                                            <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+                                            <button onclick="datoscuota(<?php echo $filas1['id_registro'] ?>)" type="button" id="eeeee" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                                    <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                                    <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                                </svg>
+                                            </button><?php
+                                                    }
+                                                        ?>
                                     </TD>
                                 </TR>
                             <?php } ?>

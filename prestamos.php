@@ -81,23 +81,19 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                 </div>
                                 <div class="form-group tres">
-                                    <label>Apellido:</label>
-                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellido" name="apellido">
-                                </div>
-                            </div>
-                            <div class="form-row ">
-                                <div class="form-group tres">
                                     <label>Telefono:</label>
                                     <input autocomplete="off" type="text" class="form-control" id="telefono" name="telefono">
                                 </div>
-                                <div class="form-group largo">
+                            </div>
+                            <div class="form-row ">
+
+                                <div class="form-group mitad">
                                     <label>Direccion:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
                                 </div>
-                            </div>
-                            <div class="form-row ">
-                                <div class="form-group completo">
-                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="nota" name="nota">
+                                <div class="form-group mitad">
+                                    <label>Comentario:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="nota" name="nota">
                                 </div>
                             </div>
                             <h4 class="modal-subtitle">Ultimo préstamo</h4>

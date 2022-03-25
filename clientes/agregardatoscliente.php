@@ -3,9 +3,9 @@
 session_start();
 include('../conexion/conexion.php');
 $id = $_POST['id'];
-$consulta = "select * from clientes where id_cliente = $id";
-$query = mysqli_query($link, $consulta) or die($consulta);
-$arreglo = mysqli_fetch_array($query);
+$consultacliente = "select * from clientes where id_cliente = $id";
+$querycliente = mysqli_query($link, $consultacliente) or die($consultacliente);
+$arreglocliente = mysqli_fetch_array($querycliente);
 //prestamos
 $consultaprestamos = "select a.*,b.ruta 'nruta' from prestamos a inner join rutas b on a.ruta=b.id_ruta where cliente = $id and valorapagar > abonado";
 $query = mysqli_query($link, $consultaprestamos) or die($consultaprestamos);
@@ -34,11 +34,10 @@ if ($debe > 0) {
     $activo = 'No';
 }
 $datos = array(
-    "nombre" => $arreglo['nombre'],
-    "cedula" => $arreglo['cedula'],
-    "telefono" => $arreglo['telefono'],
-    "direccion" => $arreglo['direccion'],
-    "nota" => $arreglo['nota'],
+    "nombre" => $arreglocliente['nombre'],
+    "cedula" => $arreglocliente['cedula'],
+    "telefono" => $arreglocliente['telefono'],
+    "direccion" => $arreglocliente['direccion'],
     "activo" => $activo,
     "ultprestamo" => $prestamo,
     "fecha" => $fecha,
@@ -47,5 +46,6 @@ $datos = array(
     "debe" => $debe,
     "ruta" => $nruta,
     "cierre" => $fechacierre,
+    "nota" => $arreglocliente['nota']
 );
 echo json_encode($datos);

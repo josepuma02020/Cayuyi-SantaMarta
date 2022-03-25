@@ -71,7 +71,7 @@ if ($_SESSION['usuario']) {
                             </label>
                             <label class="parametro-80">
                                 <h4 class="info-cliente">Nombre:</h4>
-                                <p class="info-cliente"> <?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?></p>
+                                <p class="info-cliente"> <?php echo $filas1['nombre']; ?></p>
                             </label>
                             <label class="parametro-80">
                                 <h4 class="info-cliente">Dirección:</h4>

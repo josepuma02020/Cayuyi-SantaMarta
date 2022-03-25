@@ -18,15 +18,6 @@ if ($_SESSION['usuario']) {
     } else {
         $id = 0;
     }
-    //consulta cliente 
-    $consultacliente = "select * from clientes where id_cliente = $cliente";
-    $query = mysqli_query($link, $consultacliente) or die($consultacliente);
-    $filas1 = mysqli_fetch_array($query);
-    if (isset($filas1)) {
-        $nombrecliente = $filas1['nombre'] . ' ' . $filas1['apellido'];
-    } else {
-        $nombrecliente = '';
-    }
     //consultabase
     $consultabase = "select a.base,COUNT(b.id_prestamo) 'prestamos' from rutas a inner join prestamos b on b.ruta=a.id_ruta where id_ruta =$nrutaactiva and (b.valorapagar-b.abonado > 0) group by a.ruta";
     $query = mysqli_query($link, $consultabase) or die($consultabase);
@@ -53,18 +44,21 @@ if ($_SESSION['usuario']) {
     } else {
         $vencimiento = "0";
     }
-
-
     if ($vencimiento > 0) {
         $class = 'input-disabled-vencido';
     } else {
         $class = 'input-disabled-normal';
     }
+    //consultadatoscliente
+
     if ($id != 0) {
         $consultacuota = "select a.nombre,b.fecha from clientes a inner join prestamos b on a.id_cliente=b.cliente where b.id_prestamo = $id";
-        $query = mysqli_query($link, $consultacuota) or die($consultacuota);
-        $filas1 = mysqli_fetch_array($query);
     }
+    if ($cliente != 0) {
+        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+    }
+    $query = mysqli_query($link, $consultacuota) or die($consultacuota);
+    $filas1 = mysqli_fetch_array($query);
     $nombrecliente = $filas1['nombre'];
     $fechaprestamo = $filas1['fecha'];
 ?>
