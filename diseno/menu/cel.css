@@ -23,7 +23,7 @@
 .menu {
     text-align: left;
     display: flex;
-    width: 100%;
+    width: 98%;
     justify-content: space-between;
 }
 

@@ -272,7 +272,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 <div class="modal-dialog modal-lg  ">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Prestamo</b></h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Préstamo</b></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -316,11 +316,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Val.Préstamo:</label>
-                                    <input type="text" class="form-control input-group-sm" id="valoru" name="valoru">
+                                    <input disabled type="text" class="form-control input-group-sm" id="valoru" name="valoru">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Valor a Pagar:</label>
-                                    <input autocomplete="off" type="text" min="0" class="form-control input-group-sm" id="totalpagaru" name="totalpagaru">
+                                    <input disabled autocomplete="off" type="text" min="0" class="form-control input-group-sm" id="totalpagaru" name="totalpagaru">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -348,7 +348,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 
                                 <div class="form-group cuatro">
                                     <label>Dias:</label>
-                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasu" name="diasu">
+                                    <input disabled autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasu" name="diasu">
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>For.Pago:</label>
@@ -362,12 +362,28 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                         <option value="7">Semanal</option>
                                         <option value="15">Quincenal</option>
                                         <option value="30">Mensual</option>
-
                                     </select>
                                 </div>
                                 <div class="form-group cuatro">
                                     <label>Cuota:</label>
                                     <input disabled autocomplete="off" type="number" maxlength="5" class="form-control input-group-sm" id="cuotau" name="cuotau">
+                                </div>
+
+                            </div>
+                            <h4 class="modal-subtitle">Refinanciación</h4>
+                            <div class="form-row">
+                                <div class="form-group tres">
+                                    <label>Fecha refinanciación:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="fecharef" name="fecharef">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Nuevo Valor a pagar:</label>
+                                    <input autocomplete="off" type="number" class="form-control input-group-sm" id="valorref" name="valorref">
+                                </div>
+
+                                <div class="form-group tres">
+                                    <label>Plazo:</label>
+                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasref" name="diasref">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -587,7 +603,30 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo);
                 window.location.reload();
             }
+        });
+        $('#editarprestamo').click(function() {
+            a = 0;
+            id = $('#idu').val();
+            ruta = $('#nruta').val();
+            valor = $('#valorref').val();
+            dias = $('#diasref').val();
+            valorprestamo = $('#valoru').val();
+            if (valor < valorprestamo) {
+                a = 1;
+                alertify.alert('ATENCION!!', 'No se puede refinanciar por valores menores al prestamo', function() {
+                    alertify.success('Ok');
+                });
+            }
+            if (dias < 1) {
+                a = 1;
+                alertify.alert('ATENCION!!', 'El numero de días de la refinanciacón debe ser mayor a 1', function() {
+                    alertify.success('Ok');
+                });
+            }
+            if (a == 0) {
+                editarprestamo(dias, valor, ruta, id);
+                // window.location.reload();
+            }
         })
-
     });
 </script>

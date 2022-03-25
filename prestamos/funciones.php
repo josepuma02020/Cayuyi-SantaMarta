@@ -17,7 +17,7 @@ class prestamos
     {
 
         include('../conexion/conexion.php');
-        $consultadatos = "select b.cedula,b.nombre,b.apellido,a.ruta,c.ruta,COUNT(a.id_prestamo) 'cuenta-ruta',d.nombre'nomencarg',d.apellido'apellencarg',a.posicion_ruta,a.fecha,a.valor_prestamo,a.valorapagar,(a.valorapagar-a.valor_prestamo) 'intereses',a.dias_prestamo,a.formapago,a.dias_atraso,a.abonado "
+        $consultadatos = "select b.cedula,b.nombre,b.apellido,a.ruta,c.ruta,COUNT(a.id_prestamo) 'cuenta-ruta',d.nombre'nomencarg',d.apellido'apellencarg',a.posicion_ruta,a.fecha,a.valor_prestamo,a.valorapagar, (a.valorapagar-a.valor_prestamo) 'intereses',a.dias_prestamo,a.formapago,a.dias_atraso,a.abonado,a.fecrefinanciacion "
             . "from prestamos a "
             . "inner join clientes b on a.cliente=b.id_cliente "
             . "inner join rutas c on c.id_ruta=a.ruta "
@@ -60,6 +60,7 @@ class prestamos
             'valorforma' => $ver[14],
             'atraso' => $ver[15],
             'abonado' => $ver[16],
+            'fecharef' => $ver[17],
         );
         return $datos;
     }

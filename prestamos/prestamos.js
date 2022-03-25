@@ -1,3 +1,22 @@
+function editarprestamo(dias, valor, ruta, id) {
+    cadenau = "dias=" + dias + "&valor=" + valor + "&ruta=" + ruta + "&id=" + id;
+    $.ajax({
+        type: "POST",
+        url: "prestamos/refinanciar.php",
+        data: cadenau,
+        success: function(r) {
+            if (r == 11) {
+                console.log(r);
+                debugger;
+                //window.location.reload();
+            } else {
+                console.log(r);
+                debugger;
+            }
+        }
+    });
+}
+
 function eliminarcuota(idu) {
     cadenau = "id=" + idu;
     $.ajax({
@@ -55,22 +74,7 @@ function registrarcuota(idu, recoger) {
     });
 }
 
-function editarprestamo(idu, ruta, nformapago, totalpagar, dias, valoru) {
-    cadenau = "idu=" + idu + "&ruta=" + ruta + "&valoru=" + valoru + "&nformapago=" + nformapago + "&totalpagar=" + totalpagar + "&dias=" + dias;
-    $.ajax({
-        type: "POST",
-        url: "prestamos/editarprestamo.php",
-        data: cadenau,
-        success: function(r) {
-            if (r == 1) {
-                window.location.reload();
-            } else {
-                console.log(r);
-                debugger;
-            }
-        }
-    });
-}
+
 
 function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo) {
     cadenau = "cedula=" + cedula + "&domingo=" + domingo + "&nombre=" + nombre + "&apellido=" + apellido + "&formapago=" + formapago + "&ruta=" + ruta + "&papeleria=" + papeleria + "&posicion=" + posicion + "&fecha=" + fecha + "&valor=" + valor + "&direccion=" + direccion + "&telefono=" + telefono + "&totalpagar=" + totalpagar + "&dias=" + dias;
@@ -113,6 +117,8 @@ function obtenerdatosprestamo(id) {
             $('#formau').val(dato['formapago']);
             $('#abonou').val(dato['abonado']);
             $('#atrasou').val(dato['atraso']);
+            $('#fecharef').val(dato['fecharef']);
+
         }
     });
 }
