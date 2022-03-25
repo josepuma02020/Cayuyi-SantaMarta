@@ -35,7 +35,6 @@ if ($debe > 0) {
 }
 $datos = array(
     "nombre" => $arreglo['nombre'],
-    "apellido" => $arreglo['apellido'],
     "cedula" => $arreglo['cedula'],
     "telefono" => $arreglo['telefono'],
     "direccion" => $arreglo['direccion'],

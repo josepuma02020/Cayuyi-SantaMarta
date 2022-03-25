@@ -6,7 +6,6 @@ if ($_SESSION['usuario']) {
     setlocale(LC_ALL, "es_CO");
     $fecha_actual = date("Y-m-j");
     $fecha_inicio = date("Y-m-01");
-
     $rutaactiva = $_SESSION['nruta'];
     $nrutaactiva = $_SESSION['ruta'];
     if (isset($_GET['cliente'])) {
@@ -61,6 +60,13 @@ if ($_SESSION['usuario']) {
     } else {
         $class = 'input-disabled-normal';
     }
+    if ($id != 0) {
+        $consultacuota = "select a.nombre,b.fecha from clientes a inner join prestamos b on a.id_cliente=b.cliente where b.id_prestamo = $id";
+        $query = mysqli_query($link, $consultacuota) or die($consultacuota);
+        $filas1 = mysqli_fetch_array($query);
+    }
+    $nombrecliente = $filas1['nombre'];
+    $fechaprestamo = $filas1['fecha'];
 ?>
     <html>
 
@@ -94,16 +100,22 @@ if ($_SESSION['usuario']) {
                     <h3>Cliente:</h3>
                     <input disabled class="form-control input-sm input-disabled-normal" type="text" id="mostrando" value="<?php echo $nombrecliente; ?>">
                 </div>
-                <div class="form-group col-sm-3">
-                    <h3>Dias Vencido:</h3>
-                    <input disabled class="form-control input-sm <?php echo $class ?>" type="text" id="mostrando" value="<?php echo $vencimiento; ?>">
-                </div>
+                <!-- <div class="form-group col-sm-3">
+                    <h3>Fecha del último préstamo:</h3>
+                    <input disabled class="form-control input-sm <?php echo $class ?>" type="text" id="mostrando" value="<?php echo $fechaprestamo; ?>">
+                </div> -->
             </section>
             <table class="table table-bordered" id="tablahistorial">
                 <thead>
                     <tr>
                         <th>
-                            Fecha
+                            Inicio
+                        </th>
+                        <th>
+                            Pago
+                        </th>
+                        <th>
+                            Plazo
                         </th>
                         <th>
                             Préstamo
@@ -120,15 +132,20 @@ if ($_SESSION['usuario']) {
                         <th>
                             Forma de Pago
                         </th>
-
                         <th>
                             D.A
                         </th>
+
                     </tr>
                 </thead>
                 <TBODY>
                     <?php
-                    $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+                    if ($cliente != 0) {
+                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+                    }
+                    if ($id != 0) {
+                        $consultacuota = "SELECT b.fecha'fechaprestamo',a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where b.id_prestamo = $id";
+                    }
                     $query = mysqli_query($link, $consultacuota) or die($consultacuota);
                     while ($filas1 = mysqli_fetch_array($query)) {
                         $dias = $filas1['atraso'];
@@ -138,7 +155,9 @@ if ($_SESSION['usuario']) {
                         }
                     ?>
                         <TR>
+                            <TD><?php echo $filas1['fechaprestamo']; ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
+                            <TD><?php echo $filas1['diasvence']; ?> </TD>
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
                             <TD><?php echo $filas1['valorapagar']; ?> </TD>
                             <TD><?php echo $filas1['cuota']; ?> </TD>

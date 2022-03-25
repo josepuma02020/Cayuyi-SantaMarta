@@ -57,20 +57,17 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
                                         </div>
                                         <div class="form-group tres">
-                                            <label>Apellido:</label>
-                                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellido" name="apellido">
-                                        </div>
-                                        <div class="form-group tres">
                                             <label>Cedula:</label>
                                             <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedula" name="cedula">
                                         </div>
-                                    </div>
-                                    <div class="form-row">
                                         <div class="form-group tres">
                                             <label>Telefono:</label>
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefono" name="telefono">
                                         </div>
-                                        <div class="form-group tres">
+                                    </div>
+                                    <div class="form-row">
+
+                                        <div class="form-group completo">
                                             <label>Direccion:</label>
                                             <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
                                         </div>
@@ -103,7 +100,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             while ($filas1 = mysqli_fetch_array($query)) {
                             ?>
                                 <TR>
-                                    <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
+                                    <TD><?php echo $filas1['nombre']; ?> </TD>
                                     <TD><?php echo $filas1['telefono']; ?> </TD>
                                     <TD><?php echo $filas1['direccion']; ?> </TD>
                                     <TD><?php
@@ -133,7 +130,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><b>Editar Ruta</b></h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Editar Cliente</b></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -145,29 +142,29 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <label>Nombre:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
                                 </div>
-                                <div class="form-group tres">
-                                    <label>Apellido:</label>
-                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="apellidou" name="apellidou">
-                                </div>
+
                                 <div class="form-group tres">
                                     <label>Cedula:</label>
                                     <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedulau" name="cedulau">
                                 </div>
-                            </div>
-                            <div class="form-row ">
                                 <div class="form-group tres">
                                     <label>Telefono:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="telefonou" name="telefonou">
                                 </div>
-                                <div class="form-group largo">
+                            </div>
+                            <div class="form-row ">
+
+                                <div class="form-group mitad">
                                     <label>Direccion:</label>
                                     <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccionu" name="direccionu">
                                 </div>
-                            </div>
-                            <div class="form-row ">
-                                <div class="form-group completo">
+                                <div class="form-group mitad">
+                                    <label>Comentario:</label>
                                     <input placeholder="Ingrese aqui una nota para el cliente." autocomplete="off" type="text" class="form-control input-group-sm" id="notau" name="notau">
                                 </div>
+                            </div>
+                            <div class="form-row ">
+
 
                             </div>
                             <div class="form-row ">
@@ -254,7 +251,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             a = 0;
             idu = $('#idu').val();
             nombre = $('#nombreu').val();
-            apellido = $('#apellidou').val();
             cedula = $('#cedulau').val();
             direccion = $('#direccionu').val();
             telefono = $('#telefonou').val();
@@ -262,12 +258,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             if (nombre == "" || nombre.length < 4) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Nombre" ', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (apellido == "" || apellido.length < 4) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor completar el campo "Apellido" ', function() {
                     alertify.success('Ok');
                 });
             }
@@ -290,7 +280,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                editarcliente(idu, nombre, apellido, cedula, direccion, telefono, nota);
+                editarcliente(idu, nombre, cedula, direccion, telefono, nota);
                 window.location.reload();
             }
         })

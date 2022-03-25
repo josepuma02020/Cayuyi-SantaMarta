@@ -234,13 +234,13 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,b.apellido,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta";
+                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
                         <TR>
                             <TD><?php echo $filas1['nombreruta'] ?> </TD>
-                            <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
+                            <TD><?php echo $filas1['nombre']  ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
                             <TD><?php echo $filas1['valorapagar']; ?> </TD>

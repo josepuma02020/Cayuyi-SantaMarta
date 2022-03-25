@@ -62,7 +62,7 @@ if ($_SESSION['usuario']) {
                     $years = floor($dateDifference / (365 * 60 * 60 * 24));
                     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
                     $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-                    $consultadatos = "select a.formapago,b.nombre,b.apellido, a.id_prestamo,(a.valorapagar - a.abonado)'debe',a.dias_atraso,(a.valorapagar/ a.dias_prestamo) 'cuota',b.telefono,b.direccion from prestamos a "
+                    $consultadatos = "select a.formapago,b.nombre, a.id_prestamo,(a.valorapagar - a.abonado)'debe',a.dias_atraso,(a.valorapagar/ a.dias_prestamo) 'cuota',b.telefono,b.direccion from prestamos a "
                         . "inner join clientes b on b.id_cliente=a.cliente where a.id_prestamo = $filas1[id_prestamo]";
                     $query1 = mysqli_query($link, $consultadatos) or die($consultadatos);
                     $filas2 = mysqli_fetch_array($query1);
@@ -89,7 +89,7 @@ if ($_SESSION['usuario']) {
                 ?>
                         <div class="container-ruta <?php echo $class ?> tarjeta" id="tarjeta" data-id="<?php echo $filas1['id_prestamo'] ?>">
                             <label class="form-row">
-                                <b><?php echo $filas2['nombre'] . ' ' . $filas2['apellido'] ?></b>
+                                <b><?php echo $filas2['nombre']  ?></b>
                             </label>
                             <label class="form-row">
                                 <b> Dias Atrasados:</b><?php echo $diasatrasados ?>
