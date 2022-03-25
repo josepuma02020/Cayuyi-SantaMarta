@@ -47,8 +47,8 @@ function agregardatoscliente(id) {
     });
 }
 
-function agregarcliente(nombre, apellido, cedula, direccion, telefono) {
-    cadenau = "nombre=" + nombre + "&apellido=" + apellido + "&cedula=" + cedula + "&direccion=" + direccion + "&telefono=" + telefono;
+function agregarcliente(nombre, cedula, direccion, telefono) {
+    cadenau = "nombre=" + nombre + "&cedula=" + cedula + "&direccion=" + direccion + "&telefono=" + telefono;
     $.ajax({
         type: "POST",
         url: "clientes/agregarcliente.php",
@@ -56,6 +56,8 @@ function agregarcliente(nombre, apellido, cedula, direccion, telefono) {
         success: function(r) {
             if (r == 1) {
                 window.location.reload();
+                //     console.log(r);
+                //     debugger;
             } else {
                 console.log(r);
                 debugger;

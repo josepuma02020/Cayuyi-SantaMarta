@@ -291,19 +291,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         $('#agregarcliente').click(function() {
             a = 0;
             nombre = $('#nombre').val();
-            apellido = $('#apellido').val();
             cedula = $('#cedula').val();
             direccion = $('#direccion').val();
             telefono = $('#telefono').val();
             if (nombre == "" || nombre.length < 4) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Nombre" ', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (apellido == "" || apellido.length < 4) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor completar el campo "Apellido" ', function() {
                     alertify.success('Ok');
                 });
             }
@@ -326,7 +319,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                agregarcliente(nombre, apellido, cedula, direccion, telefono);
+                agregarcliente(nombre, cedula, direccion, telefono);
                 window.location.reload();
             }
         })

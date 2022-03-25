@@ -230,7 +230,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where a.valorapagar > (a.abonado)";
+                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where a.fecrefinanciacion is not null";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
@@ -597,7 +597,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             }
             if (a == 0) {
                 agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo);
-                //window.location.reload();
+                window.location.reload();
             }
         });
         $('#editarprestamo').click(function() {

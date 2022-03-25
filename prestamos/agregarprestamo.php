@@ -15,7 +15,6 @@ if ($_SESSION['usuario']) {
     $direccion = $_POST['direccion'];
     $telefono = $_POST['telefono'];
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
     $domingo = $_POST['domingo'];
     //consulta clientes
     $consultaclienteexistente = "select * from clientes where cedula = '$cedula'";
@@ -23,8 +22,8 @@ if ($_SESSION['usuario']) {
     $filacliente = mysqli_fetch_array($querycliente);
     if (isset($filacliente)) {
     } else {
-        $consulta = "INSERT INTO `clientes`(`id_cliente`, `nombre`, `apellido`, `cedula`, `telefono`, `direccion`) VALUES "
-            . "('','$nombre','$apellido','$cedula','$telefono','$direccion') ";
+        $consulta = "INSERT INTO `clientes`(`id_cliente`, `nombre`, `cedula`, `telefono`, `direccion`) VALUES "
+            . "('','$nombre','$cedula','$telefono','$direccion') ";
         $query = mysqli_query($link, $consulta) or die($consulta);
     }
     //consulta posicion

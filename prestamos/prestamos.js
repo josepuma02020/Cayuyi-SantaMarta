@@ -84,7 +84,9 @@ function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalp
         data: cadenau,
         success: function(r) {
             if (r == 1) {
-                window.location.reload();
+                console.log(r);
+                debugger;
+                // window.location.reload();
             } else {
                 console.log(r);
                 debugger;

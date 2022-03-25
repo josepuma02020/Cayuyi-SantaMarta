@@ -34,7 +34,10 @@ if (isset($_SESSION['usuario'])) {
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-container">
-                    <a href="prestamos.php">Préstamos</a>
+                    <a href="prestamos.php">Activos</a>
+                    <a href="prestamoscerrados.php">Cerrados</a>
+                    <a href="prestamosfinanciados.php">Financiados</a>
+                    <a href="entravssale.php">Entrantes/Salientes</a>
                     <a href="clientes.php">Clientes</a>
                     <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
