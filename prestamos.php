@@ -78,7 +78,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </div>
                 <div class="form-group col-md-3">
                     <h4>Buscar:</h4>
-                    <select id="ruta" class="form-control input-sm">
+                    <select id="buscarruta" class="form-control input-sm">
                         <?php
                         $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado GROUP by a.id_ruta";
                         $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
@@ -453,7 +453,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     $(document).ready(function() {
         $('#buscar').click(function() {
             a = 0;
-            ruta = $('#ruta').val();
+            ruta = $('#buscarruta').val();
             location.href = `prestamos.php?ruta=${ruta}`;
 
         });
@@ -641,7 +641,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             }
             if (a == 0) {
                 agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo);
-                //window.location.reload();
+                window.location.reload();
             }
         });
         $('#editarprestamo').click(function() {

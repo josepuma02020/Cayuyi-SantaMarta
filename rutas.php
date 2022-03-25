@@ -28,7 +28,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         </header>
         <div class=" container container-md">
             <section class="titulo-pagina">
-                <h1>Tabla de Rutas</h1>
+                <h1>Rutas</h1>
             </section>
             <div class="card-body">
                 <span class="btn btn-primary" data-toggle="modal" data-target="#nuevousuario">
