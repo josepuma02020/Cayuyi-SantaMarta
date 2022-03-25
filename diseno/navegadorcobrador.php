@@ -25,8 +25,8 @@ if (isset($_SESSION['usuario'])) {
                 </button>
                 <div class="dropdown-container">
                     <a href="diario.php">Diario</a>
-                    <a href="recorridosc.php">Editar Ruta</a>
-                    <a href="cuotas.php">Cuotas Registradas</a>
+                    <a href="recorridosc.php">Enrutar</a>
+                    <a href="cuotas.php">Liquidacion</a>
                 </div>
                 <button class="dropdown-btn">Prestamos
                     <i class="fa fa-caret-down"></i>

@@ -25,10 +25,10 @@ if (isset($_SESSION['usuario'])) {
                 </button>
                 <div class="dropdown-container">
                     <a href="diario.php">Diario</a>
+                    <a href="recorridosc.php">Enrutar</a>
                     <a href="rutas.php">Rutas</a>
-                    <a href="recorridosc.php">Editar Recorrido</a>
                     <a href="gastos.php">Gastos</a>
-                    <a href="cuotas.php">Cuotas Registradas</a>
+                    <a href="cuotas.php">Liquidación</a>
                 </div>
                 <button class="dropdown-btn">Préstamos
                     <i class="fa fa-caret-down"></i>
