@@ -48,7 +48,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <main class=" container container-md">
 
             <section class="titulo-pagina">
-                <h1>Tabla de Préstamos</h1>
+                <h1>Préstamos Activos</h1>
             </section>
             <span class="btn btn-primary boton-parametro" data-toggle="modal" data-target="#nuevoprestamo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">

@@ -48,7 +48,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <main class=" container container-md">
 
             <section class="titulo-pagina">
-                <h1>Tabla de Préstamos</h1>
+                <h1>Entrantes vs Salientes</h1>
             </section>
             <span class="btn btn-primary boton-parametro" data-toggle="modal" data-target="#nuevoprestamo">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
@@ -224,7 +224,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    echo   $consultarutas = "select b.ruta,sum(a.entrantes)'entrantes',sum(a.salientes)'salientes' from revisionesrutas a 
+                    $consultarutas = "select b.ruta,sum(a.entrantes)'entrantes',sum(a.salientes)'salientes' from revisionesrutas a 
                     INNER JOIN rutas b on b.id_ruta=a.ruta
                     where a.fecha BETWEEN '2022-03-24' and '2022-03-26' GROUP by a.ruta";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
