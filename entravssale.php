@@ -3,6 +3,16 @@ session_start();
 if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
+    if (isset($_GET['desde'])) {
+        $desde = $_GET['desde'];
+    } else {
+        $desde = date("Y-m-01");
+    }
+    if (isset($_GET['hasta'])) {
+        $hasta = $_GET['hasta'];
+    } else {
+        $hasta = date("Y-m-d");
+    }
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -50,170 +60,21 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             <section class="titulo-pagina">
                 <h1>Entrantes vs Salientes</h1>
             </section>
-            <span class="btn btn-primary boton-parametro" data-toggle="modal" data-target="#nuevoprestamo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
-                    <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
-                    <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
-                    <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
-                </svg> Nuevo Prestamo<span class="fa fa-plus-circle"></span>
-                <br>
-            </span>
-
-            <div class="modal fade  " id="nuevoprestamo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg ">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Prestamo</b></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h4 class="modal-subtitle"> Datos Cliente</h4>
-                            <div class="form-row ">
-                                <div class="form-group tres">
-                                    <label>Cedula:</label>
-                                    <input autocomplete="off" type="text" class="form-control" id="cedula" name="cedula">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Nombre:</label>
-                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="nombre" name="nombre">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Telefono:</label>
-                                    <input autocomplete="off" type="text" class="form-control" id="telefono" name="telefono">
-                                </div>
-                            </div>
-                            <div class="form-row ">
-
-                                <div class="form-group mitad">
-                                    <label>Direccion:</label>
-                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="direccion" name="direccion">
-                                </div>
-                                <div class="form-group mitad">
-                                    <label>Comentario:</label>
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="nota" name="nota">
-                                </div>
-                            </div>
-                            <h4 class="modal-subtitle">Ultimo préstamo</h4>
-                            <div class="form-row ">
-                                <div class="form-group tres">
-                                    <label>Activo?:</label>
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="prestamos_activos" name="prestamos_activos">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Valor Ult.Préstamo:</label>
-                                    <input disabled autocomplete="off" type="numbre" class="form-control input-group-sm" id="ultprestamo" name="ultprestamo">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Fecha Ult.Prestamo:</label>
-                                    <input autocomplete="off" disabled type="date" class="form-control input-group-sm" id="fechault" name="fechault">
-                                </div>
-                                <div class="form-group cuatro">
-                                    <label>Plazo(dias):</label>
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="plazoult" name="plazoult">
-                                </div>
-                                <div class="form-group cuatro">
-                                    <label>D.A:</label>
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="diasatraso" name="diasatraso">
-                                </div>
-                            </div>
-                            <div class="form-row ">
-                                <div class="form-group tres">
-                                    <label>Debe:</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="debe" name="debe">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Ruta:</label>
-                                    <input autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutapre" name="rutapre">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Fecha de Cierre:</label>
-                                    <input disabled autocomplete="off" type="date" class="form-control input-group-sm" id="fechacierre" name="fechacierre">
-                                </div>
-                            </div>
-                            <h4 class="modal-subtitle">Nuevo Préstamo</h4>
-                            <div class="form-row">
-                                <div class="form-group tres">
-                                    <label>Ruta:</label>
-                                    <select id="ruta" class="form-control input-sm">
-                                        <?php
-                                        $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado GROUP by a.id_ruta";
-                                        $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
-                                        ?> <option value="0"></option>
-                                        <?php
-                                        while ($filas1 = mysqli_fetch_array($query)) {
-                                        ?>
-                                            <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['ruta'] . '  -  ' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Fecha de Inicio:</label>
-                                    <?php
-                                    $fechahoyval = date('Y-m-d');
-                                    ?>
-                                    <input autocomplete="off" value="<?php echo $fechahoyval; ?>" type="date" class="form-control input-group-sm" id="fecha" name="fecha">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Papeleria:</label>
-                                    <input autocomplete="off" min="0" value="" type="number" class="form-control input-group-sm" id="papeleria" name="papeleria">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group tres">
-                                    <label>Valor Prestamo:</label>
-                                    <input type="text" class="form-control input-group-sm" id="valor" name="valor">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Valor a Pagar:</label>
-                                    <input autocomplete="off" type="text" min="0" class="form-control input-group-sm" id="totalpagar" name="totalpagar">
-                                </div>
-                                <div class="form-group tres">
-                                    <label>Valor de Intereses:</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="valorintereses" name="valorintereses">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group tres">
-                                    <label>Intereses(%):</label>
-                                    <input step="0.01" disabled autocomplete="off" type="number" class="form-control input-group-sm" id="porcentaje" name="porcentaje">
-                                </div>
-                                <div class="form-group cuatro">
-                                    <label>Dias:</label>
-                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="dias" name="dias">
-                                </div>
-                                <div class="form-group cuatro">
-                                    <label>P.Domingo:</label>
-                                    <input autocomplete="off" min="0" value="0" type="number" class="form-control input-group-sm" id="domingo" name="domingo">
-                                </div>
-                                <div class="form-group cuatro">
-                                    <label>For.Pago:</label>
-                                    <select id="formapago" class="form-control input-sm">
-                                        <option value="1">Diario</option>
-                                        <option value="7">Semanal</option>
-                                        <option value="15">Quincenal</option>
-                                        <option value="30">Mensual</option>
-                                    </select>
-                                </div>
-                                <div class="form-group cuatro">
-                                    <label>Cuota:</label>
-                                    <input disabled autocomplete="off" type="number" maxlength="5" class="form-control input-group-sm" id="cuota" name="cuota">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button id="agregarprestamo" data-dismiss="modal" type="button" class="btn btn-primary">Agregar</button>
-                            </div>
-                        </div>
-                    </div>
+            <section>
+                <div class="form-group col-sm-3">
+                    <h4>Desde:</h4>
+                    <input class="form-control input-sm" type="date" id="desde" name="desde" value="<?php echo $desde ?>">
                 </div>
-                <hr>
-            </div>
-
+                <div class="form-group col-sm-3">
+                    <h4>Hasta:</h4>
+                    <input class="form-control input-sm" type="date" id="hasta" name="hasta" value="<?php echo $hasta ?>">
+                </div>
+                <button type="button" id="buscar" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                </button>
+            </section>
             <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
                 <THEAD>
                     <tr>
@@ -226,7 +87,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     <?php
                     $consultarutas = "select b.ruta,sum(a.entrantes)'entrantes',sum(a.salientes)'salientes' from revisionesrutas a 
                     INNER JOIN rutas b on b.id_ruta=a.ruta
-                    where a.fecha BETWEEN '2022-03-24' and '2022-03-26' GROUP by a.ruta";
+                    where a.fecha BETWEEN '$desde' and '$hasta' GROUP by a.ruta";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
@@ -261,6 +122,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#buscar').click(function() {
+            a = 0;
+            desde = $('#desde').val();
+            hasta = $('#hasta').val();
+            location.href = `entravssale.php?desde=${desde}&hasta=${hasta}`;
+        });
         $('#nformapago').change(function() {
             dias = $('#diasu').val();
             totalpagar = $('#totalpagaru').val();
