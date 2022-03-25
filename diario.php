@@ -20,7 +20,6 @@ if ($_SESSION['usuario']) {
         <link rel="stylesheet" href="./diseno/diario/desktop.css" media="screen and (min-width:950px)" />
         <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
         <SCRIPT lang="javascript" type="text/javascript" src="./prestamos/prestamos.js"></script>
@@ -33,7 +32,7 @@ if ($_SESSION['usuario']) {
             <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
-            <div class=" container container-md">
+            <section class=" container container-md" id="lista-tarjetas">
                 <?php
                 $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado =  $_SESSION[id_usuario] and (a.valorapagar - a.abonado) > 0  order by a.posicion_ruta";
                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
@@ -88,34 +87,34 @@ if ($_SESSION['usuario']) {
                             $aviso = "";
                         }
                 ?>
-                        <div class="container-ruta <?php echo $class ?>">
-                            <div class="form-row">
+                        <div class="container-ruta <?php echo $class ?> tarjeta" id="tarjeta" data-id="<?php echo $filas1['id_prestamo'] ?>">
+                            <label class="form-row">
                                 <b><?php echo $filas2['nombre'] . ' ' . $filas2['apellido'] ?></b>
-                            </div>
-                            <div class="form-row">
+                            </label>
+                            <label class="form-row">
                                 <b> Dias Atrasados:</b><?php echo $diasatrasados ?>
-                            </div>
-                            <div class="form-row">
+                            </label>
+                            <label class="form-row">
                                 <b>Telefono:</b> <?php echo $filas2['telefono'] ?>
                                 <a class="boton-diario" href="tel:+<?php echo $filas2['telefono'] ?>"><button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-outbound" viewBox="0 0 16 16">
                                             <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zM11 .5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-4.146 4.147a.5.5 0 0 1-.708-.708L14.293 1H11.5a.5.5 0 0 1-.5-.5z" />
                                         </svg></button></a>
-                            </div>
-                            <div class="form-row">
+                            </label>
+                            <label class="form-row">
                                 <b>Forma de Pago:</b> <?php echo $formadepago ?>
-                            </div>
-                            <div class="form-row">
+                            </label>
+                            <label class="form-row">
                                 <b>Direccion:</b> <?php echo $filas2['direccion'] ?>
-                            </div>
-                            <div class="form-row">
+                            </label>
+                            <label class="form-row">
                                 <b> <?php echo "Cuota:" . round($filas2['cuota']) ?></b>
-                            </div>
-                            <div class="form-row">
+                            </label>
+                            <label class="form-row">
                                 <b> <?php echo "Saldo:" . round($filas2['debe']) ?></b>
-                            </div>
+                            </label>
 
-                            <div class="botones">
+                            <label class="botones">
                                 <div class="boton-diario">
                                     <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" class="btn btn-success" id="cobrar" data-toggle="modal" data-target="#cc">Cobrar Cuota</button>
                                 </div>
@@ -127,7 +126,7 @@ if ($_SESSION['usuario']) {
                                             <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
                                             <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
                                         </svg></button></a>
-                            </div>
+                            </label>
                         </div>
                     <?php
                     }
@@ -137,74 +136,105 @@ if ($_SESSION['usuario']) {
                 <?php
                 }
                 ?>
-                <div class="modal fade" id="nopaga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-md modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"><b>Esta seguro?</b></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <input type="hidden" id="idu1" name="idu1">
-                            <div class="modal-body">
-                                <h3>Se registrará que el cliente no pago la cuota</h3>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button id="no" type="button" class="btn btn-primary">Aceptar</button>
-                                </div>
+            </section>
+            <div class="modal fade" id="nopaga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-md modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Esta seguro?</b></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="idu1" name="idu1">
+                        <div class="modal-body">
+                            <h3>Se registrará que el cliente no pago la cuota</h3>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button id="no" type="button" class="btn btn-primary">Aceptar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="cc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-md modal-dialog ">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"><b>Recoger Cuota</b></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+            </div>
+            <div class="modal fade" id="cc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-md modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Recoger Cuota</b></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="idu" name="idu">
+                        <div class="modal-body">
+                            <div class="form-group largo">
+                                <label>Dinero Recogido:</label>
+                                <input autocomplete="off" type="text" class="form-control input-group-sm" id="dinero" name="dinero">
                             </div>
-                            <input type="hidden" id="idu" name="idu">
-                            <div class="modal-body">
-                                <div class="form-group largo">
-                                    <label>Dinero Recogido:</label>
-                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="dinero" name="dinero">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button id="recoger" type="button" class="btn btn-primary">Aceptar</button>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button id="recoger" type="button" class="btn btn-primary">Aceptar</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="nopaga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-md modal-dialog " style="width:25%;">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"><b>Esta seguro?</b></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <input type="hidden" id="idu" name="idu">
-                            <div class="modal-body">
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button id="no" type="button" class="btn btn-primary">Aceptar</button>
-                                </div>
+            </div>
+            <div class="modal fade" id="nopaga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-md modal-dialog " style="width:25%;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Esta seguro?</b></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="idu" name="idu">
+                        <div class="modal-body">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button id="no" type="button" class="btn btn-primary">Aceptar</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
         <footer>
             <p>Author: Pumasoft<br>
                 <a href="https://www.pumasoft.co">pumasoft.co</a>
             </p>
         </footer>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.12/sortable.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+        <script type="text/javascript">
+            window.onload = () => {
+                const sortable = new Sortable.default(document.querySelectorAll('section'), {
+                    draggable: 'div'
+
+                });
+                //sortable.on('sortable:start', () => console.log('start'));
+                //sortable.on('sortable:sorted', () => console.log('sorted'));
+                sortable.on('sortable:stop', () => {
+                    setTimeout(() => {
+                        const tarjetas = document.getElementsByClassName('tarjeta');
+                        //console.log(tarjetas);
+                        const sortedData = new Array();
+                        [...tarjetas].forEach((tarjeta, index) => {
+                            sortedData.push({
+                                id: tarjeta.getAttribute('data-id'),
+                                orden: (index + 1)
+                            });
+                            let formData = new FormData();
+
+                            formData.append('data', JSON.stringify(sortedData))
+                            console.log(JSON.stringify(sortedData));
+                            axios.post('rutas/enrutar.php', formData)
+                        });
+                    }, 100);
+                });
+            }
+        </script>
     </body>
 
     </HTML>
