@@ -91,7 +91,7 @@ if ($_SESSION['usuario']) {
                             <?php
                             while ($filas1 = mysqli_fetch_array($query)) {
                             ?>
-                                <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['recorridos'] . '-' . $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
+                                <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo  $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
                             <?php
                             }
                             ?>
