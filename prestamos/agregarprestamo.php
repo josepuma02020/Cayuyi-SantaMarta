@@ -54,11 +54,8 @@ if ($_SESSION['usuario']) {
             $cuota = $cuota * 15;
             break;
     }
-    $diasdeatraso = $domingo / $cuota;
-    $diasdeatraso = round($diasdeatraso);
-    $diasdeatraso = $diasdeatraso * -1;
     $consulta = "INSERT INTO `prestamos`(`id_prestamo`, `cliente`, `ruta`, `valor_prestamo`, `valorapagar`, `abonado`, `dias_atraso`, `fecha`, `dias_prestamo`, `posicion_ruta`, `formapago`, `papeleria`) VALUES "
-        . "('','$filas1[id_cliente]','$ruta',$valor,$totalpagar,$domingo,$diasdeatraso,'$fecha','$dias',$posicion,$formapago,'$papeleria')";
+        . "('','$filas1[id_cliente]','$ruta',$valor,$totalpagar,$domingo,0,'$fecha','$dias',$posicion,$formapago,'$papeleria')";
     echo $query = mysqli_query($link, $consulta) or die($consulta);
 
     //registrarcuota
