@@ -236,7 +236,6 @@ if ($_SESSION['usuario']) {
                                             } else {
                                                 $debe = 0;
                                             }
-
                                             echo $debe;
                                             ?></TD>
                                     <TD><a href="historialcuotas.php?cliente=<?php echo $filas1['cliente']; ?>">
@@ -251,7 +250,7 @@ if ($_SESSION['usuario']) {
                                         echo $papeleria;
                                         ?> </TD>
                                     <?php
-                                    $consultanuevo = "select a.valor_prestamo from prestamos a where a.cliente = $filas1[cliente] and fechacierre is not null";
+                                    echo  $consultanuevo = "select a.valor_prestamo from prestamos a where a.cliente = $filas1[cliente] and fechacierre is not null";
                                     $query1 = mysqli_query($link, $consultanuevo) or die($consultanuevo);
                                     $filas2 = mysqli_fetch_array($query1);
 
@@ -261,9 +260,9 @@ if ($_SESSION['usuario']) {
                                         $pleno = $pleno + $cuota;
                                         $sumnuevos = $sumnuevos + 1;
                                         $nuevo = "Si";
+                                        $entrante = "No";
                                     }
                                     if ($prestamos == 0) {
-                                        $entrante = "No";
                                     } else {
 
                                         $entrantes = $entrantes + 1;
