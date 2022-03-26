@@ -6,12 +6,19 @@ if ($_SESSION['usuario']) {
     setlocale(LC_ALL, "es_CO");
     $fecha_actual = date("Y-m-d");
     $fecha_inicio = date("Y-m-01");
+    //ruta
     $rutaactiva = $_SESSION['nruta'];
     if (isset($_GET['rutaa'])) {
         $rutainfo = $_GET['rutaa'];
     } else {
         $rutainfo = $_SESSION['ruta'];
+        if (isset($_SESSION['nruta'])) {
+            $rutainfo = $_SESSION['ruta'];
+        } else {
+            $rutainfo = 1;
+        }
     }
+    //fechas
     if (isset($_GET['fecha'])) {
         $fecha = $_GET['fecha'];
     } else {
