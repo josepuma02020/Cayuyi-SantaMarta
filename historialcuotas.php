@@ -18,12 +18,7 @@ if ($_SESSION['usuario']) {
     } else {
         $id = 0;
     }
-    //consultabase
-    $consultabase = "select a.base,COUNT(b.id_prestamo) 'prestamos' from rutas a inner join prestamos b on b.ruta=a.id_ruta where id_ruta =$nrutaactiva and (b.valorapagar-b.abonado > 0) group by a.ruta";
-    $query = mysqli_query($link, $consultabase) or die($consultabase);
-    $filas1 = mysqli_fetch_array($query);
-    $base = $filas1['base'];
-    $clientesruta = $filas1['prestamos'];
+
     //dias para vencimiento de prestamo activo
     $consultavencimiento = "select dias_prestamo,fecha from prestamos where cliente=$cliente and abonado < valorapagar";
     $queryvencimiento = mysqli_query($link, $consultavencimiento) or die($consultavencimiento);
@@ -105,9 +100,7 @@ if ($_SESSION['usuario']) {
                         <th>
                             Inicio
                         </th>
-                        <th>
-                            Pago
-                        </th>
+
                         <th>
                             Plazo
                         </th>
@@ -129,7 +122,9 @@ if ($_SESSION['usuario']) {
                         <th>
                             D.A
                         </th>
-
+                        <th>
+                            Ult.Pago
+                        </th>
                     </tr>
                 </thead>
                 <TBODY>
@@ -150,7 +145,7 @@ if ($_SESSION['usuario']) {
                     ?>
                         <TR>
                             <TD><?php echo $filas1['fechaprestamo']; ?> </TD>
-                            <TD><?php echo $filas1['fecha']; ?> </TD>
+
                             <TD><?php echo $filas1['diasvence']; ?> </TD>
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
                             <TD><?php echo $filas1['valorapagar']; ?> </TD>
@@ -182,6 +177,7 @@ if ($_SESSION['usuario']) {
                                 echo $formadepago;
                                 ?> </TD>
                             <TD><?php echo $dias; ?> </TD>
+                            <TD><?php echo $filas1['fecha']; ?> </TD>
                         </TR>
                     <?php } ?>
                 </TBODY>

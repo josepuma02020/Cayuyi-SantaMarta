@@ -250,31 +250,36 @@ if ($_SESSION['usuario']) {
                                         echo $papeleria;
                                         ?> </TD>
                                     <?php
-                                    echo  $consultanuevo = "select a.valor_prestamo from prestamos a where a.cliente = $filas1[cliente] and fechacierre is not null";
+                                    $consultanuevo = "select count(a.valor_prestamo)'prestamos' from prestamos a where a.cliente = $filas1[cliente]";
                                     $query1 = mysqli_query($link, $consultanuevo) or die($consultanuevo);
                                     $filas2 = mysqli_fetch_array($query1);
-
                                     if (isset($filas2)) {
-                                        $nuevo = "No";
+                                        if ($filas2['prestamos'] > 1) {
+                                            $nuevo = "No";
+                                        } else {
+                                            $sumnuevos = $sumnuevos + 1;
+                                            $nuevo = "Si";
+                                            $entrantes = $entrantes + 1;
+                                            $entrante = "Si";
+                                        }
+                                    }
+                                    //consulta entrante
+                                    $consultacierre = "select a.id_prestamo from prestamos a where a.cliente = $filas1[cliente] and a.fecha='$fecha'";
+                                    $query1 = mysqli_query($link, $consultacierre) or die($consultacierre);
+                                    $filas2 = mysqli_fetch_array($query1);
+                                    if (isset($filas2['id_prestamo']) > 0) {
+                                        $entrantes = $entrantes + 1;
+                                        $entrante = "Si";;
                                     } else {
-                                        $pleno = $pleno + $cuota;
-                                        $sumnuevos = $sumnuevos + 1;
-                                        $nuevo = "Si";
                                         $entrante = "No";
                                     }
-                                    if ($prestamos == 0) {
-                                    } else {
-
-                                        $entrantes = $entrantes + 1;
-                                        $entrante = "Si";
-                                    }
+                                    //consultasaliente
                                     $consultacierre = "select a.id_prestamo from prestamos a where a.cliente = $filas1[cliente] and a.fechacierre='$fecha'";
                                     $query1 = mysqli_query($link, $consultacierre) or die($consultacierre);
                                     $filas2 = mysqli_fetch_array($query1);
                                     if (isset($filas2['id_prestamo']) > 0) {
                                         $salientes = $salientes + 1;
                                         $dias = 0;
-
                                         $saliente = "Si";
                                     } else {
                                         $saliente = "No";

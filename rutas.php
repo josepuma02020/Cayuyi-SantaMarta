@@ -242,9 +242,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             encargado = $('#encargadou').val();
             idruta = $('#idruta').val();
             console.log(nombre);
-
             if (a == 0) {
-
                 editarruta(idruta, nombre, encargado);
                 window.location.reload();
             }
