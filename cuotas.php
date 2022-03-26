@@ -209,9 +209,6 @@ if ($_SESSION['usuario']) {
                                             $papeleria = 0;
                                             $prestamos = 0;
                                         }
-                                        if ($prestamos == 0) {
-                                            $pleno = $pleno + $cuota;
-                                        }
                                         $sumprestamos = $sumprestamos + $prestamos;
                                         echo $prestamos;
                                         ?>
@@ -291,7 +288,11 @@ if ($_SESSION['usuario']) {
                                     <TD><?php echo $dias; ?></TD>
                                     <TD>
                                         <?php
-
+                                        if ($entrante == 'Si' and $saliente == 'Si') {
+                                            //$pleno = $pleno - $cuota;
+                                        } else {
+                                            $pleno = $pleno + $cuota;
+                                        }
                                         if ($registrado == 0) {
 
                                         ?>
