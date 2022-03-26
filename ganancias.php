@@ -8,6 +8,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
     $fecha_inicio = date("Y-m-01");
     $consultarutas = "select * from rutas";
     $queryr = mysqli_query($link, $consultarutas) or die($consultarutas);
+    $total = 0;
 ?>
     <html>
 
@@ -176,13 +177,16 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                                 <td class="cuenta">
                                     <p>Total</p>
                                 </td>
-                                <td class="valor"><?php echo $intereses + $prestado + $filas1['base']; ?></td>
+                                <td class="valor"><?php $total = $total + $intereses + $prestado + $filas1['base'];
+                                                    echo $intereses + $prestado + $filas1['base']; ?></td>
                             </tr>
                     </table>
                 <?php } ?>
 
             </div>
-
+            <section>
+                <h2>Total : <?php echo $total ?></h2>
+            </section>
         </main>
         <footer>
             <p>Author: Pumasoft<br>
