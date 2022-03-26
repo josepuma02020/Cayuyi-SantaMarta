@@ -256,8 +256,6 @@ if ($_SESSION['usuario']) {
                                         } else {
                                             $sumnuevos = $sumnuevos + 1;
                                             $nuevo = "Si";
-                                            $entrantes = $entrantes + 1;
-                                            $entrante = "Si";
                                         }
                                     }
                                     //consulta entrante
