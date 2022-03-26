@@ -93,7 +93,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                                         <input disabled type="text" class="form-control input-sm" id="base" name="base">
                                     </div>
                                     <div class="form-group modal-mediano ">
-                                        <label>V.Retirar($):</label>
+                                        <label>V.Operacion($):</label>
                                         <input type="text" class="form-control input-sm" id="valorretiro" name="valorretiro">
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                     alertify.success('Ok');
                 });
             }
-            if (base < valorretiro) {
+            if (base < valorretiro && tipo == 1) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'No es posible realizar la transacción', function() {
                     alertify.success('Ok');
@@ -230,11 +230,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                 transaccion(valorretiro, ruta, tipo, comentario);
                 window.location.reload();
             }
-        })
-    })
-</script>
-<script type="text/javascript">
-    $(document).ready(function() {
+        });
         $('#ruta').change(function() {
             id = $('#ruta').val();
             $.ajax({
@@ -244,11 +240,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                 success: function(r) {
                     console.log(r);
                     dato = jQuery.parseJSON(r);
+                    console.log(dato['base']);
                     $('#base').val(dato['base']);
                 }
             });
         });
-    });
+    })
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>

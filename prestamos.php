@@ -674,7 +674,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             }
             if (a == 0) {
                 editarprestamo(dias, valor, ruta, id);
-                // window.location.reload();
+                window.location.reload();
             }
         })
     });

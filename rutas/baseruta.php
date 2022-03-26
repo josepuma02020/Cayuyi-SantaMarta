@@ -3,7 +3,7 @@
 session_start();
 if ($_SESSION['usuario']) {
     include_once('../conexion/conexion.php');
-    include_once('../funciones/funciones.php');
+    include_once('../prestamos/funciones.php');
 
     $obj = new prestamos();
     echo json_encode($obj->baseruta($_POST['id']));
@@ -13,5 +13,3 @@ if ($_SESSION['usuario']) {
         window.location='index.php';
     </script>";
 }
-?>
-
