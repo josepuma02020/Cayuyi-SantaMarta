@@ -189,9 +189,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
             </section>
         </main>
         <footer>
-            <p>Author: Pumasoft<br>
-                <a href="https://www.pumasoft.co">pumasoft.co</a>
-            </p>
+
         </footer>
     </body>
 

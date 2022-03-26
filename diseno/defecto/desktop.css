@@ -47,6 +47,10 @@ html {
     line-height: 1.15;
 }
 
+footer {
+    font-size: 2rem;
+}
+
 .inactivo {
     background-color: rgb(243, 243, 72);
 }
@@ -76,7 +80,6 @@ article,
 aside,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 main,
