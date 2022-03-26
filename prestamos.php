@@ -27,7 +27,16 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         $rutaactiva = $filanombreruta['ruta'];
     } else {
         $nruta = $_SESSION['ruta'];
-        $rutaactiva = $_SESSION['nruta'];
+        if ($nruta == '') {
+            $nruta = 1;
+            $consultanombreruta = "select ruta from rutas where id_ruta = $nruta";
+            $querynombreruta = mysqli_query($link, $consultanombreruta) or die($consultanombreruta);
+            $filanombreruta = mysqli_fetch_array($querynombreruta);
+            $rutaactiva = $filanombreruta['ruta'];
+        } else {
+
+            $rutaactiva = $_SESSION['nruta'];
+        }
     }
 
 ?>
@@ -74,7 +83,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </span>
                 <div class="form-group col-sm-3">
                     <h4>Mostrando:</h4>
-                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva; ?>">
+                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva . ' - ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?>">
                 </div>
                 <div class="form-group col-md-3">
                     <h4>Buscar:</h4>
