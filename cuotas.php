@@ -270,9 +270,9 @@ if ($_SESSION['usuario']) {
                                     $query1 = mysqli_query($link, $consultanuevo) or die($consultanuevo);
                                     $filas2 = mysqli_fetch_array($query1);
                                     if (isset($filas2)) {
-                                        echo $filas2['prestamos'];
+                                        $filas2['prestamos'];
                                         if ($filas2['prestamos'] >= 1) {
-                                            echo  $nuevo = "No";
+                                            $nuevo = "No";
                                         } else {
                                             $sumnuevos = $sumnuevos + 1;
                                             $nuevo = "Si";
