@@ -81,27 +81,36 @@ if ($_SESSION['usuario']) {
                     <h1>Revision de rutas</h1>
                 </section>
                 <section class="parametros">
-                    <div class="form-group col-md-3">
-                        <h4>Buscar Ruta:</h4>
-                        <select id="ruta" class="form-control input-sm">
-                            <?php
-                            $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
-                            $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
-                            ?> <option value="0"></option>
-                            <?php
-                            while ($filas1 = mysqli_fetch_array($query)) {
-                            ?>
-                                <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo  $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
+                    <?php
+                    if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
+                    ?>
+                        <div class="form-group col-md-3">
+                            <h4>Buscar Ruta:</h4>
+                            <select id="ruta" class="form-control input-sm">
+                                <?php
+                                $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
+                                $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
+                                ?> <option value="0"></option>
+                                <?php
+                                while ($filas1 = mysqli_fetch_array($query)) {
+                                ?>
+                                    <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo  $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    <?php
+                    }
+                    ?>
                     <div class="form-group col-sm-3">
                         <h4>Mostrando:</h4>
                         <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $nomrutainfo; ?>">
                     </div>
-                    <div class="form-group col-sm-3">
+                    <?php
+                    if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
+                    ?>
+                     <div class="form-group col-sm-3">
                         <h4>Fecha:</h4>
                         <input class="form-control input-sm" type="date" id="fechabuscar" value="<?php echo $fecha ?>">
                     </div>
@@ -117,6 +126,9 @@ if ($_SESSION['usuario']) {
                             </svg>
                         </button>
                     </a>
+                    <?php } ?>
+                   
+                  
                 </section>
                 <div id="recarga">
                     <table class="table table-bordered" id="tablacuotas">
