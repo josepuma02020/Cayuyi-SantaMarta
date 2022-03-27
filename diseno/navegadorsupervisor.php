@@ -35,22 +35,8 @@ if (isset($_SESSION['usuario'])) {
                 </button>
                 <div class="dropdown-container">
                     <a href="prestamos.php">Activos</a>
-                    <a href="prestamoscerrados.php">Cerrados</a>
-                    <a href="prestamosfinanciados.php">Financiados</a>
-                    <a href="entravssale.php">Entrantes/Salientes</a>
-                    <a href="clientes.php">Clientes</a>
                     <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
-                <button class="dropdown-btn">Contabilidad
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a href="ganancias.php">Contabilidad x Rutas </a>
-                    <a href="contabilidad.php"> Informe Contable </a>
-                    <a href="transacciones.php">Transacciones</a>
-                </div>
-                <button class="dropdown-btn" id="usuarios">Usuarios
-                </button>
                 <button class="dropdown-btn" id="salir">Salir
                 </button>
             </div>
