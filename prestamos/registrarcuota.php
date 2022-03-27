@@ -27,13 +27,20 @@ if ($_SESSION['usuario']) {
     $diasprestamo = $filas2['dias_prestamo'];
     $diasprestamo--;
     echo 'vence:' . $fechavence = date("Y-m-d", strtotime($filas2['fecha'] . "+ " . $diasprestamo . "days"));
+    'dias' . $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
     $dateDifference = abs(strtotime($fecha_actual) - strtotime($fechavence));
     $years = floor($dateDifference / (365 * 60 * 60 * 24));
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-    echo 'dias' . $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-    $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence) VALUES "
+    //Agregar cuota
+    $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha_actual' and prestamo = $id";
+    $queryverificar = mysqli_query($link, $consultaverificarcuota) or die($consultaverificarcuota);
+    $filasverificar = mysqli_fetch_array($queryverificar);
+    if (isset($filasverificar)) {
+    } else {
+        $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence) VALUES "
             . "('',$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso','$diascuota') ";
-    $query = mysqli_query($link, $consulta) or die($consulta);
+        $query = mysqli_query($link, $consulta) or die($consulta);
+    }
     //estadodeprestamo
     $consulta = "select (valorapagar-abonado)'debe' from prestamos where id_prestamo=$id ";
     $query = mysqli_query($link, $consulta) or die($consulta);

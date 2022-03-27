@@ -207,34 +207,6 @@ if ($_SESSION['usuario']) {
         </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.12/sortable.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
-        <!-- <script type="text/javascript">
-            window.onload = () => {
-                const sortable = new Sortable.default(document.querySelectorAll('section'), {
-                    draggable: 'div'
-
-                });
-                //sortable.on('sortable:start', () => console.log('start'));
-                //sortable.on('sortable:sorted', () => console.log('sorted'));
-                sortable.on('sortable:stop', () => {
-                    setTimeout(() => {
-                        const tarjetas = document.getElementsByClassName('tarjeta');
-                        //console.log(tarjetas);
-                        const sortedData = new Array();
-                        [...tarjetas].forEach((tarjeta, index) => {
-                            sortedData.push({
-                                id: tarjeta.getAttribute('data-id'),
-                                orden: (index + 1)
-                            });
-                            let formData = new FormData();
-
-                            formData.append('data', JSON.stringify(sortedData))
-                            console.log(JSON.stringify(sortedData));
-                            axios.post('rutas/enrutar.php', formData)
-                        });
-                    }, 100);
-                });
-            }
-        </script> -->
     </body>
 
     </HTML>
