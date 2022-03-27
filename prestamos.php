@@ -206,14 +206,15 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input autocomplete="off" value="<?php echo $fechahoyval; ?>" type="date" class="form-control input-group-sm" id="fecha" name="fecha">
                                 </div>
                                 <div class="form-group tres">
-                                    <label>Papeleria:</label>
-                                    <input autocomplete="off" min="0" value="" type="number" class="form-control input-group-sm" id="papeleria" name="papeleria">
+                                    <label>Valor Prestamo:</label>
+                                    <input type="text" class="form-control input-group-sm" id="valor" name="valor">
                                 </div>
                             </div>
                             <div class="form-row">
+
                                 <div class="form-group tres">
-                                    <label>Valor Prestamo:</label>
-                                    <input type="text" class="form-control input-group-sm" id="valor" name="valor">
+                                    <label>Papeleria:</label>
+                                    <input autocomplete="off" min="0" value="" type="number" class="form-control input-group-sm" id="papeleria" name="papeleria">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Valor a Pagar:</label>
@@ -680,7 +681,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                editarprestamo(dias, valor, ruta, id,comentario);
+                editarprestamo(dias, valor, ruta, id, comentario);
                 window.location.reload();
             }
         })
