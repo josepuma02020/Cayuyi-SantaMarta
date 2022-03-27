@@ -14,13 +14,13 @@ class usuarios
                 $rol = "Administrador";
                 break;
             case 2:
-                $rol = "Supervisor";
+                $rol = "Liquidador";
                 break;
             case 3:
                 $rol = "Cobrador";
                 break;
             case 4:
-                $rol = "Inactivos";
+                $rol = "Inactivo";
                 break;
         }
         $datos = array(

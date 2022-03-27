@@ -71,7 +71,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol']) {
                                 <select id="rol" class="form-control input-sm">
                                     <option value="0"></option>
                                     <option value="1">Administrador</option>
-                                    <option value="2">Supervisor</option>
+                                    <option value="2">Liquidador</option>
                                     <option value="3">Cobrador</option>
                                 </select>
                             </div>
@@ -132,7 +132,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol']) {
                                         $rol = "Administrador";
                                         break;
                                     case 2:
-                                        $rol = "Supervisor";
+                                        $rol = "Liquidador";
                                         break;
                                     case 3:
                                         $rol = "Cobrador";
@@ -200,7 +200,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol']) {
                                 <select id="rolu" class="form-control input-sm">
                                     <option value="0"></option>
                                     <option value="1">Administrador</option>
-                                    <option value="2">Supervisor</option>
+                                    <option value="2">Liquidador</option>
                                     <option value="3">Cobrador</option>
                                     <option class="inactivo" value="4">Inactivo</option>
 
