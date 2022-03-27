@@ -377,10 +377,15 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <label>Nuevo Valor a pagar:</label>
                                     <input autocomplete="off" type="number" class="form-control input-group-sm" id="valorref" name="valorref">
                                 </div>
-
                                 <div class="form-group tres">
                                     <label>Plazo:</label>
                                     <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasref" name="diasref">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group completo">
+                                    <label>Comentario:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="comentariou" name="comentariou">
                                 </div>
                             </div>
                             <div class="modal-footer">

@@ -429,6 +429,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasref" name="diasref">
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group completo">
+                                    <label>Comentario:</label>
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="comentariou" name="comentariou">
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 <button id="editarprestamo" data-dismiss="modal" type="button" class="btn btn-primary">Editar</button>
@@ -660,6 +666,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             valor = $('#valorref').val();
             dias = $('#diasref').val();
             valorprestamo = $('#valoru').val();
+            comentario = $('#comentariou').val();
             if (valor < valorprestamo) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'No se puede refinanciar por valores menores al prestamo', function() {
@@ -673,7 +680,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 });
             }
             if (a == 0) {
-                editarprestamo(dias, valor, ruta, id);
+                editarprestamo(dias, valor, ruta, id,comentario);
                 window.location.reload();
             }
         })

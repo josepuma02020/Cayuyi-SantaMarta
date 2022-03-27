@@ -236,6 +236,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         <th> V.Prestado </th>
                         <th> V.a pagar </th>
                         <th> F.Cierre </th>
+                        <th> Detalles </th>
                     </tr>
                 </THEAD>
                 <TBODY>
@@ -251,17 +252,128 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
                             <TD><?php echo $filas1['valorapagar']; ?> </TD>
                             <TD><?php echo $filas1['fechacierre']; ?> </TD>
+                            <TD>
+                                <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+                                <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </button>
+                            </TD>
                         </TR>
                     <?php } ?>
                 </tbody>
 
             </table>
+            <div class="modal fade  " id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg  ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><b>Préstamo</b></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row ">
+                                <div class="form-group tres">
+                                    <label>Cedula:</label>
+                                    <input disabled autocomplete="off" type="hidden" class="form-control input-group-sm" id="idu" name="idu" />
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="cedulau" name="cedulau">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Nombre:</label>
+                                    <input disabled autocomplete="off" disabled type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Ruta Actual:</label>
+                                    <input disabled autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group tres">
+                                    <label>Fecha de Inicio:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="fechau" name="fechau">
+                                </div>
+                                <div class="form-group cuatro">
+                                    <label>Val.Préstamo:</label>
+                                    <input disabled type="text" class="form-control input-group-sm" id="valoru" name="valoru">
+                                </div>
+                                <div class="form-group cuatro">
+                                    <label>Valor a Pagar:</label>
+                                    <input disabled autocomplete="off" type="text" min="0" class="form-control input-group-sm" id="totalpagaru" name="totalpagaru">
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+
+                                <div class="form-group tres">
+                                    <label>Valor de Intereses:</label>
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="valorinteresesu" name="valorinteresesu">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Abonado:</label>
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="abonou" name="abonou">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Dias Atrasados:</label>
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="atrasou" name="atrasou">
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group tres">
+                                    <label>Intereses(%):</label>
+                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="porcentajeu" name="porcentajeu">
+                                </div>
+
+                                <div class="form-group cuatro">
+                                    <label>Dias:</label>
+                                    <input disabled autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasu" name="diasu">
+                                </div>
+                                <div class="form-group cuatro">
+                                    <label>For.Pago:</label>
+                                    <input disabled autocomplete="off" type="text" maxlength="5" class="form-control input-group-sm" id="formau" name="formau">
+                                </div>
+                                <div class="form-group cuatro">
+                                    <label>Cuota:</label>
+                                    <input disabled autocomplete="off" type="number" maxlength="5" class="form-control input-group-sm" id="cuotau" name="cuotau">
+                                </div>
+
+                            </div>
+                            <h4 class="modal-subtitle">Refinanciación</h4>
+                            <div class="form-row">
+                                <div class="form-group tres">
+                                    <label>Fecha refinanciación:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="fecharef" name="fecharef">
+                                </div>
+                                <div class="form-group tres">
+                                    <label>Nuevo Valor a pagar:</label>
+                                    <input autocomplete="off" type="number" class="form-control input-group-sm" id="valorref" name="valorref">
+                                </div>
+
+                                <div class="form-group tres">
+                                    <label>Plazo:</label>
+                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasref" name="diasref">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group completo">
+                                    <label>Comentario:</label>
+                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="comentariou" name="comentariou">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
         </main>
         <footer>
-
-            <p>Author: Pumasoft<br>
-                <a href="https://www.pumasoft.co">pumasoft.co</a>
-            </p>
 
         </footer>
     </body>

@@ -1,17 +1,17 @@
-function editarprestamo(dias, valor, ruta, id) {
-    cadenau = "dias=" + dias + "&valor=" + valor + "&ruta=" + ruta + "&id=" + id;
+function editarprestamo(dias, valor, ruta, id, comentario) {
+    cadenau = "dias=" + dias + "&valor=" + valor + "&ruta=" + ruta + "&id=" + id + "&comentario=" + comentario;
     $.ajax({
         type: "POST",
         url: "prestamos/refinanciar.php",
         data: cadenau,
         success: function(r) {
             if (r == 11) {
-                console.log(r);
-                debugger;
-                //window.location.reload();
+                // console.log(r);
+                // debugger;
+                window.location.reload();
             } else {
-                console.log(r);
-                debugger;
+                // console.log(r);
+                // debugger;
             }
         }
     });
@@ -120,6 +120,7 @@ function obtenerdatosprestamo(id) {
             $('#abonou').val(dato['abonado']);
             $('#atrasou').val(dato['atraso']);
             $('#fecharef').val(dato['fecharef']);
+            $('#comentariou').val(dato['comentario']);
 
         }
     });
