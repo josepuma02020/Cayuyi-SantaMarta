@@ -26,11 +26,12 @@ function editarrecorrido(idu, ruta, posicion) {
         data: cadenau,
         success: function(r) {
             if (r == 111) {
-                console.log(r);
-                debugger;
+                // console.log(r);
+                // debugger;
+                window.location.reload();
             } else {
-                console.log(r);
-                debugger;
+                // console.log(r);
+                // debugger;
             }
         }
     });

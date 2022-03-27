@@ -156,9 +156,16 @@ if ($_SESSION['usuario']) {
                                 <th>
                                     D.Atras.
                                 </th>
-                                <th>
-                                    Acciones
-                                </th>
+                                <?php
+                                if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
+                                ?>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                <?php
+                                }
+                                ?>
+
                             </tr>
                         </thead>
                         <TBODY>
@@ -284,26 +291,29 @@ if ($_SESSION['usuario']) {
                                     <td><?php echo $entrante; ?></td>
                                     <TD><?php echo $saliente; ?></TD>
                                     <TD><?php echo $dias; ?></TD>
-                                    <TD>
-                                        <?php
-                                        if ($entrante == 'Si' and $saliente == 'Si') {
-                                            //$pleno = $pleno - $cuota;
-                                        } else {
-                                            $pleno = $pleno + $cuota;
-                                        }
-                                        if ($registrado == 0) {
 
-                                        ?>
+                                    <?php
+                                    if ($entrante == 'Si' and $saliente == 'Si') {
+                                        //$pleno = $pleno - $cuota;
+                                    } else {
+                                        $pleno = $pleno + $cuota;
+                                    }
+                                    if ($registrado == 0 and ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2)) {
+
+                                    ?>
+                                        <TD>
                                             <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
                                             <button onclick="datoscuota(<?php echo $filas1['id_registro'] ?>)" type="button" id="eeeee" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
                                                     <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
                                                     <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                                                 </svg>
-                                            </button><?php
-                                                    }
-                                                        ?>
-                                    </TD>
+                                            </button>
+                                        </TD>
+                                    <?php
+                                    }
+                                    ?>
+
                                 </TR>
                             <?php } ?>
                         </TBODY>
@@ -371,9 +381,15 @@ if ($_SESSION['usuario']) {
                                 <th>
                                     Clientes
                                 </th>
-                                <th>
-                                    Aprobar
-                                </th>
+                                <?php
+                                if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
+                                ?>
+                                    <th>
+                                        Aprobar
+                                    </th>
+                                <?php
+                                }
+                                ?>
                             </tr>
                         </thead>
                         <TBODY>
@@ -421,26 +437,33 @@ if ($_SESSION['usuario']) {
                                     $clientes = $clientes . ' / ' . $clientesruta;
                                     echo $clientes
                                     ?> </TD>
-                                <td>
-                                    <input type="hidden" id="base" name="base" value="<?php echo $base ?>" />
-                                    <input type="hidden" id="cobro" name="cobro" value="<?php echo $sumcobro ?>" />
-                                    <input type="hidden" id="prestamo" name="prestamo" value="<?php echo $sumprestamos ?>" />
-                                    <input type="hidden" id="gasto" name="gasto" value="<?php echo $gasto ?>" />
-                                    <input type="hidden" id="nuevos" name="nuevos" value="<?php echo $sumnuevos ?>" />
-                                    <input type="hidden" id="entrantes" name="entrantes" value="<?php echo $entrantes ?>" />
-                                    <input type="hidden" id="salientes" name="salientes" value="<?php echo $salientes ?>" />
-                                    <input type="hidden" id="clientes" name="clientes" value="<?php echo $clientes ?>" />
-                                    <input type="hidden" id="efectivo" name="efectivo" value="<?php echo $efectivo ?>" />
-                                    <input type="hidden" id="pleno" name="pleno" value="<?php echo $pleno ?>" />
-                                    <input type="hidden" id="papeleria" name="pleno" value="<?php echo $sumpapelerias ?>" />
-                                    <input type="hidden" id="idrevisar" name="idrevisar" value="<?php echo $rutainfo ?>" />
-                                    <button <?php echo $activo ?> type="button" id="revisar" class="btn btn-primary" data-toggle="modal" data-target="#editar">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
-                                        </svg>
-                                    </button>
-                                </td>
+
+                                <input type="hidden" id="base" name="base" value="<?php echo $base ?>" />
+                                <input type="hidden" id="cobro" name="cobro" value="<?php echo $sumcobro ?>" />
+                                <input type="hidden" id="prestamo" name="prestamo" value="<?php echo $sumprestamos ?>" />
+                                <input type="hidden" id="gasto" name="gasto" value="<?php echo $gasto ?>" />
+                                <input type="hidden" id="nuevos" name="nuevos" value="<?php echo $sumnuevos ?>" />
+                                <input type="hidden" id="entrantes" name="entrantes" value="<?php echo $entrantes ?>" />
+                                <input type="hidden" id="salientes" name="salientes" value="<?php echo $salientes ?>" />
+                                <input type="hidden" id="clientes" name="clientes" value="<?php echo $clientes ?>" />
+                                <input type="hidden" id="efectivo" name="efectivo" value="<?php echo $efectivo ?>" />
+                                <input type="hidden" id="pleno" name="pleno" value="<?php echo $pleno ?>" />
+                                <input type="hidden" id="papeleria" name="pleno" value="<?php echo $sumpapelerias ?>" />
+                                <input type="hidden" id="idrevisar" name="idrevisar" value="<?php echo $rutainfo ?>" />
+                                <?php
+                                if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
+                                ?>
+                                    <td>
+                                        <button <?php echo $activo ?> type="button" id="revisar" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                <?php
+                                }
+                                ?>
                             </TR>
                         </TBODY>
                     </table>
