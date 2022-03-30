@@ -4,6 +4,16 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
+    if (isset($_GET['desde'])) {
+        $desde = $_GET['desde'];
+    } else {
+        $desde = date("Y-m-01");
+    }
+    if (isset($_GET['hasta'])) {
+        $hasta = $_GET['hasta'];
+    } else {
+        $hasta = date("Y-m-d");
+    }
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
     } else {
@@ -48,9 +58,22 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <main class=" container container-md">
 
             <section class="titulo-pagina">
-                <h1>Préstamos financiados
+                <h1>Financiaciones
                 </h1>
             </section>
+            <div class="form-group col-sm-3">
+                <h4>Desde:</h4>
+                <input class="form-control input-sm" type="date" id="desde" name="desde" value="<?php echo $desde ?>">
+            </div>
+            <div class="form-group col-sm-3">
+                <h4>Hasta:</h4>
+                <input class="form-control input-sm" type="date" id="hasta" name="hasta" value="<?php echo $hasta ?>">
+            </div>
+            <button type="button" id="buscar" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </button>
             <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
                 <THEAD>
                     <tr>
@@ -67,7 +90,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where a.fecrefinanciacion is not null";
+                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where a.fecrefinanciacion is not null and a.fecrefinanciacion between '$desde' and '$hasta'";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
@@ -255,6 +278,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#buscar').click(function() {
+            a = 0;
+            desde = $('#desde').val();
+            hasta = $('#hasta').val();
+            location.href = `prestamosfinanciados.php?desde=${desde}&hasta=${hasta}`;
+        });
         $('#nformapago').change(function() {
             dias = $('#diasu').val();
             totalpagar = $('#totalpagaru').val();
