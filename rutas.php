@@ -125,10 +125,10 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2)) {
                                     $query2 = mysqli_query($link, $consultarecaudo) or die($consultarecaudo);
                                     $recaudo = mysqli_fetch_array($query2);
                                     $valorrecaudo = round($recaudo['recaudo'], 2);
-                                    echo $valorrecaudo;
+                                    echo number_format($valorrecaudo);
                                     ?></TD>
-                                <TD><?php echo $recaudo['prestado']; ?> </TD>
-                                <TD><?php echo $recaudo['intereses']; ?> </TD>
+                                <TD><?php echo number_format($recaudo['prestado']); ?> </TD>
+                                <TD><?php echo  number_format($recaudo['intereses']); ?> </TD>
 
                                 <TD>
                                     <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>

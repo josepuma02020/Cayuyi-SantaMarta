@@ -40,7 +40,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
-        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+        <SCRIPT lang="javascript" type="text/javascript" src="contabilidad/contabilidad.js"></script>
         <script src="librerias/bootstrap/js/bootstrap.js"></script>
         <link type="text/css" href="librerias/jquery-ui-1.12.1.custom/jquery-ui.structure.min.css" rel="Stylesheet" />
         <link rel="shortcut  icon" href="imagenes/logop.png" type="image/x-icon" />
@@ -77,7 +77,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         <th> Cobro </th>
                         <th> Pleno </th>
                         <th> Prést.</th>
-                        <th> Papel. </th>
+                        <th st> Pap.</th>
                         <th> Gastos </th>
                         <th> Efectivo </th>
                         <th> N </th>
@@ -85,6 +85,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         <th> S </th>
                         <th> Cli. </th>
                         <th> Fecha </th>
+                        <th> Acciones </th>
                     </tr>
                 </THEAD>
                 <TBODY>
@@ -95,139 +96,53 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     ?>
                         <TR>
                             <TD><a href="cuotas.php?<?php echo 'rutaa=' . $filas1['id_ruta'] . '&fecha=' . $filas1['fecha']; ?>"><?php echo $filas1['nruta'] ?> </a></TD>
-                            <TD><?php echo $filas1['base'] ?> </TD>
-                            <TD><?php echo $filas1['cobro'] ?> </TD>
-                            <TD><?php echo $filas1['pleno']; ?> </TD>
-                            <TD><?php echo $filas1['prestamo']; ?> </TD>
-                            <TD><?php echo $filas1['papeleria']; ?> </TD>
-                            <TD><?php echo $filas1['gastos']; ?> </TD>
-                            <TD><?php echo $filas1['efectivo']; ?> </TD>
-                            <TD><?php echo $filas1['nuevos']; ?> </TD>
-                            <TD><?php echo $filas1['entrantes']; ?> </TD>
-                            <TD><?php echo $filas1['salientes']; ?> </TD>
-                            <TD><?php echo $filas1['clientes']; ?> </TD>
-                            <TD><?php echo $filas1['fecha']; ?> </TD>
+                            <TD><?php echo number_format($filas1['base']) ?> </TD>
+                            <TD><?php echo number_format($filas1['cobro']) ?> </TD>
+                            <TD><?php echo number_format($filas1['pleno']); ?> </TD>
+                            <TD><?php echo number_format($filas1['prestamo']); ?> </TD>
+                            <TD><?php echo number_format($filas1['papeleria']); ?> </TD>
+                            <TD><?php echo number_format($filas1['gastos']); ?> </TD>
+                            <TD><?php echo number_format($filas1['efectivo']); ?> </TD>
+                            <TD><?php echo number_format($filas1['nuevos']); ?> </TD>
+                            <TD><?php echo number_format($filas1['entrantes']); ?> </TD>
+                            <TD><?php echo number_format($filas1['salientes']); ?> </TD>
+                            <TD><?php echo ($filas1['clientes']); ?> </TD>
+                            <TD><?php echo ($filas1['fecha']); ?> </TD>
+                            <td>
+                                <button onclick="agregaridcontable(<?php echo $filas1['idhistorial'] ?>)" type="button" id="eeeee" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+                                        <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z" />
+                                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                                    </svg>
+                                </button>
+                            </td>
                         </TR>
                     <?php } ?>
                 </TBODY>
             </TABLE>
-            <div class="modal fade  " id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg  ">
+            <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Prestamo</b></h5>
+                            <h5 onclick="datoscuota(<?php echo $filas1['id_registro'] ?>)" class="modal-title" id="exampleModalLabel"><b>Eliminar Liquidación</b></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="form-row autocompletar">
-                                <div class="form-group col-sm-4">
-                                    <label>Cedula:</label>
-                                    <input disabled autocomplete="off" type="hidden" class="form-control input-group-sm" id="idu" name="idu" />
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="cedulau" name="cedulau">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Nombre:</label>
-                                    <input disabled autocomplete="off" disabled type="text" class="form-control input-group-sm" id="nombreu" name="nombreu">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Ruta Actual:</label>
-                                    <input disabled autocomplete="off" disabled type="text" class="form-control input-group-sm" id="rutaactual" name="rutaactual">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-4">
-                                    <label>Cambiar a Ruta:</label>
-                                    <select id="nruta" class="form-control input-sm">
-                                        <?php
-                                        $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
-                                        $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
-                                        ?>
-                                        <option value="0"></option>
-                                        <?php
-                                        while ($filas1 = mysqli_fetch_array($query)) {
-                                        ?>
-                                            <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['recorridos'] . '-' . $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label>Fecha de Inicio:</label>
-                                    <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="fechau" name="fechau">
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label>Valor Prestamo:</label>
-                                    <input disabled type="text" class="form-control input-group-sm" id="valoru" name="valoru">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label>Valor a Pagar:</label>
-                                    <input autocomplete="off" type="text" min="0" class="form-control input-group-sm" id="totalpagaru" name="totalpagaru">
-                                </div>
-                            </div>
-                            <div class="form-row">
-
-
-                                <div class="form-group col-md-4">
-                                    <label>Valor de Intereses:</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="valorinteresesu" name="valorinteresesu">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Abonado:</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="abonou" name="abonou">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label>Dias Atrasados:</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="atrasou" name="atrasou">
-                                </div>
-
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-4">
-                                    <label>Intereses(%):</label>
-                                    <input disabled autocomplete="off" type="number" class="form-control input-group-sm" id="porcentajeu" name="porcentajeu">
-                                </div>
-
-                                <div class="form-group col-sm-2">
-                                    <label>Dias para Pagar:</label>
-                                    <input autocomplete="off" min="0" type="number" class="form-control input-group-sm" id="diasu" name="diasu">
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label>Forma de Pago:</label>
-                                    <input disabled autocomplete="off" type="text" maxlength="5" class="form-control input-group-sm" id="formau" name="formau">
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label>Cambiar Forma P.</label>
-                                    <select id="nformapago" class="form-control input-sm">
-                                        <option value="0" selected>------</option>
-                                        <option value="1">Diario</option>
-                                        <option value="15">Quincenal</option>
-                                        <option value="30">Mensual</option>
-
-                                    </select>
-                                </div>
-                                <div class="form-group col-sm-2">
-                                    <label>Cuota:</label>
-                                    <input disabled autocomplete="off" type="number" maxlength="5" class="form-control input-group-sm" id="cuotau" name="cuotau">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button id="editarprestamo" data-dismiss="modal" type="button" class="btn btn-primary">Editar</button>
-                            </div>
+                            <input disabled type="hidden" id="idu" name="idu">
+                            Esta seguro que sea eliminar el cierre de ruta?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="eliminarcierre" data-dismiss="modal" type="button" class="btn btn-danger">Eliminar</button>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <footer>
-                <p>Author: Pumasoft<br>
-                    <a href="https://www.pumasoft.co">pumasoft.co</a>
-                </p>
-            </footer>
         </main>
+        <footer>
+        </footer>
     </body>
 
     </HTML>
@@ -241,89 +156,17 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#agregarprestamo').click(function() {
-            a = 0;
-            cedula = $('#cedula').val();
-            ruta = $('#ruta').val();
-            posicion = $('#posicion').val();
-            fecha = $('#fecha').val();
-            valor = $('#valor').val();
-            totalpagar = $('#totalpagar').val();
-            formapago = $('#formapago').val();
-            dias = $('#dias').val();
-            if (cedula == "" || cedula.length < 4) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor completar el campo "Cedula" : Debe ser mayor de 4 Digitos ', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (ruta == "0") {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor Seleccionar Ruta', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (posicion <= "0") {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Escribir en que posicion(#) quedara asignado el prestamo en la Ruta', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (valor <= "0") {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Escribir el Valor del Prestamo', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (totalpagar <= "0") {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Escribir cuanto sera el Total a Pagar', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (dias <= "0") {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor escribir en cuantos dias se pagará el prestamo', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (a == 0) {
-                agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias);
-                window.location.reload();
-            }
-        })
-        $('#editarprestamo').click(function() {
-            a = 0;
+        $('#eliminarcierre').click(function() {
             idu = $('#idu').val();
-            ruta = $('#nruta').val();
-            totalpagar = $('#totalpagaru').val();
-            prestamo = $('#valoru').val();
-            dias = $('#diasu').val();
-            nformapago = $('#nformapago').val();
-            if (totalpagar <= prestamo) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'El valor a pagar es menor al valor prestado', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (dias <= "0") {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor escribir en cuantos dias se pagará el prestamo:Debe ser mayor a 1', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (a == 0) {
-                editarprestamo(idu, ruta, nformapago, totalpagar, dias);
-                window.location.reload();
-            }
-        })
+            eliminarcierre(idu);
+            window.location.reload();
+        });
         $('#buscar').click(function() {
             desde = $('#desde').val();
             hasta = $('#hasta').val();
             console.log(desde);
             location.href = `contabilidad.php?desde=${desde}&hasta=${hasta}`;
-        })
-
+        });
         tabla = $('#tablarevisiones').DataTable({
             language: {
                 url: '../vendor/datatables/es-ar.json',

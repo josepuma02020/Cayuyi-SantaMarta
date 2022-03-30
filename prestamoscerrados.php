@@ -249,8 +249,8 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <TD><?php echo $filas1['nombreruta'] ?> </TD>
                             <TD><?php echo $filas1['nombre']  ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
-                            <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
-                            <TD><?php echo $filas1['valorapagar']; ?> </TD>
+                            <TD><?php echo number_format($filas1['valor_prestamo']); ?> </TD>
+                            <TD><?php echo number_format($filas1['valorapagar']); ?> </TD>
                             <TD><?php echo $filas1['fechacierre']; ?> </TD>
                             <TD>
                                 <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>

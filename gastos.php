@@ -144,8 +144,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                 <TD><?php echo $filas1['descripcion']; ?> </TD>
                                 <TD><?php echo $filas1['nombre'] . ' ' . $filas1['apellido']; ?> </TD>
                                 <TD><?php echo $filas1['ruta']; ?> </TD>
-
-                                <TD><?php echo $filas1['valor']; ?> </TD>
+                                <TD><?php echo number_format($filas1['valor']); ?> </TD>
                                 <TD><?php echo $filas1['fecha']; ?> </TD>
                                 <TD>
                                     <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>

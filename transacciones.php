@@ -78,7 +78,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                             echo $formadepago;
                                             ?> </TD>
                                         <TD><?php echo $filas1['ruta']; ?> </TD>
-                                        <TD><?php echo $filas1['valor']; ?> </TD>
+                                        <TD><?php echo number_format($filas1['valor']); ?> </TD>
                                         <TD><?php echo $filas1['comentario']; ?> </TD>
                                     </TR>
                                 <?php } ?>

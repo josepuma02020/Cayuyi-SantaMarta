@@ -107,7 +107,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                         $consultaatrasos = "select sum(a.valorapagar - a.abonado) 'debe' from prestamos a where a.cliente =$filas1[id_cliente] ";
                                         $query1 = mysqli_query($link, $consultaatrasos) or die($consultaatrasos);
                                         $filas2 = mysqli_fetch_array($query1);
-                                        echo $filas2['debe'];
+                                        echo number_format($filas2['debe']);
                                         ?> </TD>
 
                                     <TD><?php echo 0; ?> </TD>

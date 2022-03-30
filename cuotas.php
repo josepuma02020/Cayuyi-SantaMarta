@@ -229,7 +229,7 @@ if ($_SESSION['usuario']) {
                                             $prestamos = 0;
                                         }
                                         $sumprestamos = $sumprestamos + $prestamos;
-                                        echo $prestamos;
+                                        echo number_format($prestamos);
                                         ?>
                                     </TD>
                                     <TD>
@@ -238,7 +238,7 @@ if ($_SESSION['usuario']) {
                                         $query1 = mysqli_query($link, $consultacancelado) or die($consultacancelado);
                                         $filas2 = mysqli_fetch_array($query1);
                                         if (isset($filas2['valorapagar'])) {
-                                            echo $filas2['valorapagar'];
+                                            echo number_format($filas2['valorapagar']);
                                         } else {
                                             echo 0;
                                         }
@@ -252,7 +252,7 @@ if ($_SESSION['usuario']) {
                                             } else {
                                                 $debe = 0;
                                             }
-                                            echo $debe;
+                                            echo number_format($debe);
                                             ?></TD>
                                     <TD><a href="historialcuotas.php?cliente=<?php echo $filas1['cliente']; ?>">
                                             <?php
@@ -260,7 +260,7 @@ if ($_SESSION['usuario']) {
                                                 $clientes = $clientes + 1;
                                             }
                                             $sumcobro = $sumcobro + $cuota;
-                                            echo $cuota;
+                                            echo number_format($cuota);
                                             ?> </a></TD>
                                     <TD><?php
                                         echo $papeleria;
@@ -433,16 +433,16 @@ if ($_SESSION['usuario']) {
                             }
                             ?>
                             <TR>
-                                <TD><?php echo $base ?> </TD>
-                                <TD><?php echo $sumcobro ?> </TD>
-                                <TD><?php echo $pleno ?> </TD>
-                                <TD><?php echo $sumprestamos ?> </TD>
-                                <TD><?php echo $sumpapelerias ?> </TD>
+                                <TD><?php echo number_format($base); ?> </TD>
+                                <TD><?php echo number_format($sumcobro); ?> </TD>
+                                <TD><?php echo number_format($pleno); ?> </TD>
+                                <TD><?php echo number_format($sumprestamos); ?> </TD>
+                                <TD><?php echo number_format($sumpapelerias); ?> </TD>
                                 <TD><?php
                                     $gasto = $filas1['valor'];
                                     echo $gasto;
                                     ?> </TD>
-                                <TD><?php echo $efectivo ?> </TD>
+                                <TD><?php echo number_format($efectivo); ?> </TD>
                                 <TD><?php echo $sumnuevos ?> </TD>
                                 <TD><?php echo $entrantes ?> </TD>
                                 <TD><?php echo $salientes ?> </TD>

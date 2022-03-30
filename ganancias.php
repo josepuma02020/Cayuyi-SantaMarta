@@ -144,7 +144,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                                     <p>Base</p>
                                 </td>
                                 <TD class="valor">
-                                    <p><?php echo $filas1['base']; ?></p>
+                                    <p><?php echo number_format($filas1['base']); ?></p>
                                 </TD>
                             </tr>
                             <tr>
@@ -165,20 +165,20 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                                 <td class="cuenta">
                                     <p>Dinero a Recuperar</p>
                                 </td>
-                                <td class="valor"><?php echo $prestado; ?></TD>
+                                <td class="valor"><?php echo number_format($prestado); ?></TD>
                             </tr>
                             <tr>
                                 <td class="cuenta">
                                     <p>Intereses a Recuperar</p>
                                 </td>
-                                <td class="valor"><?php echo $intereses; ?></TD>
+                                <td class="valor"><?php echo number_format($intereses); ?></TD>
                             </tr>
                             <tr>
                                 <td class="cuenta">
                                     <p>Total</p>
                                 </td>
                                 <td class="valor"><?php $total = $total + $intereses + $prestado + $filas1['base'];
-                                                    echo $intereses + $prestado + $filas1['base']; ?></td>
+                                                    echo number_format($intereses + $prestado + $filas1['base']); ?></td>
                             </tr>
                     </table>
                 <?php } ?>

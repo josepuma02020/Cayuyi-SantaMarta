@@ -285,10 +285,10 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         <TR>
                             <TD><?php echo $filas1['nombre']  ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
-                            <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
-                            <TD><?php echo $filas1['valorapagar']; ?> </TD>
-                            <TD><a href="historialcuotas.php?id=<?php echo $filas1['id_prestamo'] ?>"><?php echo $filas1['abonado']; ?></a> </TD>
-                            <TD><?php echo $filas1['valorapagar'] - $filas1['abonado']; ?> </TD>
+                            <TD><?php echo number_format($filas1['valor_prestamo']); ?> </TD>
+                            <TD><?php echo number_format($filas1['valorapagar']); ?> </TD>
+                            <TD><a href="historialcuotas.php?id=<?php echo $filas1['id_prestamo'] ?>"><?php echo number_format($filas1['abonado']); ?></a> </TD>
+                            <TD><?php echo number_format($filas1['valorapagar'] - $filas1['abonado']); ?> </TD>
                             <?php
                             if ($filas1['dias_atraso'] > 10) {
                                 $aviso = "EC1A3D";

@@ -45,6 +45,14 @@ thead {
     font-size: 1.3rem;
 }
 
+.titulo-tabla-detalles {
+    padding-bottom: 2%;
+    font-family: serif;
+    font-size: 2.5rem;
+    background-color: #F3DA0C;
+    font-weight: normal;
+}
+
 .titulo-pagina {
     margin-top: 5%;
     margin-bottom: 5%;
