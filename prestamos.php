@@ -81,6 +81,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     </svg> Nuevo Prestamo<span class="fa fa-plus-circle"></span>
                     <br>
                 </span>
+
                 <div class="form-group col-sm-3">
                     <h4>Mostrando:</h4>
                     <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva . ' - ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?>">
@@ -265,7 +266,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             <table class="table table-striped  table-responsive-lg" id="tablaproductos">
                 <thead>
                     <tr>
-                        <th> Ruta </th>
                         <th> Nombre </th>
                         <th> F.Préstamo</th>
                         <th> V.Prestado </th>
@@ -283,7 +283,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
                         <TR>
-                            <TD><?php echo $filas1['nombreruta'] ?> </TD>
                             <TD><?php echo $filas1['nombre']  ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>

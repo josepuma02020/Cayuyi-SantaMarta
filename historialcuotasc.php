@@ -15,11 +15,11 @@ if ($_SESSION['usuario']) {
         $id = 0;
     }
     //consulta cliente 
-    $consultacliente = "select a.nombre,a.apellido from clientes a inner join prestamos b on b.cliente=a.id_cliente where b.id_prestamo=$id";
+    $consultacliente = "select a.nombre from clientes a inner join prestamos b on b.cliente=a.id_cliente where b.id_prestamo=$id";
     $query = mysqli_query($link, $consultacliente) or die($consultacliente);
     $filas1 = mysqli_fetch_array($query);
     if (isset($filas1)) {
-        $nombrecliente = $filas1['nombre'] . ' ' . $filas1['apellido'];
+        $nombrecliente = $filas1['nombre'];
     } else {
         $nombrecliente = '';
     }
@@ -92,7 +92,7 @@ if ($_SESSION['usuario']) {
                     </thead>
                     <tbody>
                         <?php
-                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,c.apellido,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $id";
+                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $id";
                         $query = mysqli_query($link, $consultacuota) or die($consultacuota);
                         while ($filas1 = mysqli_fetch_array($query)) {
                             $dias = $filas1['atraso'];

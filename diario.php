@@ -108,10 +108,10 @@ if ($_SESSION['usuario']) {
                                 <b>Direccion:</b> <?php echo $filas2['direccion'] ?>
                             </label>
                             <label class="form-row">
-                                <b> <?php echo "Cuota:" . round($filas2['cuota']) ?></b>
+                                <b> <?php echo "Cuota:" . number_format(round($filas2['cuota'])); ?></b>
                             </label>
                             <label class="form-row">
-                                <b> <?php echo "Saldo:" . round($filas2['debe']) ?></b>
+                                <b> <?php echo "Saldo:" . number_format(round($filas2['debe'])); ?></b>
                             </label>
 
                             <label class="botones">
