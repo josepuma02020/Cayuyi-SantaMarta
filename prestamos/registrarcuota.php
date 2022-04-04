@@ -3,6 +3,7 @@
 session_start();
 if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
+    date_default_timezone_set('America/Bogota');
     $id = $_POST['idu'];
     $recoger = $_POST['recoger'];
     $fecha_actual = date("Y-m-j");

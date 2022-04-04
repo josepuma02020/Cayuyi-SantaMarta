@@ -3,6 +3,7 @@
 session_start();
 if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
+    date_default_timezone_set('America/Bogota');
     $valor = $_POST['valorretiro'];
     $ruta = $_POST['ruta'];
     $tipo = $_POST['tipo'];
@@ -25,4 +26,3 @@ if ($_SESSION['usuario']) {
         window.location='index.php';
     </script>";
 }
-?>

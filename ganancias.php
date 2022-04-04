@@ -3,6 +3,7 @@ session_start();
 if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
+    date_default_timezone_set('America/Bogota');
     setlocale(LC_ALL, "es_CO");
     $fecha_actual = date("Y-m-j");
     $fecha_inicio = date("Y-m-01");

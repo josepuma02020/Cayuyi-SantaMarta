@@ -4,6 +4,7 @@
 // include class
 require('../librerias/fpdf/fpdf.php');
 require_once("../conexion/conexion.php");
+date_default_timezone_set('America/Bogota');
 $fecha = $_GET['fecha'];
 $fecha_actual = date("Y-m-d");
 $consultacobros = "select a.*,b.*,c.nombre from registros_cuota a inner join prestamos b on a.prestamo=b.id_prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha ='$fecha'";

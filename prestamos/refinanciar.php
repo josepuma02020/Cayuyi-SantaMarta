@@ -2,6 +2,7 @@
 session_start();
 if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
+    date_default_timezone_set('America/Bogota');
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
     $id = $_POST['id'];
     $rutacambio = $_POST['ruta'];

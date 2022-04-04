@@ -4,6 +4,7 @@
 // include class
 require('../librerias/fpdf/fpdf.php');
 require_once("../conexion/conexion.php");
+date_default_timezone_set('America/Bogota');
 $ruta = $_GET['ruta'];
 $consultanombreruta = "select * from rutas where id_ruta=$ruta";
 $querynombreruta = mysqli_query($link, $consultanombreruta) or die($consultanombreruta);

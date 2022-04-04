@@ -3,6 +3,7 @@
 session_start();
 include('conexion/conexion.php');
 include('funciones/funciones.php');
+date_default_timezone_set('America/Bogota');
 $usuario = htmlentities($_POST['usuario']);
 $clave1 = htmlentities($_POST['clave']);
 echo $consulta = "SELECT a.*,b.id_ruta,b.ruta FROM usuarios a left join rutas b on b.encargado = a.id_usuario

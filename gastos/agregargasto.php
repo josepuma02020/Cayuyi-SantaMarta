@@ -3,6 +3,7 @@
 session_start();
 if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
+    date_default_timezone_set('America/Bogota');
     $descripcion = $_POST['descripcion'];
     $valor = $_POST['valor'];
     $encargado = $_POST['encargado'];
@@ -25,4 +26,3 @@ if ($_SESSION['usuario']) {
         window.location='index.php';
     </script>";
 }
-?>

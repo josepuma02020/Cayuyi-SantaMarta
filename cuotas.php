@@ -4,6 +4,7 @@ if ($_SESSION['usuario']) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
     setlocale(LC_ALL, "es_CO");
+    date_default_timezone_set('America/Bogota');
     $fecha_actual = date("Y-m-d");
     $fecha_inicio = date("Y-m-01");
     //ruta

@@ -3,6 +3,7 @@ session_start();
 if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
+    date_default_timezone_set('America/Bogota');
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
     if (isset($_GET['id'])) {
         $id = $_GET['id'];

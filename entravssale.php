@@ -3,6 +3,7 @@ session_start();
 if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
+    date_default_timezone_set('America/Bogota');
     if (isset($_GET['desde'])) {
         $desde = $_GET['desde'];
     } else {
