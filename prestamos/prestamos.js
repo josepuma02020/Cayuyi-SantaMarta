@@ -1,3 +1,22 @@
+function editarcuota(idu, ncuota) {
+    cadenau = "idu=" + idu + "&ncuota=" + ncuota;;
+    $.ajax({
+        type: "POST",
+        url: "prestamos/editarcuota.php",
+        data: cadenau,
+        success: function(r) {
+            if (r == 11) {
+                // console.log(r);
+                // debugger;
+                window.location.reload();
+            } else {
+                // console.log(r);
+                // debugger;
+            }
+        }
+    });
+}
+
 function editarprestamo(dias, valor, ruta, id, comentario) {
     cadenau = "dias=" + dias + "&valor=" + valor + "&ruta=" + ruta + "&id=" + id + "&comentario=" + comentario;
     $.ajax({
