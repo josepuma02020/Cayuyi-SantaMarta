@@ -193,6 +193,7 @@ if ($_SESSION['usuario']) {
                             $salientes = 0;
                             $clientes = 0;
                             $sumpapelerias = 0;
+                            $renovados = 0;
                             while ($filas1 = mysqli_fetch_array($query)) {
                                 $dias = $filas1['dias_atraso'];
                                 $cuota = $filas1['cuota'];
@@ -307,7 +308,7 @@ if ($_SESSION['usuario']) {
 
                                     <?php
                                     if ($entrante == 'Si' and $saliente == 'Si') {
-                                        //$pleno = $pleno - $cuota;
+                                        $renovados = $renovados + 1;
                                     } else {
                                         $pleno = $pleno + $cuota;
                                     }
@@ -386,10 +387,13 @@ if ($_SESSION['usuario']) {
                                     Cli.Nuevos
                                 </th>
                                 <th>
-                                    Entrantes
+                                    Entr.
                                 </th>
                                 <th>
-                                    Saliente?
+                                    Sal.
+                                </th>
+                                <th>
+                                    Ren.
                                 </th>
                                 <th>
                                     Clientes
@@ -446,6 +450,7 @@ if ($_SESSION['usuario']) {
                                 <TD><?php echo $sumnuevos ?> </TD>
                                 <TD><?php echo $entrantes ?> </TD>
                                 <TD><?php echo $salientes ?> </TD>
+                                <TD><?php echo $renovados ?> </TD>
                                 <TD><?php
                                     $clientes = $clientes . ' / ' . $clientesruta;
                                     echo $clientes
