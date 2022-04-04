@@ -399,16 +399,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <input disabled autocomplete="off" type="text" maxlength="5" class="form-control input-group-sm" id="formau" name="formau">
                                 </div>
                                 <div class="form-group cuatro">
-                                    <label>Nuev.For.Pago</label>
-                                    <select id="nformapago" class="form-control">
-                                        <option value="0" selected>------</option>
-                                        <option value="1">Diario</option>
-                                        <option value="7">Semanal</option>
-                                        <option value="15">Quincenal</option>
-                                        <option value="30">Mensual</option>
-                                    </select>
-                                </div>
-                                <div class="form-group cuatro">
                                     <label>Cuota:</label>
                                     <input disabled autocomplete="off" type="number" maxlength="5" class="form-control input-group-sm" id="cuotau" name="cuotau">
                                 </div>
