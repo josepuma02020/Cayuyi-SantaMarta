@@ -4,7 +4,6 @@ if ($_SESSION['usuario']) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
     setlocale(LC_ALL, "es_CO");
-    date_default_timezone_set('America/Bogota');
     $fecha_actual = date("Y-m-j");
     $fecha_inicio = date("Y-m-01");
     $rutaactiva = $_SESSION['nruta'];
@@ -39,7 +38,7 @@ if ($_SESSION['usuario']) {
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" type="text/css" href="./diseno/historialcuotas/cel.css" />
+        <link rel="stylesheet" type="text/css" href="./diseno/defecto/cel.css" />
         <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
@@ -67,11 +66,8 @@ if ($_SESSION['usuario']) {
                 </div>
             </section>
             <div id="recarga">
-                <br />
-
                 <table class="table table-bordered tabla-cuotas-cel" id="tablaproductos">
                     <thead>
-
                         <tr>
                             <th>
                                 Fecha
@@ -85,10 +81,6 @@ if ($_SESSION['usuario']) {
                             <th>
                                 D.A
                             </th>
-                            <th>
-                                Venc.
-                            </th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -116,18 +108,17 @@ if ($_SESSION['usuario']) {
                                 ?><TD style="background-color: <?php echo $color ?>"><?php echo $saldo; ?> </TD>
 
                                 <TD><?php echo $dias; ?> </TD>
-                                <TD class="<?php echo $class ?>"><?php
-                                                                    echo $diascuota;
-                                                                    ?> </TD>
                             </TR>
                         <?php } ?>
                     </tbody>
                 </table>
-
             </div>
-
         </div>
-
+        <footer>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
+        </footer>
     </body>
 
     </html>
