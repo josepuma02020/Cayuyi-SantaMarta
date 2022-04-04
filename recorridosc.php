@@ -94,7 +94,6 @@ if ($_SESSION['usuario']) {
                             <th> Cliente </th>
                             <th> Direccion </th>
                             <th> Posicion </th>
-                            <th> Pendiente </th>
                             <th> Acciones </th>
                         </tr>
                     </THEAD>
@@ -105,10 +104,9 @@ if ($_SESSION['usuario']) {
                         while ($filas1 = mysqli_fetch_array($query)) {
                         ?>
                             <TR>
-                                <TD><?php echo $filas1['nombre']; ?> </TD>
+                                <TD><?php echo $filas1['nombre']; ?> </TD>      
                                 <TD><?php echo $filas1['direccion']; ?> </TD>
                                 <TD><?php echo $filas1['posicion_ruta']; ?> </TD>
-                                <TD><?php echo $filas1['valorapagar'] - $filas1['abonado']; ?> </TD>
                                 <TD>
                                     <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
