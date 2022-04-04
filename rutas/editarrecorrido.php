@@ -13,14 +13,15 @@
         $rutaactual = $filas1['ruta'];
         if ($posicionactual > $posicion) {
             $consultaposicionmayor = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta +1 WHERE ruta = $rutaactual and posicion_ruta between $posicion and $posicionactual";
+            echo $query = mysqli_query($link, $consultaposicionmayor) or die($consultaposicionmayor);
         } else {
-            // $consultaposicionmayor = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta -1 WHERE ruta = $rutaactual and posicion_ruta <= $posicionactual";
+            $consultaposicion = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta -1 WHERE ruta = $rutaactual and posicion_ruta between $posicionactual and $posicion";
+            echo $query = mysqli_query($link, $consultaposicion) or die($consultaposicion);
         }
         $consultauno = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta +1 WHERE ruta = $rutaactual and posicion_ruta = $posicion";
         //$query = mysqli_query($link, $consultauno) or die($consultauno);
-        echo $query = mysqli_query($link, $consultaposicionmayor) or die($consultaposicionmayor);
-        $consultaposicionmenor = "UPDATE `prestamos` SET `posicion_ruta`=$posicion WHERE id_prestamo = $id";
-        echo $query = mysqli_query($link, $consultaposicionmenor) or die($consultaposicionmenor);
+        $consultaposicion = "UPDATE `prestamos` SET `posicion_ruta`=$posicion WHERE id_prestamo = $id";
+        echo $query = mysqli_query($link, $consultaposicion) or die($consultaposicion);
     } else {
         echo "<script type=''>
         alert('favor iniciar sesion');
