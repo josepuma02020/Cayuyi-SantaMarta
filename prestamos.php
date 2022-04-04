@@ -667,18 +667,6 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             dias = $('#diasref').val();
             valorprestamo = $('#valoru').val();
             comentario = $('#comentariou').val();
-            if (valor < valorprestamo) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'No se puede refinanciar por valores menores al prestamo', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (dias < 1) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'El numero de días de la refinanciacón debe ser mayor a 1', function() {
-                    alertify.success('Ok');
-                });
-            }
             if (a == 0) {
                 editarprestamo(dias, valor, ruta, id, comentario);
                 window.location.reload();
