@@ -48,14 +48,15 @@ if ($_SESSION['usuario']) {
     //consultadatoscliente
 
     if ($id != 0) {
-        $consultacuota = "select a.nombre,b.fecha from clientes a inner join prestamos b on a.id_cliente=b.cliente where b.id_prestamo = $id";
+        $consultacuota = "select a.nombre,b.fecha,a.cedula from clientes a inner join prestamos b on a.id_cliente=b.cliente where b.id_prestamo = $id";
     }
     if ($cliente != 0) {
-        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+        $consultacuota = "SELECT c.cedula,a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
     }
     $query = mysqli_query($link, $consultacuota) or die($consultacuota);
     $filas1 = mysqli_fetch_array($query);
     $nombrecliente = $filas1['nombre'];
+    $cedula = $filas1['cedula'];
     $fechaprestamo = $filas1['fecha'];
 ?>
     <html>
@@ -87,6 +88,10 @@ if ($_SESSION['usuario']) {
             </section>
             <section class="parametros">
                 <div class="form-group col-sm-3">
+                    <h3>Cedula:</h3>
+                    <input disabled class="form-control input-sm input-disabled-normal" type="text" id="mostrando" value="<?php echo $cedula; ?>">
+                </div>
+                <div class="form-group col-sm-3">
                     <h3>Cliente:</h3>
                     <input disabled class="form-control input-sm input-disabled-normal" type="text" id="mostrando" value="<?php echo $nombrecliente; ?>">
                 </div>
@@ -99,9 +104,11 @@ if ($_SESSION['usuario']) {
                 <thead>
                     <tr>
                         <th>
-                            Inicio
+                            Ult.Pago
                         </th>
-
+                        <th>
+                            Ini.Préstamo
+                        </th>
                         <th>
                             Plazo
                         </th>
@@ -123,9 +130,7 @@ if ($_SESSION['usuario']) {
                         <th>
                             D.A
                         </th>
-                        <th>
-                            Ult.Pago
-                        </th>
+
                     </tr>
                 </thead>
                 <TBODY>
@@ -145,8 +150,8 @@ if ($_SESSION['usuario']) {
                         }
                     ?>
                         <TR>
+                            <TD><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo $filas1['fechaprestamo']; ?> </TD>
-
                             <TD><?php echo $filas1['diasvence']; ?> </TD>
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
                             <TD><?php echo $filas1['valorapagar']; ?> </TD>
@@ -178,7 +183,7 @@ if ($_SESSION['usuario']) {
                                 echo $formadepago;
                                 ?> </TD>
                             <TD><?php echo $dias; ?> </TD>
-                            <TD><?php echo $filas1['fecha']; ?> </TD>
+
                         </TR>
                     <?php } ?>
                 </TBODY>

@@ -172,7 +172,7 @@ if ($_SESSION['usuario']) {
                                 <?php
                                 if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
                                 ?>
-                                    <th>
+                                    <th style="width:20%;">
                                         Acciones
                                     </th>
                                 <?php

@@ -114,7 +114,7 @@ if (isset($_SESSION['usuario'])) {
 </script>
 <script>
     function openNav() {
-        document.getElementById("mimenu").style.width = "40%";
+        document.getElementById("mimenu").style.width = "auto";
     }
 
     function closeNav() {
