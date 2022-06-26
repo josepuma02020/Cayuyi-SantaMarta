@@ -4,6 +4,7 @@
     from {
         opacity: .4
     }
+
     to {
         opacity: 1
     }
@@ -13,6 +14,7 @@
 /* On smaller screens, decrease text size */
 
 @media only screen and (max-width: 300px) {
+
     .prev,
     .next,
     .text {
@@ -303,6 +305,7 @@ strong {
 .active {
     background-color: #818181;
     color: white;
+    border-radius: 2px;
 }
 
 .dropdown-container {
@@ -323,6 +326,7 @@ strong {
     .sidenav {
         padding-top: 15px;
     }
+
     .sidenav a {
         font-size: 18px;
     }

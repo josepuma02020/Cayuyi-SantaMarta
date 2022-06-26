@@ -330,6 +330,10 @@ if ($_SESSION['usuario']) {
                                             </button>
                                         </TD>
                                     <?php
+                                    } else {
+                                    ?>
+                                        <td></td>
+                                    <?php
                                     }
                                     ?>
                                 </TR>
