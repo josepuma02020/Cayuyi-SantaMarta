@@ -125,21 +125,23 @@ if ($_SESSION['usuario']) {
                             Saldo
                         </th>
                         <th>
-                            Forma de Pago
+                            F.P
                         </th>
                         <th>
                             D.A
                         </th>
-
+                        <th>
+                            D.V
+                        </th>
                     </tr>
                 </thead>
                 <TBODY>
                     <?php
                     if ($cliente != 0) {
-                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
+                        $consultacuota = "SELECT b.dias_prestamo,b.fecrefinanciacion,a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,a.valorpagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where c.id_cliente = $cliente";
                     }
                     if ($id != 0) {
-                        $consultacuota = "SELECT b.fecha'fechaprestamo',a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where b.id_prestamo = $id";
+                        $consultacuota = "SELECT b.dias_prestamo,b.fecrefinanciacion,b.fecha'fechaprestamo',a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,a.valorpagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where b.id_prestamo = $id";
                     }
                     $query = mysqli_query($link, $consultacuota) or die($consultacuota);
                     while ($filas1 = mysqli_fetch_array($query)) {
@@ -150,11 +152,18 @@ if ($_SESSION['usuario']) {
                         }
                     ?>
                         <TR>
-                            <TD><?php echo $filas1['fecha']; ?> </TD>
+                            <?php
+                            if ($filas1['fecha'] == $filas1['fecrefinanciacion']) {
+                                $color = "#F7ED29";
+                            } else {
+                                $color = "";
+                            }
+                            ?>
+                            <TD style=" background-color : <?php echo $color; ?>"><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo $filas1['fechaprestamo']; ?> </TD>
-                            <TD><?php echo $filas1['diasvence']; ?> </TD>
+                            <TD><?php echo $filas1['dias_prestamo']; ?> </TD>
                             <TD><?php echo $filas1['valor_prestamo']; ?> </TD>
-                            <TD><?php echo $filas1['valorapagar']; ?> </TD>
+                            <TD><?php echo $filas1['valorpagar']; ?> </TD>
                             <TD><?php echo $filas1['cuota']; ?> </TD>
                             <?php
                             $saldo = $filas1['saldo'];
@@ -183,7 +192,14 @@ if ($_SESSION['usuario']) {
                                 echo $formadepago;
                                 ?> </TD>
                             <TD><?php echo $dias; ?> </TD>
-
+                            <?php
+                            if ($filas1['diasvence'] <= 0) {
+                                $color = "#F34A4A";
+                            } else {
+                                $color = "";
+                            }
+                            ?>
+                            <TD style="background-color: <?php echo $color; ?> ;"> <?php echo $filas1['diasvence']; ?> </TD>
                         </TR>
                     <?php } ?>
                 </TBODY>

@@ -81,6 +81,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         <th> Ruta </th>
                         <th> Nombre </th>
                         <th> F.Préstamo</th>
+                        <th> F.Refinanciación</th>
                         <th> V.Prestado </th>
                         <th> V.a pagar </th>
                         <th> Abonado </th>
@@ -91,7 +92,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    $consultarutas = "select a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where a.fecrefinanciacion is not null and a.fecrefinanciacion between '$desde' and '$hasta'";
+                    $consultarutas = "select a.fecrefinanciacion,a.cliente,c.ruta'nombreruta',a.fecha,a.id_prestamo,b.nombre,a.valor_prestamo,valorapagar,abonado,dias_atraso from prestamos a inner join clientes b on a.cliente=b.id_cliente inner join rutas c on c.id_ruta=a.ruta where a.fecrefinanciacion is not null and a.fecrefinanciacion between '$desde' and '$hasta'";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
@@ -99,6 +100,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <TD><?php echo $filas1['nombreruta'] ?> </TD>
                             <TD><?php echo $filas1['nombre']  ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
+                            <TD><?php echo $filas1['fecrefinanciacion']; ?> </TD>
                             <TD><?php echo number_format($filas1['valor_prestamo']); ?> </TD>
                             <TD><?php echo number_format($filas1['valorapagar']); ?> </TD>
                             <TD><a href="historialcuotas.php?id=<?php echo $filas1['id_prestamo'] ?>"><?php echo number_format($filas1['abonado']); ?></a> </TD>

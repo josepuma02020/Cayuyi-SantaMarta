@@ -7,7 +7,7 @@ if ($_SESSION['usuario']) {
     $id = $_POST['idu'];
     $recoger = $_POST['recoger'];
     $fecha_actual = date("Y-m-j");
-    $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta from prestamos where id_prestamo=$id ";
+    $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta,valorapagar from prestamos where id_prestamo=$id ";
     $query = mysqli_query($link, $consulta) or die($consulta);
     $filas1 = mysqli_fetch_array($query);
     $resta = number_format(($recoger / $filas1['cuota']) - 1);
@@ -38,8 +38,8 @@ if ($_SESSION['usuario']) {
     $filasverificar = mysqli_fetch_array($queryverificar);
     if (isset($filasverificar)) {
     } else {
-        $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence) VALUES "
-            . "('',$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso','$diascuota') ";
+        $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar) VALUES "
+            . "('',$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso','$diascuota','$filas1[valorapagar]') ";
         $query = mysqli_query($link, $consulta) or die($consulta);
     }
     //estadodeprestamo
