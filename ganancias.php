@@ -182,8 +182,9 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                                                     echo number_format($intereses + $prestado + $filas1['base']); ?></td>
                             </tr>
                     </table>
-                <?php } ?>
 
+                   
+                <?php } ?>
             </div>
             <section>
                 <h2>Total : <?php echo $total ?></h2>

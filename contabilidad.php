@@ -38,6 +38,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/themes/default.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <SCRIPT src="librerias/jquery-3.5.1.min.js"></script>
         <SCRIPT src="librerias/alertify/alertify.js"></script>
@@ -141,8 +142,34 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     </div>
                 </div>
             </div>
+            <!-- <canvas id="grafico" height="80px"></canvas>
+            <script>
+                var mi_primer_grafico = {
+                    type: "doughnut", //seleccionamos el tipo de grafico, en este caso es un grafico estilo pie, en esta parte podemos cambiar el tipo de grafico por el que deseamos
+                    data: {
+                        //le pasamos la data
+                        datasets: [{
+                            data: [1, 2, 4, 6], //esta es la data, podemos pasarle variables directamente desde el backend usando blade de la siguiente forma {{$dato1}},
+                            backgroundColor: [ //seleccionamos el color de fondo para cada dato que le enviamos
+                                "#04B404", "#FFBF00", "#FF0000", "#04B4AE",
+                            ],
+                        }],
+                        labels: [ //añadimos las etiquetas correspondientes a la data
+                            "Dato1", "Dato2", "Dato3", "Dato4",
+                        ]
+                    },
+                    options: { //le pasamos como opcion adicional que sea responsivo
+                        responsive: true,
+                    }
+                }
+                var primer_grafico = document.getElementById('grafico').getContext('2d'); //seleccionamos el canvas
+                window.pie = new Chart(primer_grafico, mi_primer_grafico);
+            </script> -->
         </main>
         <footer>
+            <p>Author: Pumasoft<br>
+                <a href="https://www.pumasoft.co">pumasoft.co</a>
+            </p>
         </footer>
     </body>
 
