@@ -4,7 +4,7 @@ function editarcuota(idu, ncuota) {
         type: "POST",
         url: "prestamos/editarcuota.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 11) {
                 // console.log(r);
                 // debugger;
@@ -23,7 +23,7 @@ function editarprestamo(dias, valor, ruta, id, comentario) {
         type: "POST",
         url: "prestamos/refinanciar.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 11) {
                 // console.log(r);
                 // debugger;
@@ -42,7 +42,7 @@ function eliminarcuota(idu) {
         type: "POST",
         url: "prestamos/eliminarcuota.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 11) {
                 // console.log(r);
                 //debugger;
@@ -62,7 +62,7 @@ function revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes
         type: "POST",
         url: "rutas/revisarruta.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 11) {
                 window.location.reload();
             } else {
@@ -80,10 +80,10 @@ function registrarcuota(idu, recoger) {
         type: "POST",
         url: "prestamos/registrarcuota.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 11) {
-                //console.log(r);
-                //debugger;
+                // console.log(r);
+                // debugger;
                 window.location.reload();
             } else {
                 console.log(r);
@@ -101,7 +101,7 @@ function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalp
         type: "POST",
         url: "prestamos/agregarprestamo.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 1) {
                 // console.log(r);
                 // debugger;
@@ -119,7 +119,7 @@ function obtenerdatosprestamo(id) {
         type: "POST",
         data: "id=" + id,
         url: "prestamos/datosprestamo.php",
-        success: function(r) {
+        success: function (r) {
             dato = jQuery.parseJSON(r);
             console.log(dato);
             $('#cedulau').val(dato['cedula']);
