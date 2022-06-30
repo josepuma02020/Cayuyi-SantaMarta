@@ -60,10 +60,10 @@ if ($_SESSION['usuario']) {
     }
     $consulta = "INSERT INTO `prestamos`(`id_prestamo`, `cliente`, `ruta`, `valor_prestamo`, `valorapagar`, `abonado`, `dias_atraso`, `fecha`, `dias_prestamo`, `posicion_ruta`, `formapago`, `papeleria`) VALUES "
         . "('','$filas1[id_cliente]','$ruta',$valor,$totalpagar,$domingo,0,'$fecha','$dias',$posicion,$formapago,'$papeleria')";
-    echo $query = mysqli_query($link, $consulta) or die($consulta);
+    $query = mysqli_query($link, $consulta) or die($consulta);
 
     //registrarcuota
-    $consultaid = "select id_prestamo,valorapagar-abonado 'saldo' from prestamos order by id_prestamo desc limit 1";
+    $consultaid = "select id_prestamo,valorapagar-abonado 'saldo',valorapagar from prestamos order by id_prestamo desc limit 1";
     $query = mysqli_query($link, $consultaid) or die($consultaid);
     $filaid = mysqli_fetch_array($query);
     $id = $filaid['id_prestamo'];
@@ -89,7 +89,7 @@ if ($_SESSION['usuario']) {
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
     $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
     $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo) VALUES "
-        . "($idcuota,$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso','$diascuota','$filas1[valorapagar]',$consecutivo) ";
+        . "($idcuota,$id,$valor,'$fecha_actual','$filaid[saldo]','$atraso','$diascuota','$filaid[valorapagar]',$consecutivo) ";
     $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
     header('Location: ' . "usuarios/cerrarsesion.php");
