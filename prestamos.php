@@ -645,7 +645,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             }
             if (a == 0) {
                 agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo);
-                window.location.reload();
+                //window.location.reload();
             }
         });
         $('#editarprestamo').click(function() {
