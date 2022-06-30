@@ -45,9 +45,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta charset="utf-8" http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
         <link rel="stylesheet" href="./diseno/defecto/desktop.css" />
         <link rel="stylesheet" type="text/css" href="librerias/alertify/css/alertify.css" />

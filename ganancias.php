@@ -183,11 +183,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == '1') {
                             </tr>
                     </table>
 
-                   
+
                 <?php } ?>
             </div>
             <section>
-                <h2>Total : <?php echo $total ?></h2>
+                <h2>Total : <?php echo number_format($total) ?></h2>
             </section>
         </main>
         <footer>

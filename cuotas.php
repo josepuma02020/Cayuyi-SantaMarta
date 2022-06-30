@@ -73,8 +73,6 @@ if ($_SESSION['usuario']) {
             <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
-
-
             <input type="hidden" value="<?php echo $mes ?>" id="mes" />
             <input type="hidden" value="<?php echo $año ?>" id="año" />
             <div class="container">
@@ -128,8 +126,6 @@ if ($_SESSION['usuario']) {
                             </button>
                         </a>
                     <?php } ?>
-
-
                 </section>
                 <div id="recarga">
                     <table class="table table-bordered" id="tablacuotas">
