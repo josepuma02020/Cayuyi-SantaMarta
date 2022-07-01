@@ -519,6 +519,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     dato = jQuery.parseJSON(r);
                     $('#nombre').val(dato['nombre']);
                     $('#apellido').val(dato['apellido']);
+                    if (dato['prestamos'] == 'Si') {
+                        alertify.alert('ATENCION!!', 'Este cliente ya tiene un préstamo activo.', function() {
+                            alertify.success('Ok');
+                        });
+                    }
                     $('#prestamos_activos').val(dato['prestamos']);
                     $('#ultprestamo').val(dato['valorultimo']);
                     $('#fechault').val(dato['fecha']);
@@ -560,6 +565,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
         $('#agregarprestamo').click(function() {
             a = 0;
             papeleria = $('#papeleria').val();
+            prestamosactivos = $('#prestamos_activos').val();
             cedula = $('#cedula').val();
             ruta = $('#ruta').val();
             posicion = $('#posicion').val();
@@ -573,6 +579,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             nombre = $('#nombre').val();
             apellido = $('#apellido').val();
             domingo = $('#domingo').val();
+            if (prestamosactivos == "Si") {
+                a = 1;
+                alertify.alert('ATENCION!!', 'Este cliente ya tiene un prestamo activo.', function() {
+                    alertify.success('Ok');
+                });
+            }
             if (apellido == "") {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor completar el campo "Apellido" : Debe ser mayor de 4 Digitos ', function() {
