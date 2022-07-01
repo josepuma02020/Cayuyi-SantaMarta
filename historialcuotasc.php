@@ -85,7 +85,7 @@ if ($_SESSION['usuario']) {
                     </thead>
                     <tbody>
                         <?php
-                        echo $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $id";
+                        $consultacuota = "SELECT a.diasvence,a.cuota,a.fecha,c.nombre,b.valor_prestamo,b.valorapagar,a.saldo,b.formapago,a.atraso,b.dias_prestamo,b.fecha'fechaprestamo' FROM  registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.prestamo = $id";
                         $query = mysqli_query($link, $consultacuota) or die($consultacuota);
                         while ($filas1 = mysqli_fetch_array($query)) {
                             $dias = $filas1['atraso'];
