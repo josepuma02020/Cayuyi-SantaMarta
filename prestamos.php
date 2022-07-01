@@ -660,7 +660,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             comentario = $('#comentariou').val();
             if (a == 0) {
                 editarprestamo(dias, valor, ruta, id, comentario);
-                window.location.reload();
+                //window.location.reload();
             }
         })
     });

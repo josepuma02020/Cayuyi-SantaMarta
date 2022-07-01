@@ -3,6 +3,8 @@
 session_start();
 if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
+    date_default_timezone_set('America/Bogota');
+    $fecha_actual = date("Y-m-j");
     $id = $_POST['idu'];
     $rutacambio = $_POST['ruta'];
     $totalpagar = $_POST['totalpagar'];
@@ -26,9 +28,11 @@ if ($_SESSION['usuario']) {
     $consulta = "UPDATE `prestamos` SET  `valor_prestamo`='$prestamo' WHERE id_prestamo = $id";
     $query = mysqli_query($link, $consulta) or die($consulta);
     if ($ruta != 0) {
-         $consulta = "UPDATE `prestamos` SET  `ruta`='$rutacambio' WHERE id_prestamo = $id";
+        $consulta = "UPDATE `prestamos` SET  `ruta`='$rutacambio' WHERE id_prestamo = $id";
         echo $query = mysqli_query($link, $consulta) or die($consulta);
     }
+
+    //editar valor en prestamo
     $consulta = "UPDATE `prestamos` SET  `valorapagar`='$totalpagar',`dias_prestamo`='$dias' WHERE id_prestamo = $id";
     $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
@@ -37,5 +41,3 @@ if ($_SESSION['usuario']) {
         window.location='index.php';
     </script>";
 }
-?>
-

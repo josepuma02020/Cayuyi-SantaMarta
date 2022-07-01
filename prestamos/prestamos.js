@@ -25,12 +25,12 @@ function editarprestamo(dias, valor, ruta, id, comentario) {
         data: cadenau,
         success: function (r) {
             if (r == 11) {
-                // console.log(r);
-                // debugger;
-                window.location.reload();
+                console.log(r);
+                debugger;
+                //window.location.reload();
             } else {
-                // console.log(r);
-                // debugger;
+                console.log(r);
+                debugger;
             }
         }
     });
