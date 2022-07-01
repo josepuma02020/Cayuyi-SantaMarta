@@ -184,21 +184,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <div class="form-row">
                                 <div class="form-group tres">
                                     <label>Ruta:</label>
-                                    <select id="ruta" class="form-control input-sm">
-                                        <?php
-                                        $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado GROUP by a.id_ruta";
-                                        $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
-                                        ?> <option value="0"></option>
-                                        <?php
-                                        while ($filas1 = mysqli_fetch_array($query)) {
-                                        ?>
-                                            <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['ruta'] . '  -  ' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
+                                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva . ' - ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?>">
+                                    <input disabled class="form-control input-sm" type="hidden" id="ruta" value="<?php echo $nruta; ?>">
+
                                 </div>
-                                <div class="form-group tres">
+                                <div class=" form-group tres">
                                     <label>Fecha de Inicio:</label>
                                     <?php
                                     $fechahoyval = date('Y-m-d');
