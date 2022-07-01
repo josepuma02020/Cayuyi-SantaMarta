@@ -83,7 +83,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 
                 <div class="form-group col-sm-3">
                     <h4>Mostrando:</h4>
-                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva . ' - ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?>">
+                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva  ?>">
                 </div>
                 <div class="form-group col-md-3">
                     <h4>Buscar:</h4>
@@ -184,7 +184,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <div class="form-row">
                                 <div class="form-group tres">
                                     <label>Ruta:</label>
-                                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva . ' - ' . $_SESSION['nombre'] . ' ' . $_SESSION['apellido']; ?>">
+                                    <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $rutaactiva; ?>">
                                     <input disabled class="form-control input-sm" type="hidden" id="ruta" value="<?php echo $nruta; ?>">
 
                                 </div>
