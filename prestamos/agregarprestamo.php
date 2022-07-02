@@ -72,7 +72,7 @@ if ($_SESSION['usuario']) {
     $consultaatraso = "select dias_atraso,fecha,dias_prestamo from prestamos where id_prestamo=$id ";
     $query1 = mysqli_query($link, $consultaatraso) or die($consultaatraso);
     $filas2 = mysqli_fetch_array($query1);
-    $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where fecha = '$fecha_actual'";
+    $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where fecha = '$fecha'";
     $queryconsecutivo = mysqli_query($link, $consultaconsecutivo) or die($consultaconsecutivo);
     $filaconsecutivo = mysqli_fetch_array($queryconsecutivo);
     if (isset($filaconsecutivo)) {
