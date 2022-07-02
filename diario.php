@@ -8,6 +8,14 @@ if ($_SESSION['usuario']) {
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
     $fecha_actual = date("Y-m-j");
     $id = 0;
+    //busqueda
+    if (isset($_GET['buscar'])) {
+        $buscar = $_GET['buscar'];
+        $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta inner join clientes c on a.cliente=c.id_cliente where b.encargado = 1 and (a.valorapagar - a.abonado) > 0 and c.nombre like '%$buscar%' order by a.posicion_ruta";
+    } else {
+        $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado = 1 and (a.valorapagar - a.abonado) > 0 order by a.posicion_ruta ";
+        $buscar = 0;
+    }
 ?>
     <HTML>
 
@@ -33,9 +41,17 @@ if ($_SESSION['usuario']) {
             <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
+            <div style="display:inline-block;" class="form-group col-sm-3">
+                <h4>Buscar:</h4>
+                <input style="max-width: 80% ;display:inline-block;min-width:45%" class="form-control" type="text" id="textbuscar" name="textbuscar" value="<?php ''; ?>">
+                <button type="button" id="buscar" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg>
+                </button>
+            </div>
             <section class=" container container-md" id="lista-tarjetas">
                 <?php
-                $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado =  $_SESSION[id_usuario] and (a.valorapagar - a.abonado) > 0  order by a.posicion_ruta";
                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                 $a = 0;
                 while ($filas1 = mysqli_fetch_array($query)) {
@@ -224,6 +240,13 @@ if ($_SESSION['usuario']) {
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#buscar').click(function() {
+            a = 0;
+            buscar = $('#textbuscar').val();
+            if (a == 0) {
+                location.href = `diario.php?buscar=${buscar}`;
+            }
+        });
         $('#recoger').click(function() {
             a = 0;
             idu = $('#idu').val();
