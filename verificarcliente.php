@@ -101,9 +101,9 @@ if ($_SESSION['usuario']) {
                                 $vencimiento = $diasvenc . ' dias';
 
                                 if ($vencimiento <= 0) {
-                                    $class = 'input-disabled-vencido';
-                                } else {
                                     $class = 'input-disabled-normal';
+                                } else {
+                                    $class = 'input-disabled-vencido';
                                 }
                         ?>
                                 <table class="table table-striped  table-responsive-lg">
