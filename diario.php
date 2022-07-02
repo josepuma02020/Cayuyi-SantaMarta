@@ -8,12 +8,13 @@ if ($_SESSION['usuario']) {
     $fechahoyval = date("Y") . '-' . date("m") . '-' . date("j");
     $fecha_actual = date("Y-m-j");
     $id = 0;
+    $idencargado = $_SESSION['id_usuario'];
     //busqueda
     if (isset($_GET['buscar'])) {
         $buscar = $_GET['buscar'];
-        $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta inner join clientes c on a.cliente=c.id_cliente where b.encargado = 1 and (a.valorapagar - a.abonado) > 0 and c.nombre like '%$buscar%' order by a.posicion_ruta";
+        $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta inner join clientes c on a.cliente=c.id_cliente where b.encargado = '$idencargado'  and (a.valorapagar - a.abonado) > 0 and c.nombre like '%$buscar%' order by a.posicion_ruta";
     } else {
-        $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado = 1 and (a.valorapagar - a.abonado) > 0 order by a.posicion_ruta ";
+        $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado = '$idencargado' and (a.valorapagar - a.abonado) > 0 order by a.posicion_ruta ";
         $buscar = 0;
     }
 ?>
