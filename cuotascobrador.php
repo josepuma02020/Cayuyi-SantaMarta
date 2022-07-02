@@ -308,9 +308,6 @@ if ($_SESSION['usuario']) {
                                     Prestamos
                                 </th>
                                 <th>
-                                    Gastos
-                                </th>
-                                <th>
                                     Efectivo
                                 </th>
                                 <th>
@@ -357,6 +354,7 @@ if ($_SESSION['usuario']) {
                             <TR>
                                 <TD><?php echo number_format($base); ?> </TD>
                                 <TD><?php echo number_format($sumcobro); ?> </TD>
+                                <TD><?php echo number_format($sumprestamos); ?> </TD>
                                 <TD><?php echo number_format($efectivo); ?> </TD>
                                 <TD><?php
                                     $clientes = $clientes . ' / ' . $clientesruta;
