@@ -11,6 +11,7 @@ if ($_SESSION['usuario']) {
     $cedula = $_POST['cedula'];
     $ruta = $_POST['ruta'];
     $fecha = $_POST['fecha'];
+    $fechaprestamo = $fecha;
     $valor = $_POST['valor'];
     $totalpagar = $_POST['totalpagar'];
     $dias = $_POST['dias'];
