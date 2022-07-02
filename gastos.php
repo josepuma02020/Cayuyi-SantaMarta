@@ -87,7 +87,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                             <option value="1">Moto</option>
                                             <option value="2">Encargado</option>
                                             <option value="3">Pago a Empleado</option>
-                                            <option value="4">Retiro Personal</option>
+                                            <option value="4">Gastos Administrativos</option>
                                         </select>
                                     </div>
                                     <div class="form-group mitad">
@@ -138,7 +138,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                             echo 'Pago a Encargado';
                                             break;
                                         case 4:
-                                            echo 'Retiro Personal';
+                                            echo 'Gastos Administrativos';
                                             break;
                                     }
                                     ?> </TD>
