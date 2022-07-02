@@ -36,7 +36,7 @@ if ($_SESSION['usuario']) {
     $filas2 = mysqli_fetch_array($query);
     $posicion = $filas2['posicion'] + 1;
     //consulta id cliente
-    $consultacliente = "select id_cliente from clientes where cedula = $cedula";
+    $consultacliente = "select id_cliente from clientes where cedula = '$cedula'";
     $query = mysqli_query($link, $consultacliente) or die($consultacliente);
     $filas1 = mysqli_fetch_array($query);
 

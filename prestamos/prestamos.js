@@ -104,8 +104,8 @@ function agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalp
         success: function (r) {
             if (r == 1) {
                 console.log(r);
-                debugger;
-                window.location.reload();
+                //debugger;
+                //window.location.reload();
             } else {
                 console.log(r);
                 debugger;
