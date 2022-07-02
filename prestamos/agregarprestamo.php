@@ -5,13 +5,13 @@ if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
     date_default_timezone_set('America/Bogota');
     $fecha_actual = date("Y-m-j");
-    $ano = date('Y');
-    $mes = date('m');
-    $dia = date('d');
     $cedula = $_POST['cedula'];
     $ruta = $_POST['ruta'];
     $fecha = $_POST['fecha'];
-    $fechaprestamo = $fecha;
+    $fechaprestamo = strtotime($fecha);
+    $ano = date('Y', $fechaprestamo);
+    $mes = date('m', $fechaprestamo);
+    $dia = date('d', $fechaprestamo);
     $valor = $_POST['valor'];
     $totalpagar = $_POST['totalpagar'];
     $dias = $_POST['dias'];
@@ -90,7 +90,7 @@ if ($_SESSION['usuario']) {
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
     $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
     $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo) VALUES "
-        . "($idcuota,$id,$domingo,'$fecha','$filaid[saldo]','$atraso','$diascuota','$filaid[valorapagar]',$consecutivo) ";
+        . "('$idcuota',$id,$domingo,'$fecha','$filaid[saldo]','$atraso','$diascuota','$filaid[valorapagar]',$consecutivo) ";
     $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
     header('Location: ' . "usuarios/cerrarsesion.php");
