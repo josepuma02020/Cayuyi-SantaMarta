@@ -138,7 +138,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             </THEAD>
                             <TBODY>
                                 <?php
-                                echo  $consultarutas = "select a.* from clientes a inner join prestamos b on b.cliente=a.id_cliente where b.ruta = $id";
+                                $consultarutas = "select a.* from clientes a inner join prestamos b on b.cliente=a.id_cliente where b.ruta = $id";
                                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                                 while ($filas1 = mysqli_fetch_array($query)) {
                                 ?>
