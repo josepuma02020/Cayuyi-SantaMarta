@@ -10,7 +10,7 @@ function datosruta(id) {
         type: "POST",
         data: "id=" + id,
         url: "",
-        success: function() {
+        success: function () {
 
             $('#idrevisar').val(id);
         }
@@ -24,11 +24,11 @@ function editarrecorrido(idu, ruta, posicion) {
         type: "POST",
         url: "rutas/editarrecorrido.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 111) {
                 // console.log(r);
                 // debugger;
-                window.location.reload();
+                //window.location.reload();
             } else {
                 // console.log(r);
                 // debugger;
@@ -42,7 +42,7 @@ function datosruta(id) {
         type: "POST",
         data: "id=" + id,
         url: "",
-        success: function() {
+        success: function () {
 
             $('#idrevisar').val(id);
         }
@@ -55,7 +55,7 @@ function editarruta(id, nombre, encargado) {
         type: "POST",
         url: "rutas/editarruta.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 1) {
                 // console.log(r);
                 // debugger;
@@ -75,7 +75,7 @@ function agregarruta(nombre, encargado) {
         type: "POST",
         url: "rutas/agregarruta.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 1) {
                 window.location.href = "rutas.php"
             } else {
@@ -91,7 +91,7 @@ function obtenerdatosprestamo(id) {
         type: "POST",
         data: "id=" + id,
         url: "prestamos/datosprestamo.php",
-        success: function(r) {
+        success: function (r) {
             dato = jQuery.parseJSON(r);
             console.log(dato);
             $('#cedulau').val(dato['cedula']);
