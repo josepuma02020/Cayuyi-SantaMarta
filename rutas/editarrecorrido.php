@@ -15,7 +15,7 @@
             $consultaposicionmayor = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta +1 WHERE ruta = $rutaactual and posicion_ruta between $posicion and $posicionactual";
             echo $query = mysqli_query($link, $consultaposicionmayor) or die($consultaposicionmayor);
         } else {
-            $consultaposicion = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta - 1 WHERE ruta = $rutaactual and posicion_ruta between $posicion and $posicionactual";
+            $consultaposicion = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta - 1 WHERE ruta = $rutaactual and posicion_ruta between $posicionactual and $posicion";
             echo $query = mysqli_query($link, $consultaposicion) or die($consultaposicion);
         }
         $consultauno = "UPDATE `prestamos` SET `posicion_ruta`=posicion_ruta +1 WHERE ruta = $rutaactual and posicion_ruta = $posicion";
