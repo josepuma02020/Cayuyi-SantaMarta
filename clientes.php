@@ -30,7 +30,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
-            <div class=" container container-md">
+            <div style="max-width: 80% ;" class=" container container-md">
                 <section class="titulo-pagina">
                     <h1>Clientes</h1>
                 </section>
@@ -85,13 +85,13 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
                         <THEAD>
                             <tr>
-                                <th> Nombre </th>
+                                <th style="width: 35% ;"> Nombre </th>
                                 <th> Cedula </th>
                                 <th> Telefono </th>
                                 <th> Direccion </th>
                                 <th> Saldo Pendiente </th>
                                 <th> Dias Atrasados </th>
-                                <th> Acciones </th>
+                                <th style="width: 25% ;"> Acciones </th>
                             </tr>
                         </THEAD>
                         <TBODY>
