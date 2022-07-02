@@ -37,6 +37,9 @@ if (isset($_SESSION['usuario'])) {
                     <a href="prestamos.php">Activos</a>
                     <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
+                <button class="dropdown-btn">Contabilidad
+                    <i class="fa fa-caret-down"></i>
+                </button>
                 <div class="dropdown-container">
                     <a href="contabilidad.php"> Informe Contable </a>
                 </div>
