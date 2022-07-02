@@ -134,7 +134,7 @@ if ($_SESSION['usuario']) {
                                 <!-- <th>
                                     Venc.Préstamo
                                 </th> -->
-                                <th>
+                                <th style="width:30%;">
                                     Cliente
                                 </th>
                                 <th>
@@ -168,7 +168,7 @@ if ($_SESSION['usuario']) {
                                 <?php
                                 if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
                                 ?>
-                                    <th style="width:20%;">
+                                    <th style="width:30%;">
                                         Acciones
                                     </th>
                                 <?php
