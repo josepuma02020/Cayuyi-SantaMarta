@@ -75,9 +75,9 @@ if ($_SESSION['usuario']) {
         <main>
             <input type="hidden" value="<?php echo $mes ?>" id="mes" />
             <input type="hidden" value="<?php echo $año ?>" id="año" />
-            <div class="container">
+            <div style="max-width: 80%;" class="container">
                 <section class="titulo-pagina">
-                    <h1>Revision de rutas</h1>
+                    <h1>Liquidación de rutas</h1>
                 </section>
                 <section class="parametros">
                     <?php
