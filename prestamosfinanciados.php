@@ -82,7 +82,9 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         <th> F.Préstamo</th>
                         <th> Ruta </th>
                         <th> Nombre </th>
+                        <th> P.A </th>
                         <th> V.A </th>
+                        <th> P.R </th>
                         <th> V.R </th>
                         <th> Abonado </th>
                         <th> Saldo </th>
@@ -101,7 +103,9 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <TD><?php echo $filas1['fechaprestamo']; ?> </TD>
                             <TD><?php echo $filas1['ruta'] ?> </TD>
                             <TD><?php echo $filas1['nombre']  ?> </TD>
+                            <TD><?php echo $filas1['plazoanterior']  ?> </TD>
                             <TD><?php echo number_format($filas1['valoranterior']); ?> </TD>
+                            <TD><?php echo $filas1['plazonuevo']  ?> </TD>
                             <TD><?php echo number_format($filas1['valornuevo']); ?> </TD>
                             <TD><a href="historialcuotas.php?id=<?php echo $filas1['id_prestamo'] ?>"><?php echo number_format($filas1['abonado']); ?></a> </TD>
                             <TD><?php echo number_format($filas1['valorapagar'] - $filas1['abonado']); ?> </TD>
