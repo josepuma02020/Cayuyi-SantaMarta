@@ -133,7 +133,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                                     <th> Direccion </th>
                                     <th> Saldo Pendiente </th>
                                     <th> Dias Atrasados </th>
-                                    <th style="width: 25% ;"> Acciones </th>
+                                    <th style="width: 20% ;"> Acciones </th>
                                 </tr>
                             </THEAD>
                             <TBODY>
