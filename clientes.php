@@ -214,7 +214,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button id="editarcliente" type="button" class="btn btn-primary">Editar Usuario</button>
+                            <button id="editarcliente" type="button" class="btn btn-primary">Editar cliente</button>
                         </div>
                     </div>
                 </div>
