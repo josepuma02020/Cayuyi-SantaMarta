@@ -111,7 +111,7 @@ if ($_SESSION['usuario']) {
                                         <tr>
                                             <th>V.P</th>
                                             <th>V.A.P</th>
-                                            <th>Abonado</th>
+                                            <th>Saldo</th>
                                             <th>Fecha</th>
                                             <th>Ruta</th>
                                             <th>Vigencia</th>
@@ -121,7 +121,7 @@ if ($_SESSION['usuario']) {
                                         <tr>
                                             <td><?php echo $filas2['valor_prestamo']; ?></td>
                                             <td><?php echo $filas2['valorapagar']; ?></td>
-                                            <td><?php echo $filas2['abonado']; ?></td>
+                                            <td><?php echo $filas2['valorapagar'] - $filas2['abonado']; ?></td>
                                             <td><?php echo $filas2['fecha']; ?></td>
                                             <td><?php echo $filas2['nruta']; ?></td>
                                             <td class="<?php echo $class; ?>"><?php echo $vencimiento ?></td>
