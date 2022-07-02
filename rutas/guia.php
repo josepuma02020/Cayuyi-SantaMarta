@@ -11,7 +11,7 @@ $querynombreruta = mysqli_query($link, $consultanombreruta) or die($consultanomb
 $filasnombreruta = mysqli_fetch_array($querynombreruta);
 $nombreruta = $filasnombreruta['ruta'];
 $fecha_actual = date("Y-m-d");
-$consultaruta = "select a.*,b.nombre,b.nota from prestamos a inner join clientes b on a.cliente=b.id_cliente  where a.ruta = $ruta and a.abonado < a.valorapagar ";
+$consultaruta = "select a.*,b.nombre,b.nota from prestamos a inner join clientes b on a.cliente=b.id_cliente  where a.ruta = $ruta and a.abonado < a.valorapagar order by a.posicion_ruta ";
 $query = mysqli_query($link, $consultaruta) or die($consultaruta);
 
 class PDF extends FPDF

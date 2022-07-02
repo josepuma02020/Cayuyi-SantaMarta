@@ -7,7 +7,7 @@ require_once("../conexion/conexion.php");
 date_default_timezone_set('America/Bogota');
 $fecha = $_GET['fecha'];
 $fecha_actual = date("Y-m-d");
-$consultacobros = "select a.*,b.*,c.nombre from registros_cuota a inner join prestamos b on a.prestamo=b.id_prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha ='$fecha'";
+$consultacobros = "select a.*,b.*,c.nombre from registros_cuota a inner join prestamos b on a.prestamo=b.id_prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha ='$fecha' order by a.posicion_ruta";
 $query = mysqli_query($link, $consultacobros) or die($consultacobros);
 
 class PDF extends FPDF
