@@ -4,6 +4,20 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
     setlocale(LC_ALL, "es_CO");
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        if ($id != 0) {
+            $consultaruta = "select * from rutas where id_ruta=$id";
+            $queryruta = mysqli_query($link, $consultaruta) or die($consultaruta);
+            $filaruta = mysqli_fetch_array($queryruta);
+            $nombreruta = $filaruta['ruta'];
+        } else {
+            $nombreruta = "";
+        }
+    } else {
+        $id = 0;
+        $nombreruta = "";
+    }
 ?>
     <HTML>
 
@@ -41,6 +55,32 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                         </svg> Nuevo Cliente<span class="fa fa-plus-circle"></span>
                     </span>
+                    <div class="form-group col-sm-3">
+                        <h4>Mostrando:</h4>
+                        <input disabled class="form-control input-sm" type="text" id="mostrando" value="<?php echo $nombreruta; ?>">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <h4>Buscar Ruta:</h4>
+                        <select id="rutabuscar" class="form-control input-sm">
+                            <?php
+                            $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
+                            $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
+                            ?> <option value="0"></option>
+                            <?php
+                            while ($filas1 = mysqli_fetch_array($query)) {
+                            ?>
+                                <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo  $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <button type="button" id="buscar" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </button>
                     <div class="modal fade  " id="nuevousuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg ">
                             <div class="modal-content">
@@ -82,58 +122,66 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     </div>
                 </div>
                 <div id="recarga">
-                    <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
-                        <THEAD>
-                            <tr>
-                                <th style="width: 35% ;"> Nombre </th>
-                                <th> Cedula </th>
-                                <th> Telefono </th>
-                                <th> Direccion </th>
-                                <th> Saldo Pendiente </th>
-                                <th> Dias Atrasados </th>
-                                <th style="width: 25% ;"> Acciones </th>
-                            </tr>
-                        </THEAD>
-                        <TBODY>
-                            <?php
-                            $consultarutas = "select * from clientes";
-                            $query = mysqli_query($link, $consultarutas) or die($consultarutas);
-                            while ($filas1 = mysqli_fetch_array($query)) {
-                            ?>
-                                <TR>
-                                    <TD><?php echo $filas1['nombre']; ?> </TD>
-                                    <TD><?php echo $filas1['cedula']; ?> </TD>
-                                    <TD><?php echo $filas1['telefono']; ?> </TD>
-                                    <TD><?php echo $filas1['direccion']; ?> </TD>
-                                    <TD><?php
-                                        $consultaatrasos = "select sum(a.valorapagar - a.abonado) 'debe' from prestamos a where a.cliente =$filas1[id_cliente] ";
-                                        $query1 = mysqli_query($link, $consultaatrasos) or die($consultaatrasos);
-                                        $filas2 = mysqli_fetch_array($query1);
-                                        echo number_format($filas2['debe']);
-                                        ?> </TD>
+                    <?php
+                    if ($id != 0) { ?>
+                        <TABLE class="table table-striped  table-responsive-lg" id="tablaproductos">
+                            <THEAD>
+                                <tr>
+                                    <th style="width: 35% ;"> Nombre </th>
+                                    <th> Cedula </th>
+                                    <th> Telefono </th>
+                                    <th> Direccion </th>
+                                    <th> Saldo Pendiente </th>
+                                    <th> Dias Atrasados </th>
+                                    <th style="width: 25% ;"> Acciones </th>
+                                </tr>
+                            </THEAD>
+                            <TBODY>
+                                <?php
+                                echo  $consultarutas = "select a.* from clientes a inner join prestamos b on b.cliente=a.id_cliente where b.ruta = $id";
+                                $query = mysqli_query($link, $consultarutas) or die($consultarutas);
+                                while ($filas1 = mysqli_fetch_array($query)) {
+                                ?>
+                                    <TR>
+                                        <TD><?php echo $filas1['nombre']; ?> </TD>
+                                        <TD><?php echo $filas1['cedula']; ?> </TD>
+                                        <TD><?php echo $filas1['telefono']; ?> </TD>
+                                        <TD><?php echo $filas1['direccion']; ?> </TD>
+                                        <TD><?php
+                                            $consultaatrasos = "select sum(a.valorapagar - a.abonado) 'debe' from prestamos a where a.cliente =$filas1[id_cliente] ";
+                                            $query1 = mysqli_query($link, $consultaatrasos) or die($consultaatrasos);
+                                            $filas2 = mysqli_fetch_array($query1);
+                                            echo number_format($filas2['debe']);
+                                            ?> </TD>
 
-                                    <TD><?php echo 0; ?> </TD>
-                                    <TD>
-                                        <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                        <button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
-                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
-                                            </svg>
-                                        </button>
-                                        <a href="historialcliente.php?id=<?php echo $filas1['id_cliente'] ?>">
-                                            <button type="button" id="historial" class="btn btn-primary" data-toggle="modal" data-target="#editar">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                                                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
-                                                    <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
+                                        <TD><?php echo 0; ?> </TD>
+                                        <TD>
+                                            <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
+                                            <button onclick="agregardatoscliente(<?php echo $filas1['id_cliente'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
                                                 </svg>
                                             </button>
-                                        </a>
-                                    </TD>
-                                </TR>
-                            <?php } ?>
-                        </TBODY>
+                                            <a href="historialcliente.php?id=<?php echo $filas1['id_cliente'] ?>">
+                                                <button type="button" id="historial" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                                        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                        </TD>
+                                    </TR>
+                                <?php } ?>
+                            </TBODY>
 
-                    </TABLE>
+                        </TABLE>
+                    <?php
+                    } else {
+                    }
+
+                    ?>
+
                 </div>
             </div>
             <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -257,6 +305,19 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 </script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $('#buscar').click(function() {
+            a = 0;
+            idruta = $('#rutabuscar').val();
+            if (idruta == 0) {
+                a = 1
+                alertify.alert('Atencion!!', 'Favor escoger una ruta', function() {
+                    alertify.success('Ok');
+                });
+            }
+            if (a == 0) {
+                location.href = `clientes.php?id=${idruta}`;
+            }
+        });
         $('#editarcliente').click(function() {
             a = 0;
             idu = $('#idu').val();
