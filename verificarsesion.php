@@ -43,6 +43,7 @@ if ($arreglo['activo'] == 1 and $arreglo['Rol'] != 1) {
             $_SESSION['apellido'] = $arreglo['apellido'];
             $_SESSION['apellido'] = $arreglo['apellido'];
             $_SESSION['ultimaconexion'] = $arreglo['ult_conexion'];
+            $_SESSION['tiempo'] = time();
             $consultaactconex = "update usuarios set ult_conexion = '$fecha' where id_usuario = $_SESSION[id_usuario]  ";
             $query = mysqli_query($link, $consultaactconex) or die($consultaactconex);
             header('Location: ' . "diario.php");

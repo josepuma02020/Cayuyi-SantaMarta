@@ -1,5 +1,14 @@
 <?php
 session_start();
+if (time() - $_SESSION['tiempo'] > 500) {
+    //session_destroy();
+    /* Aquí redireccionas a la url especifica */
+    session_destroy();
+    header('Location: ' . "index.php?m=5");
+    //die();
+} else {
+    $_SESSION['tiempo'] = time();
+}
 if ($_SESSION['usuario']) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');
@@ -104,7 +113,7 @@ if ($_SESSION['usuario']) {
                         while ($filas1 = mysqli_fetch_array($query)) {
                         ?>
                             <TR>
-                                <TD><?php echo $filas1['nombre']; ?> </TD>      
+                                <TD><?php echo $filas1['nombre']; ?> </TD>
                                 <TD><?php echo $filas1['direccion']; ?> </TD>
                                 <TD><?php echo $filas1['posicion_ruta']; ?> </TD>
                                 <TD>

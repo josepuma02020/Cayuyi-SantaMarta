@@ -1,5 +1,23 @@
 <?php
 session_start();
+if (time() - $_SESSION['tiempo'] > 500) {
+    //session_destroy();
+    /* Aquí redireccionas a la url especifica */
+    session_destroy();
+    header('Location: ' . "index.php?m=5");
+    //die();
+} else {
+    $_SESSION['tiempo'] = time();
+}
+if (time() - $_SESSION['tiempo'] > 500) {
+    //session_destroy();
+    /* Aquí redireccionas a la url especifica */
+    session_destroy();
+    header('Location: ' . "index.php?m=5");
+    //die();
+} else {
+    $_SESSION['tiempo'] = time();
+}
 if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2)) {
     include_once('conexion/conexion.php');
     include_once('funciones/funciones.php');

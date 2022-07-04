@@ -64,6 +64,15 @@
                             alertify.success('Ok');
                         });
                     </script>
+                <?php
+                    break;
+                case 5:
+                ?>
+                    <script>
+                        alertify.alert('Atencion!!', 'Se ha cerrado la sesión por inactividad', function() {
+                            alertify.success('Ok');
+                        });
+                    </script>
         <?php
                     break;
             }

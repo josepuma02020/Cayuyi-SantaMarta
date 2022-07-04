@@ -94,7 +94,15 @@ while ($filas1 = mysqli_fetch_array($query)) {
     $pdf->Cell(20, 10, $filas1['valor_prestamo'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $filas1['valorapagar'] - $filas1['abonado'], 1, 0, 'C', 0);
     $pdf->Cell(20, 10, $cuota, 1, 0, 'C', 0);
-    $pdf->Cell(20, 10, $filas1['dias_atraso'], 1, 0, 'C', 0);
+
+    $pdf->Cell(10, 10, $filas1['dias_atraso'], 1, 0, 'C', TRUE);
+
+    if ($vencimiento > 0) {
+        $pdf->SetFillColor(243, 99, 90);
+    }
     $pdf->Cell(20, 10, $vencimiento, 1, 1, 'C', 0);
+    if ($vencimiento > 0) {
+        $pdf->SetFillColor(255, 255, 255);
+    }
 }
 $pdf->Output();
