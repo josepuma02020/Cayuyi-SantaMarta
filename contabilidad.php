@@ -84,9 +84,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                 <THEAD>
                     <tr style="font-size:1rem ">
                         <th> Ruta </th>
-                        <th style="width: 35% ;"> Fecha </th>
-                        <th> Liquidador </th>
-                        <th> Encargado </th>
+                        <th style="width: 30% ;"> Fecha </th>
+                        <th style="width:15% ;"> Liquidador </th>
+                        <th style="width:15% ;"> Encargado </th>
                         <th> Base </th>
                         <th> Cobro </th>
                         <th> Pleno </th>
