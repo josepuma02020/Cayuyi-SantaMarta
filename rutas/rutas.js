@@ -77,7 +77,7 @@ function agregarruta(nombre, encargado) {
         data: cadenau,
         success: function (r) {
             if (r == 1) {
-                window.location.href = "rutas.php"
+                // window.location.href = "rutas.php"
             } else {
                 console.log(r);
                 debugger;

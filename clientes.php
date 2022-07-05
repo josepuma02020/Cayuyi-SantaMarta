@@ -212,7 +212,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
 
                                 <div class="form-group tres">
                                     <label>Cedula:</label>
-                                    <input autocomplete="off" type="number" class="form-control input-group-sm" id="cedulau" name="cedulau">
+                                    <input autocomplete="off" type="text" class="form-control input-group-sm" id="cedulau" name="cedulau">
                                 </div>
                                 <div class="form-group tres">
                                     <label>Telefono:</label>

@@ -293,7 +293,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2)) {
                 });
             }
             if (a == 0) {
-                debugger;
+                //debugger;
                 agregarruta(nombre, encargado);
                 window.location.reload();
             }
