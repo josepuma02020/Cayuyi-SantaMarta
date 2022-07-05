@@ -9,7 +9,7 @@ if (time() - $_SESSION['tiempo'] > 500) {
 } else {
     $_SESSION['tiempo'] = time();
 }
-if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
+if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
     date_default_timezone_set('America/Bogota');
@@ -60,11 +60,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
             <TABLE class="table table-striped  table-responsive-lg" id="tablahistorialcliente">
                 <THEAD>
                     <tr>
+                        <th> F.Cierre </th>
                         <th> F.Préstamo</th>
                         <th> V.Prestado </th>
                         <th> V.a pagar </th>
                         <th> Saldo </th>
-                        <th> F.Cierre </th>
                         <th> Detalles </th>
                     </tr>
                 </THEAD>
@@ -75,11 +75,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
                         <TR>
+                            <TD><?php echo $filas1['fechacierre']; ?> </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo number_format($filas1['valor_prestamo']); ?> </TD>
                             <TD><?php echo number_format($filas1['valorapagar']); ?> </TD>
                             <TD><?php echo number_format($filas1['valorapagar'] - $filas1['abonado']); ?> </TD>
-                            <TD><?php echo $filas1['fechacierre']; ?> </TD>
                             <TD>
                                 <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
                                 <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">

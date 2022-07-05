@@ -9,7 +9,7 @@ if (time() - $_SESSION['tiempo'] > 500) {
 } else {
     $_SESSION['tiempo'] = time();
 }
-if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
+if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
     date_default_timezone_set('America/Bogota');
@@ -257,7 +257,9 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     ?>
                         <TR>
                             <TD><?php echo $filas1['nombreruta'] ?> </TD>
-                            <TD><?php echo $filas1['nombre']  ?> </TD>
+                            <TD>
+                                <a href="historialcuotas.php?cliente=<?php echo $filas1['cliente']  ?>"><?php echo $filas1['nombre']  ?> </a>
+                            </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo number_format($filas1['valor_prestamo']); ?> </TD>
                             <TD><?php echo number_format($filas1['valorapagar']); ?> </TD>

@@ -9,7 +9,7 @@ if (time() - $_SESSION['tiempo'] > 500) {
 } else {
     $_SESSION['tiempo'] = time();
 }
-if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
+if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
     date_default_timezone_set('America/Bogota');

@@ -9,7 +9,7 @@ if (time() - $_SESSION['tiempo'] > 500) {
 } else {
     $_SESSION['tiempo'] = time();
 }
-if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
+if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
     include_once('conexion/conexion.php');
     setlocale(LC_ALL, "es_CO");
     date_default_timezone_set('America/Bogota');
@@ -281,7 +281,11 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
                         <TR>
-                            <TD><?php echo $filas1['nombre']  ?> </TD>
+                            <TD>
+                                <a href="historialcuotas.php?cliente=<?php echo $filas1['cliente']  ?>">
+                                    <?php echo $filas1['nombre']  ?>
+                                </a>
+                            </TD>
                             <TD><?php echo $filas1['fecha']; ?> </TD>
                             <TD><?php echo number_format($filas1['valor_prestamo']); ?> </TD>
                             <TD><?php echo number_format($filas1['valorapagar']); ?> </TD>
@@ -297,11 +301,12 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             <TD style="background-color: <?php echo $aviso ?>"><?php echo $filas1['dias_atraso']; ?> </TD>
                             <TD>
                                 <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                <button type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                     </svg>
                                 </button>
+
                             </TD>
                         </TR>
                     <?php } ?>
