@@ -82,9 +82,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
             </section>
             <TABLE class="table table-striped  table-responsive-lg" id="tablarevisiones">
                 <THEAD>
-                    <tr style="font-size:0.8rem ">
+                    <tr style="font-size:1rem ">
                         <th> Ruta </th>
-                        <th style="width: 60% ;"> Fecha </th>
+                        <th style="width: 35% ;"> Fecha </th>
                         <th> Liquidador </th>
                         <th> Encargado </th>
                         <th> Base </th>
@@ -115,7 +115,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
-                        <TR style="font-size:0.8rem ">
+                        <TR style="font-size:1rem ">
                             <TD><a href="cuotas.php?<?php echo 'rutaa=' . $filas1['id_ruta'] . '&fecha=' . $filas1['fecha']; ?>"><?php echo $filas1['nruta'] ?> </a></TD>
                             <TD style="font-size:0.8rem "><?php echo ($filas1['fecha'] . ' ' . $filas1['hora']); ?> </TD>
                             <TD style="font-size:0.8rem "> <?php echo ($filas1['nombre'] . ' ' . $filas1['apellido']) ?> </TD>
