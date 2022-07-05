@@ -280,7 +280,7 @@ if ($_SESSION['usuario']) {
                                     if (isset($filas2)) {
                                         $filas2['prestamos'];
                                         if ($filas2['prestamos'] >= 1) {
-                                            $consultafechaultprestamo = "select max(fecha) 'fechaprestamo' from prestamos where cliente = $filas1[cliente]";
+                                            $consultafechaultprestamo = "select max(fechacierre) 'fechaprestamo' from prestamos where cliente = $filas1[cliente] and (fechacierre != 'NULL' OR fechacierre != '0000-00-00')";
                                             $queryfechaprestamo = mysqli_query($link, $consultafechaultprestamo) or die($consultafechaultprestamo);
                                             $filafechaprestamo = mysqli_fetch_array($queryfechaprestamo);
                                             $datetime1 = date_create($filafechaprestamo['fechaprestamo']);
@@ -324,7 +324,7 @@ if ($_SESSION['usuario']) {
                                         $saliente = "No";
                                     }
                                     ?>
-                                    <td><?php echo $nuevo; ?></td>
+                                    <td><?php echo   $nuevo; ?></td>
                                     <td><?php echo $entrante; ?></td>
                                     <TD><?php echo $saliente; ?></TD>
                                     <TD><?php echo $dias; ?></TD>
