@@ -35,6 +35,10 @@ if (isset($_SESSION['usuario'])) {
                 </button>
                 <div class="dropdown-container">
                     <a href="prestamos.php">Activos</a>
+                    <a href="prestamoscerrados.php">Cerrados</a>
+                    <a href="prestamosfinanciados.php">Financiados</a>
+                    <a href="entravssale.php">Entrantes/Salientes</a>
+                    <a href="clientes.php">Clientes</a>
                     <a href="verificarcliente.php">Verificar Cliente</a>
                 </div>
                 <button class="dropdown-btn">Contabilidad
