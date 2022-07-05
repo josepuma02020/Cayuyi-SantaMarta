@@ -8,7 +8,7 @@ function editarcuota(idu, ncuota) {
             if (r == 11) {
                 // console.log(r);
                 // debugger;
-                window.location.reload();
+                //window.location.reload();
             } else {
                 // console.log(r);
                 // debugger;
@@ -46,7 +46,7 @@ function eliminarcuota(idu) {
             if (r == 11) {
                 // console.log(r);
                 //debugger;
-                window.location.reload();
+                // window.location.reload();
             } else {
                 //  console.log(r);
                 // debugger;
@@ -64,7 +64,7 @@ function revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes
         data: cadenau,
         success: function (r) {
             if (r == 11) {
-                window.location.reload();
+                // window.location.reload();
             } else {
                 console.log(r);
                 debugger;
@@ -82,9 +82,9 @@ function registrarcuota(idu, recoger) {
         data: cadenau,
         success: function (r) {
             if (r == 11) {
-                // console.log(r);
-                // debugger;
-                window.location.reload();
+                console.log(r);
+                debugger;
+                //window.location.reload();
             } else {
                 console.log(r);
                 debugger;

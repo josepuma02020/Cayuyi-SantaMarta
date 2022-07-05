@@ -32,12 +32,7 @@ if ($_SESSION['usuario']) {
     } else {
         $nombrecliente = '';
     }
-    //consultabase
-    $consultabase = "select a.base,COUNT(b.id_prestamo) 'prestamos' from rutas a inner join prestamos b on b.ruta=a.id_ruta where b.cliente =$id and (b.valorapagar-b.abonado > 0) group by a.ruta";
-    $query = mysqli_query($link, $consultabase) or die($consultabase);
-    $filas1 = mysqli_fetch_array($query);
-    $base = $filas1['base'];
-    $clientesruta = $filas1['prestamos'];
+
 ?>
     <html>
 

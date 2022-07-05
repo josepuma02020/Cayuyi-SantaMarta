@@ -200,15 +200,23 @@ if ($_SESSION['usuario']) {
                                 }
                                 echo $formadepago;
                                 ?> </TD>
-                            <TD><?php echo $dias; ?> </TD>
                             <?php
-                            if ($filas1['diasvence'] <= 0) {
+                            if ($dias > 0) {
                                 $color = "#F34A4A";
                             } else {
                                 $color = "";
                             }
                             ?>
-                            <TD style="background-color: <?php echo $color; ?> ;"> <?php echo $filas1['diasvence']; ?> </TD>
+                            <TD style="background-color: <?php echo $color; ?> ;"><?php echo $dias; ?> </TD>
+                            <?php
+                            $diasvencidos = $filas1['dias_prestamo'] - $filas1['diasvence'];
+                            if ($diasvencidos <= 0) {
+                                $color = "#F34A4A";
+                            } else {
+                                $color = "";
+                            }
+                            ?>
+                            <TD style="background-color: <?php echo $color; ?> ;"> <?php echo $diasvencidos; ?> </TD>
                         </TR>
                     <?php } ?>
                 </TBODY>

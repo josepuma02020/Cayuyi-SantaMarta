@@ -10,12 +10,17 @@ if ($_SESSION['usuario']) {
     $ano = date('Y');
     $mes = date('m');
     $dia = date('d');
-
+    $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta,valorapagar from prestamos where id_prestamo=$id ";
+    $query = mysqli_query($link, $consulta) or die($consulta);
+    $filas1 = mysqli_fetch_array($query);
+    $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha_actual' and prestamo = $id";
+    $queryverificar = mysqli_query($link, $consultaverificarcuota) or die($consultaverificarcuota);
+    $filasverificar = mysqli_fetch_array($queryverificar);
     //ingresar registro
     $consultaatraso = "select dias_atraso,fecha,dias_prestamo from prestamos where id_prestamo=$id ";
     $query1 = mysqli_query($link, $consultaatraso) or die($consultaatraso);
     $filas2 = mysqli_fetch_array($query1);
-    $atraso = $filas2['dias_atraso'];
+    $atraso = $filas2['dias_atraso'] + 1;
     $diasprestamo = $filas2['dias_prestamo'];
     $diasprestamo--;
     echo 'vence:' . $fechavence = date("Y-m-d", strtotime($filas2['fecha'] . "+ " . $diasprestamo . "days"));
@@ -24,6 +29,7 @@ if ($_SESSION['usuario']) {
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
     'dias' . $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
     //Agregar cuota
+
     $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where fecha = '$fecha_actual'";
     $queryconsecutivo = mysqli_query($link, $consultaconsecutivo) or die($consultaconsecutivo);
     $filaconsecutivo = mysqli_fetch_array($queryconsecutivo);
@@ -32,20 +38,22 @@ if ($_SESSION['usuario']) {
     } else {
         $consecutivo = 1;
     }
-    echo $idcuota = $ano . $mes . $dia . $consecutivo;
-    $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha_actual' and prestamo = $id";
-    $queryverificar = mysqli_query($link, $consultaverificarcuota) or die($consultaverificarcuota);
-    $filasverificar = mysqli_fetch_array($queryverificar);
+    $idcuota = $ano . $mes . $dia . $consecutivo;
+
     if (isset($filasverificar)) {
     } else {
+        $datetime1 = date_create($filas2['fecha']);
+        $datetime2 = date_create($fecha_actual);
+        $contador = date_diff($datetime1, $datetime2);
+        $differenceFormat = '%a';
+        $diasvence =  $contador->format($differenceFormat);
+
         $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo) VALUES "
-            . "($idcuota,$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso','$diascuota','$filas1[valorapagar]',$consecutivo) ";
+            . "($idcuota,$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso',$diasvence,'$filas1[valorapagar]',$consecutivo) ";
         $query = mysqli_query($link, $consulta) or die($consulta);
     }
     //descontar en prestamo
-    $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta,valorapagar from prestamos where id_prestamo=$id ";
-    $query = mysqli_query($link, $consulta) or die($consulta);
-    $filas1 = mysqli_fetch_array($query);
+
     $resta = number_format(($recoger / $filas1['cuota']) - 1);
     if ($recoger == 0) {
         $consulta = "update prestamos set dias_atraso = dias_atraso + 1 where id_prestamo=$id ";
