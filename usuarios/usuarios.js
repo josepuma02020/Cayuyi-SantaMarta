@@ -4,7 +4,7 @@ function editarusuario(id, cedula, nombre, apellido, direccion, telefono, usuari
         type: "POST",
         url: "usuarios/editarusuario.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 1) {
                 // console.log(r);
                 // debugger;
@@ -23,11 +23,11 @@ function agregarusuario(cedula, nombre, apellido, direccion, telefono, clave, us
         type: "POST",
         url: "usuarios/agregarusuario.php",
         data: cadenau,
-        success: function(r) {
+        success: function (r) {
             if (r == 1) {
                 // console.log(r);
                 // debugger;
-                window.location.reload();
+                //window.location.reload();
             } else {
                 // console.log(r);
                 // debugger;
@@ -41,7 +41,7 @@ function agregardatosusuario(id) {
         type: "POST",
         data: "id=" + id,
         url: "usuarios/datosusuario.php",
-        success: function(r) {
+        success: function (r) {
             dato = jQuery.parseJSON(r);
             $('#cedulau').val(dato['cedula']);
             $('#idu').val(dato['id']);

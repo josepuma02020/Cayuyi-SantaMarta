@@ -134,7 +134,7 @@ if ($_SESSION['usuario']) {
                                 <b>Forma de Pago:</b> <?php echo $formadepago ?>
                             </label>
                             <label class="form-row">
-                                <b>Direccion:</b> <?php echo $filas2['direccion'] ?>
+                                <b>Dirección:</b> <?php echo $filas2['direccion'] ?>
                             </label>
                             <label class="form-row">
                                 <b> <?php echo "Cuota:" . number_format(round($filas2['cuota'])); ?></b>
