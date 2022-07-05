@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if ($_SESSION['usuario'] and $_SESSION['Rol'] == 1) {
+if ($_SESSION['usuario'] and ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
     include('../conexion/conexion.php');
     $estado = $_GET['estado'];
     if ($estado == 0) {
@@ -13,5 +13,6 @@ if ($_SESSION['usuario'] and $_SESSION['Rol'] == 1) {
     $query = mysqli_query($link, $consulta) or die($consulta);
     header('Location: ' . "../diario.php");
 } else {
-    header('Location: ' . "index.php?m=3");
+    session_destroy();
+    header('Location: ' . "../index.php?m=3");
 }

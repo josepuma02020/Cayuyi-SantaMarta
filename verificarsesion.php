@@ -10,7 +10,7 @@ echo $consulta = "SELECT a.*,b.id_ruta,b.ruta FROM usuarios a left join rutas b 
 WHERE usuario='$usuario' ";
 $query = mysqli_query($link, $consulta) or die($consulta);
 $arreglo = mysqli_fetch_array($query);
-if ($arreglo['activo'] == 1 and $arreglo['Rol'] != 1) {
+if ($arreglo['activo'] == 1 && ($arreglo['Rol'] == 3 || $arreglo['Rol'] == 4)) {
     header('Location: ' . "index.php?m=4");
 } else {
     if ($arreglo['Rol'] == "4") {

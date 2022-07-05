@@ -47,7 +47,7 @@ if (isset($_SESSION['usuario'])) {
                 </button>
             </div>
             <?php
-            if ($_SESSION['Rol'] == 1) {
+            if ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2) {
                 $consultaestadosistema = "select activo from usuarios where id_usuario = $_SESSION[id_usuario]";
                 $queryestado = mysqli_query($link, $consultaestadosistema) or die($consultaestadosistema);
                 $filaestado = mysqli_fetch_array($queryestado);

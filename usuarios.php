@@ -95,7 +95,7 @@ if ($_SESSION['usuario'] && $_SESSION['Rol'] == 1) {
                             </div>
                             <div class="form-group normal">
                                 <label>Usuario:</label>
-                                <input autocomplete="off" type="text" class="form-control input-group-sm" id="usuario" name="usuario   ">
+                                <input autocomplete="off" type="text" class="form-control input-group-sm" id="usuario" name="usuario">
 
                             </div>
                             <div class="form-group normal">
