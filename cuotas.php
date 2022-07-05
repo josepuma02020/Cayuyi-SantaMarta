@@ -195,6 +195,7 @@ if ($_SESSION['usuario']) {
                             $sumprestamos = 0;
                             $pleno = 0;
                             $sumnuevos = 0;
+                            $sumprestamosnuevos = 0;
                             $entrantes = 0;
                             $salientes = 0;
                             $clientes = 0;
@@ -279,8 +280,24 @@ if ($_SESSION['usuario']) {
                                     if (isset($filas2)) {
                                         $filas2['prestamos'];
                                         if ($filas2['prestamos'] >= 1) {
-                                            $nuevo = "No";
+                                            $consultafechaultprestamo = "select max(fecha) 'fechaprestamo' from prestamos where cliente = $filas1[cliente]";
+                                            $queryfechaprestamo = mysqli_query($link, $consultafechaultprestamo) or die($consultafechaultprestamo);
+                                            $filafechaprestamo = mysqli_fetch_array($queryfechaprestamo);
+                                            $datetime1 = date_create($filafechaprestamo['fechaprestamo']);
+                                            $datetime2 = date_create($fecha);
+                                            $contador = date_diff($datetime1, $datetime2);
+                                            $differenceFormat = '%a';
+                                            $diasvence =  $contador->format($differenceFormat);
+
+                                            if ($diasvence >= 35 && $prestamos > 0) {
+                                                $sumnuevos = $sumnuevos + 1;
+                                                $nuevo = "Si";
+                                                $sumprestamosnuevos = $sumprestamosnuevos + $prestamos;
+                                            } else {
+                                                $nuevo = "No";
+                                            }
                                         } else {
+                                            $sumprestamosnuevos = $sumprestamosnuevos + $prestamos;
                                             $sumnuevos = $sumnuevos + 1;
                                             $nuevo = "Si";
                                         }
@@ -426,6 +443,9 @@ if ($_SESSION['usuario']) {
                                     Cli.Nuevos
                                 </th>
                                 <th>
+                                    Prést.N
+                                </th>
+                                <th>
                                     Entr.
                                 </th>
                                 <th>
@@ -487,6 +507,7 @@ if ($_SESSION['usuario']) {
                                     ?> </TD>
                                 <TD><?php echo number_format($efectivo); ?> </TD>
                                 <TD><?php echo $sumnuevos ?> </TD>
+                                <TD><?php echo $sumprestamosnuevos ?> </TD>
                                 <TD><?php echo $entrantes ?> </TD>
                                 <TD><?php echo $salientes ?> </TD>
                                 <TD><?php echo $renovados ?> </TD>
