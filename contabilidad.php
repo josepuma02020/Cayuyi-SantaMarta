@@ -117,9 +117,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                     ?>
                         <TR style="font-size:1rem ">
                             <TD><a href="cuotas.php?<?php echo 'rutaa=' . $filas1['id_ruta'] . '&fecha=' . $filas1['fecha']; ?>"><?php echo $filas1['nruta'] ?> </a></TD>
-                            <TD style="font-size:0.8rem "><?php echo ($filas1['fecha'] . ' ' . $filas1['hora']); ?> </TD>
-                            <TD style="font-size:0.8rem "> <?php echo ($filas1['nombre'] . ' ' . $filas1['apellido']) ?> </TD>
-                            <TD style="font-size:0.8rem "><?php echo ($filas1['nombreliq'] . ' ' . $filas1['apellidoliq']) ?> </TD>
+                            <TD><?php echo ($filas1['fecha'] . ' ' . $filas1['hora']); ?> </TD>
+                            <TD> <?php echo ($filas1['nombre'] . ' ' . $filas1['apellido']) ?> </TD>
+                            <TD><?php echo ($filas1['nombreliq'] . ' ' . $filas1['apellidoliq']) ?> </TD>
                             <TD><?php echo number_format($filas1['base']) ?> </TD>
                             <TD><?php echo number_format($filas1['cobro']) ?> </TD>
                             <TD><?php echo number_format($filas1['pleno']); ?> </TD>
