@@ -101,7 +101,7 @@ if ($_SESSION['usuario']) {
                     $diasvencido = $filasvencido['diasvence'];
                     $diasvencido = $diasvencido * -1;
                     if ($diasvencido != "") {
-                        if ($diasvencido < 0) {
+                        if ($diasvencido > 0) {
                             $class = "vencido";
                         }
                     } else {
