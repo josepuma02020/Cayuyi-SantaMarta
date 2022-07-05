@@ -137,7 +137,7 @@ if ($_SESSION['usuario']) {
                     <?php } ?>
                 </section>
                 <div id="recarga">
-                    <table class="table table-bordered" id="tablacuotas">
+                    <table style="font-size: 0.6rem;" class="table table-bordered" id="tablacuotas">
                         <thead>
                             <tr>
                                 <!-- <th>
@@ -251,60 +251,13 @@ if ($_SESSION['usuario']) {
                             <?php } ?>
                         </TBODY>
                     </table>
-                    <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-md modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><b>Editar cuota</b></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <input type="hidden" id="idu" name="idu">
-                                <div class="modal-body">
-                                    <div class="form-row unico ">
-                                        <div class="form-group ">
-                                            <label>Nueva cuota:</label>
-                                            <input autocomplete="off" type="text" class="form-control input-group-sm" id="ncuota" name="ncuota">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <button id="editarcuota" data-dismiss="modal" type="button" class="btn btn-primary">Editar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><b>Eliminar Registro de Cuota</b></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" id="idu" name="idu">
-                                    Esta seguro de eliminar el Registro de Cuota?
-
-                                    Se eliminara solo la cuota registrada,si realizo un prestamo este seguirá registrado.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button id="eliminarregistro" data-dismiss="modal" type="button" class="btn btn-danger">Eliminar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div>
                     <h1>Resumen</h1>
                 </div>
                 <div id="recarga">
-                    <table class="table table-bordered">
+                    <table style="font-size: 0.6rem;" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>
