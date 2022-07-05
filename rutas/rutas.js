@@ -59,7 +59,7 @@ function editarruta(id, nombre, encargado) {
             if (r == 1) {
                 // console.log(r);
                 // debugger;
-                window.location.reload();
+                //window.location.reload();
             } else {
                 console.log(r);
                 debugger;

@@ -61,7 +61,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
         <header>
             <?php include_once($_SESSION['menu']); ?>
         </header>
-        <main class=" container container-md">
+        <main style="width:95%;max-width:95%;" class=" container container-md">
             <section class="titulo-pagina">
                 <h1>Registros Contables</h1>
             </section>
@@ -82,20 +82,23 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
             </section>
             <TABLE class="table table-striped  table-responsive-lg" id="tablarevisiones">
                 <THEAD>
-                    <tr>
+                    <tr style="font-size:0.8rem ">
                         <th> Ruta </th>
+                        <th style="width: 60% ;"> Fecha </th>
+                        <th> Liquidador </th>
+                        <th> Encargado </th>
                         <th> Base </th>
                         <th> Cobro </th>
                         <th> Pleno </th>
                         <th> Prést.</th>
-                        <th st> Pap.</th>
+                        <th> Pap.</th>
                         <th> Gastos </th>
                         <th> Efectivo </th>
                         <th> N </th>
                         <th> E </th>
                         <th> S </th>
                         <th> Cli. </th>
-                        <th> Fecha </th>
+
                         <?php
                         if ($_SESSION['Rol'] == 1) {
                         ?>
@@ -108,12 +111,15 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    $consultarutas = "SELECT a.*,b.nombre,b.apellido,c.ruta 'nruta',c.id_ruta from revisionesrutas a inner join usuarios b on a.encargado=b.id_usuario inner join rutas c on c.id_ruta=a.ruta where fecha between '$desde' and '$hasta'";
+                    $consultarutas = "SELECT a.*,b.nombre,b.apellido,c.ruta 'nruta',c.id_ruta,d.nombre 'nombreliq',d.apellido'apellidoliq'  from revisionesrutas a inner join usuarios b on a.encargado=b.id_usuario inner join rutas c on c.id_ruta=a.ruta inner join usuarios d on d.id_usuario=a.idliquidador where fecha between '$desde' and '$hasta'";
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
-                        <TR>
+                        <TR style="font-size:0.8rem ">
                             <TD><a href="cuotas.php?<?php echo 'rutaa=' . $filas1['id_ruta'] . '&fecha=' . $filas1['fecha']; ?>"><?php echo $filas1['nruta'] ?> </a></TD>
+                            <TD style="font-size:0.8rem "><?php echo ($filas1['fecha'] . ' ' . $filas1['hora']); ?> </TD>
+                            <TD style="font-size:0.8rem "> <?php echo ($filas1['nombre'] . ' ' . $filas1['apellido']) ?> </TD>
+                            <TD style="font-size:0.8rem "><?php echo ($filas1['nombreliq'] . ' ' . $filas1['apellidoliq']) ?> </TD>
                             <TD><?php echo number_format($filas1['base']) ?> </TD>
                             <TD><?php echo number_format($filas1['cobro']) ?> </TD>
                             <TD><?php echo number_format($filas1['pleno']); ?> </TD>
@@ -125,7 +131,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                             <TD><?php echo number_format($filas1['entrantes']); ?> </TD>
                             <TD><?php echo number_format($filas1['salientes']); ?> </TD>
                             <TD><?php echo ($filas1['clientes']); ?> </TD>
-                            <TD><?php echo ($filas1['fecha']); ?> </TD>
+
 
                             <?php
                             if ($_SESSION['Rol'] == 1) {
