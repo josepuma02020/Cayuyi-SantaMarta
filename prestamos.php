@@ -301,7 +301,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                             <TD style="background-color: <?php echo $aviso ?>"><?php echo $filas1['dias_atraso']; ?> </TD>
                             <TD>
                                 <SCRIPT lang="javascript" type="text/javascript" src="funciones/funciones.js"></script>
-                                <button type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                <button onclick="obtenerdatosprestamo(<?php echo $filas1['id_prestamo'] ?>)" type="button" id="actualiza" class="btn btn-primary" data-toggle="modal" data-target="#editar">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                     </svg>
@@ -341,21 +341,28 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
 
                             </div>
                             <div class="form-row">
-                                <div class="form-group tres">
-                                    <label>Cambiar a Ruta:</label>
-                                    <select id="nruta" class="form-control input-sm">
-                                        <?php
-                                        $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
-                                        $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
-                                        ?> <option value="0"></option> <?php
-                                                                        while ($filas1 = mysqli_fetch_array($query)) {
-                                                                        ?>
-                                            <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['recorridos'] . '-' . $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
-                                        <?php
-                                                                        }
-                                        ?>
-                                    </select>
-                                </div>
+                                <?php
+                                if ($_SESSION['Rol'] == 1) {
+                                ?>
+                                    <div class="form-group tres">
+                                        <label>Cambiar a Ruta:</label>
+                                        <select id="nruta" class="form-control input-sm">
+                                            <?php
+                                            $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
+                                            $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
+                                            ?> <option value="0"></option> <?php
+                                                                            while ($filas1 = mysqli_fetch_array($query)) {
+                                                                            ?>
+                                                <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['recorridos'] . '-' . $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
+                                            <?php
+                                                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+
                                 <div class="form-group tres">
                                     <label>Fecha de Inicio:</label>
                                     <input disabled autocomplete="off" type="text" class="form-control input-group-sm" id="fechau" name="fechau">
