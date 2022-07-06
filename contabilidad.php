@@ -106,9 +106,10 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                 <THEAD>
                     <tr style="font-size:1rem ">
                         <th> Ruta </th>
-                        <th style="width: 30% ;"> Fecha </th>
+                        <th style="width: 30% ;"> Fecha Liquidacion </th>
+                        <th style="width: 30% ;"> Fecha Revision </th>
                         <th style="width:15% ;"> Liquidador </th>
-                        <th style="width:15% ;"> Encargado </th>
+                        <th style="width:15% ;"> Cobrador </th>
                         <th> Base </th>
                         <th> Cobro </th>
                         <th> Pleno </th>
@@ -155,7 +156,8 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                     ?>
                         <TR style="font-size:1rem ">
                             <TD><a href="cuotas.php?<?php echo 'rutaa=' . $filas1['id_ruta'] . '&fecha=' . $filas1['fecha']; ?>"><?php echo $filas1['nruta'] ?> </a></TD>
-                            <TD><?php echo ($filas1['fecha'] . ' ' . $filas1['hora']); ?> </TD>
+                            <TD><?php echo ($filas1['fecha']); ?> </TD>
+                            <TD><?php echo ($filas1['hora']); ?> </TD>
                             <TD> <?php echo ($filas1['nombre'] . ' ' . $filas1['apellido']) ?> </TD>
                             <TD><?php echo ($filas1['nombreliq'] . ' ' . $filas1['apellidoliq']) ?> </TD>
                             <TD><?php

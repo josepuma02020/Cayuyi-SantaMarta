@@ -5,6 +5,8 @@ if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
     date_default_timezone_set('America/Bogota');
     $hora = date('h:i:s a');
+    $fecha_actual = date("Y-m-j");
+    $fecharevision = $fecha_actual . ' ' . $hora;
     $ide = $_POST['ide'];
     $pleno = $_POST['pleno'];
     $base = $_POST['base'];
@@ -17,7 +19,7 @@ if ($_SESSION['usuario']) {
     $clientes = $_POST['clientes'];
     $papeleria = $_POST['papeleria'];
     $efectivo = $_POST['efectivo'];
-    $fecha_actual = $_POST['fecha'];
+    $fecha = $_POST['fecha'];
     $valornuevos = $_POST['valornuevos'];
     //restar prestamos 
     //encargado
@@ -27,7 +29,7 @@ if ($_SESSION['usuario']) {
 
     //InsertarRegistro
     $consulta = "INSERT INTO `revisionesrutas`(`idhistorial`, `base`, `cobro`, `prestamo`, `gastos`, `pleno`, `nuevos`, `entrantes`, `salientes`, `clientes`, `ruta`, `encargado`, `fecha`,papeleria,efectivo,idliquidador,hora,valorprestamosnuevos) VALUES "
-        . "('','$base','$cobro','$prestamo','$gasto','$pleno','$nuevos','$entrantes','$salientes','$clientes','$ide',$filas1[encargado],'$fecha_actual',$papeleria,$efectivo,$_SESSION[id_usuario],'$hora',$valornuevos)";
+        . "('','$base','$cobro','$prestamo','$gasto','$pleno','$nuevos','$entrantes','$salientes','$clientes','$ide',$filas1[encargado],'$fecha',$papeleria,$efectivo,$_SESSION[id_usuario],'$fecharevision',$valornuevos)";
     if ($query = mysqli_query($link, $consulta) or die($consulta) == 1) {
         echo 1;
         //descontar base
