@@ -521,6 +521,7 @@ if ($_SESSION['usuario']) {
                                 <input type="hidden" id="prestamo" name="prestamo" value="<?php echo $sumprestamos ?>" />
                                 <input type="hidden" id="gasto" name="gasto" value="<?php echo $gasto ?>" />
                                 <input type="hidden" id="nuevos" name="nuevos" value="<?php echo $sumnuevos ?>" />
+                                <input type="hidden" id="valornuevos" name="valornuevos" value="<?php echo $sumprestamosnuevos ?>" />
                                 <input type="hidden" id="entrantes" name="entrantes" value="<?php echo $entrantes ?>" />
                                 <input type="hidden" id="salientes" name="salientes" value="<?php echo $salientes ?>" />
                                 <input type="hidden" id="clientes" name="clientes" value="<?php echo $clientes ?>" />
@@ -598,6 +599,7 @@ if ($_SESSION['usuario']) {
             ide = $('#idrevisar').val();
             console.log(ide);
             pleno = $('#pleno').val();
+            valornuevos = $('#valornuevos').val();
             base = $('#base').val();
             cobro = $('#cobro').val();
             prestamo = $('#prestamo').val();
@@ -609,7 +611,7 @@ if ($_SESSION['usuario']) {
             papeleria = $('#papeleria').val();
             efectivo = $('#efectivo').val();
             fecha = $('#fechabuscar').val();
-            revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha);
+            revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha, valornuevos);
             window.location.reload();
         })
     })

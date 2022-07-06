@@ -18,6 +18,7 @@ if ($_SESSION['usuario']) {
     $papeleria = $_POST['papeleria'];
     $efectivo = $_POST['efectivo'];
     $fecha_actual = $_POST['fecha'];
+    $valornuevos = $_POST['valornuevos'];
     //restar prestamos 
     //encargado
     $consultaruta = "select a.encargado from rutas a where id_ruta=$ide";
@@ -27,8 +28,8 @@ if ($_SESSION['usuario']) {
     $consulta = "UPDATE `rutas` SET `base`=$efectivo WHERE id_ruta=$ide";
     $query = mysqli_query($link, $consulta) or die($consulta);
     //InsertarRegistro
-    $consulta = "INSERT INTO `revisionesrutas`(`idhistorial`, `base`, `cobro`, `prestamo`, `gastos`, `pleno`, `nuevos`, `entrantes`, `salientes`, `clientes`, `ruta`, `encargado`, `fecha`,papeleria,efectivo,idliquidador,hora) VALUES "
-        . "('','$base','$cobro','$prestamo','$gasto','$pleno','$nuevos','$entrantes','$salientes','$clientes','$ide',$filas1[encargado],'$fecha_actual',$papeleria,$efectivo,$_SESSION[id_usuario],'$hora')";
+    $consulta = "INSERT INTO `revisionesrutas`(`idhistorial`, `base`, `cobro`, `prestamo`, `gastos`, `pleno`, `nuevos`, `entrantes`, `salientes`, `clientes`, `ruta`, `encargado`, `fecha`,papeleria,efectivo,idliquidador,hora,valorprestamosnuevos) VALUES "
+        . "('','$base','$cobro','$prestamo','$gasto','$pleno','$nuevos','$entrantes','$salientes','$clientes','$ide',$filas1[encargado],'$fecha_actual',$papeleria,$efectivo,$_SESSION[id_usuario],'$hora',$valornuevos)";
     echo $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
     session_destroy();
