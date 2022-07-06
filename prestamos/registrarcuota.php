@@ -13,7 +13,7 @@ if ($_SESSION['usuario']) {
     $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta,valorapagar from prestamos where id_prestamo=$id ";
     $query = mysqli_query($link, $consulta) or die($consulta);
     $filas1 = mysqli_fetch_array($query);
-    $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha_actual' and prestamo = $id";
+    echo $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha_actual' and prestamo = $id and liquidado != 2 ";
     $queryverificar = mysqli_query($link, $consultaverificarcuota) or die($consultaverificarcuota);
     $filasverificar = mysqli_fetch_array($queryverificar);
     //ingresar registro
@@ -48,9 +48,9 @@ if ($_SESSION['usuario']) {
         $differenceFormat = '%a';
         $diasvence =  $contador->format($differenceFormat);
 
-        $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo) VALUES "
-            . "($idcuota,$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso',$diasvence,'$filas1[valorapagar]',$consecutivo) ";
-        $query = mysqli_query($link, $consulta) or die($consulta);
+        $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo,liquidado) VALUES "
+            . "($idcuota,$id,$recoger,'$fecha_actual','$filas1[debe]','$atraso',$diasvence,'$filas1[valorapagar]',$consecutivo,1) ";
+        echo $query = mysqli_query($link, $consulta) or die($consulta);
     }
     //descontar en prestamo
 

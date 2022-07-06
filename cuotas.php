@@ -189,7 +189,7 @@ if ($_SESSION['usuario']) {
                         <TBODY>
 
                             <?php
-                            $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',b.fecha,c.nombre,b.cliente,b.dias_prestamo from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo  group by b.cliente";
+                            $consultarutas = "select b.id_prestamo,a.prestamo,b.dias_atraso,a.id_registro,b.dias_atraso,sum(a.cuota) 'cuota',b.fecha,c.nombre,b.cliente,b.dias_prestamo from registros_cuota a inner join prestamos b on b.id_prestamo=a.prestamo inner join clientes c on c.id_cliente=b.cliente where a.fecha = '$fecha' and b.ruta=$rutainfo and a.liquidado !=2  group by b.cliente";
                             $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                             $sumcobro = 0;
                             $sumprestamos = 0;
@@ -613,7 +613,7 @@ if ($_SESSION['usuario']) {
             fecha = $('#fechabuscar').val();
             revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha, valornuevos);
             setTimeout(function() {
-                window.location.reload();
+                // window.location.reload();
             }, 1000);
 
         })

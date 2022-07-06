@@ -35,6 +35,13 @@ if ($_SESSION['usuario']) {
         //descontar base
         $consulta = "UPDATE `rutas` SET `base`=$efectivo WHERE id_ruta=$ide";
         $query = mysqli_query($link, $consulta) or die($consulta);
+        //liquidarcuotas
+        $consultacuotas = "select c.id_registro from prestamos a INNER JOIN registros_cuota c on c.prestamo=a.id_prestamo where a.ruta = $ide and c.fecha = '$fecha'";
+        $querycuotas = mysqli_query($link, $consultacuotas) or die($consultacuotas);
+        while ($filascuotas = mysqli_fetch_array($querycuotas)) {
+            $consultaestadocuota = "UPDATE `registros_cuota` SET `liquidado`= 2,,`fecha`='$fecha' WHERE `id_registro` =  $filascuotas[id_registro] ";
+            $queryestadocuota = mysqli_query($link, $consultaestadocuota) or die($consultaestadocuota);
+        }
     }
 } else {
     session_destroy();
