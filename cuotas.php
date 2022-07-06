@@ -614,7 +614,7 @@ if ($_SESSION['usuario']) {
             revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha, valornuevos);
             setTimeout(function() {
                 window.location.reload();
-            }, 2000);
+            }, 1000);
 
         })
     })
