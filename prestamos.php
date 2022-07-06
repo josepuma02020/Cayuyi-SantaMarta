@@ -374,11 +374,11 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                                             $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado  GROUP by a.id_ruta";
                                             $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
                                             ?> <option value="0"></option> <?php
-                                                                                while ($filas1 = mysqli_fetch_array($query)) {
-                                                                                ?>
+                                                                            while ($filas1 = mysqli_fetch_array($query)) {
+                                                                            ?>
                                                 <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['recorridos'] . '-' . $filas1['ruta'] . '-' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
                                             <?php
-                                                                                }
+                                                                            }
                                             ?>
                                         </select>
                                     </div>
@@ -691,7 +691,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
             }
             if (a == 0) {
                 agregarprestamo(formapago, cedula, ruta, posicion, fecha, valor, totalpagar, dias, papeleria, direccion, telefono, nombre, apellido, domingo);
-                window.location.reload();
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             }
         });
         $('#editarprestamo').click(function() {

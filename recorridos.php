@@ -171,7 +171,9 @@ if ($_SESSION['usuario']) {
             }
             if (a == 0) {
                 editarrecorrido(idu, ruta, posicion);
-                window.location.reload();
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             }
         })
     })

@@ -279,7 +279,9 @@ if ($_SESSION['usuario']) {
             }
             if (a == 0) {
                 registrarcuota(idu, recoger);
-                window.location.reload();
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             }
         })
     })

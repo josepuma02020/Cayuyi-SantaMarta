@@ -250,7 +250,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
 
             id = $('#idgasto').val();
             eliminargasto(id);
-            window.location.reload();
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
         })
     })
 </script>
@@ -284,7 +286,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
             }
             if (a == 0) {
                 agregargasto(valor, descripcion, fecha, encargado, tipogasto);
-                window.location.reload();
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             }
         });
     });
