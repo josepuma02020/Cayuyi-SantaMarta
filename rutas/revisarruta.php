@@ -4,8 +4,8 @@ session_start();
 if ($_SESSION['usuario']) {
     include('../conexion/conexion.php');
     date_default_timezone_set('America/Bogota');
-    $hora = date('h:i:s a');
-    $fecha_actual = date("Y-m-j");
+    $hora = date('h:i a');
+    $fecha_actual = date("Y") . '-' . date("m") . '-' . date("j");
     $fecharevision = $fecha_actual . ' ' . $hora;
     $ide = $_POST['ide'];
     $pleno = $_POST['pleno'];
