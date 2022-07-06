@@ -185,7 +185,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                                 echo number_format($filas1['efectivo']); ?> </TD>
                             <TD><?php
                                 $nuevo = $filas1['nuevos'];
-                                $sumnuevos = $sumnuevos + $gasto;
+                                $sumnuevos = $sumnuevos + $nuevo;
                                 echo number_format($nuevo); ?> </TD>
                             <TD><?php
                                 echo number_format($filas1['entrantes']); ?> </TD>
