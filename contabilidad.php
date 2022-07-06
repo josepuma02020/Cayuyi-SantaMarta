@@ -113,6 +113,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                         <th> Cobro </th>
                         <th> Pleno </th>
                         <th> Prést.</th>
+                        <th> Prés.Nuevos </th>
                         <th> Pap.</th>
                         <th> Gastos </th>
                         <th> Efectivo </th>
@@ -149,7 +150,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                     $sumnuevos = 0;
                     $sumentrantes = 0;
                     $sumsalientes = 0;
-
+                    $sumprestamosnuevos = 0;
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
                         <TR style="font-size:1rem ">
@@ -172,7 +173,11 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                             <TD><?php
                                 $prestamo = $filas1['prestamo'];
                                 $sumprestamos = $sumprestamos + $prestamo;
-                                echo number_format($filas1['prestamo']); ?> </TD>
+                                echo number_format($prestamo); ?> </TD>
+                            <TD><?php
+                                $prestamosnuevos = $filas1['valorprestamosnuevos'];
+                                $sumprestamosnuevos = $sumprestamosnuevos + $prestamosnuevos;
+                                echo number_format($prestamosnuevos); ?> </TD>
                             <TD><?php
                                 $papeleria = $filas1['papeleria'];
                                 $sumpapeleria = $sumpapeleria + $papeleria;
@@ -220,6 +225,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                         <td> <?php echo number_format($sumcobro) ?></td>
                         <td> <?php echo number_format($sumpleno) ?></td>
                         <td> <?php echo number_format($sumprestamos) ?> </td>
+                        <td> <?php echo number_format($sumprestamosnuevos) ?> </td>
                         <td> <?php echo number_format($sumpapeleria) ?></td>
                         <td> <?php echo number_format($sumgastos) ?></td>
                         <td> </td>
