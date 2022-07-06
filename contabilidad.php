@@ -231,8 +231,8 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                         <td> <?php echo number_format($sumpapeleria) ?></td>
                         <td> <?php echo number_format($sumgastos) ?></td>
                         <td> </td>
-                        <td> <?php echo number_format($sumnuevos) ?></td>
                         <td></td>
+                        <td> <?php echo number_format($sumnuevos) ?></td>
                         <td></td>
                         <td></td>
                         <td></td>
