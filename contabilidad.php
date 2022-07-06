@@ -139,6 +139,17 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                         $consultarutas = "SELECT a.*,b.nombre,b.apellido,c.ruta 'nruta',c.id_ruta,d.nombre 'nombreliq',d.apellido'apellidoliq'  from revisionesrutas a inner join usuarios b on a.encargado=b.id_usuario inner join rutas c on c.id_ruta=a.ruta inner join usuarios d on d.id_usuario=a.idliquidador where  a.ruta=$ruta  and   fecha between '$desde' and '$hasta'";
                     }
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
+                    $sumbase = 0;
+                    $sumcobro = 0;
+                    $sumpleno = 0;
+                    $sumprestamos = 0;
+                    $sumpapeleria = 0;
+                    $sumgastos = 0;
+                    $sumefectivo = 0;
+                    $sumnuevos = 0;
+                    $sumentrantes = 0;
+                    $sumsalientes = 0;
+
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
                         <TR style="font-size:1rem ">
@@ -146,16 +157,40 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                             <TD><?php echo ($filas1['fecha'] . ' ' . $filas1['hora']); ?> </TD>
                             <TD> <?php echo ($filas1['nombre'] . ' ' . $filas1['apellido']) ?> </TD>
                             <TD><?php echo ($filas1['nombreliq'] . ' ' . $filas1['apellidoliq']) ?> </TD>
-                            <TD><?php echo number_format($filas1['base']) ?> </TD>
-                            <TD><?php echo number_format($filas1['cobro']) ?> </TD>
-                            <TD><?php echo number_format($filas1['pleno']); ?> </TD>
-                            <TD><?php echo number_format($filas1['prestamo']); ?> </TD>
-                            <TD><?php echo number_format($filas1['papeleria']); ?> </TD>
-                            <TD><?php echo number_format($filas1['gastos']); ?> </TD>
-                            <TD><?php echo number_format($filas1['efectivo']); ?> </TD>
-                            <TD><?php echo number_format($filas1['nuevos']); ?> </TD>
-                            <TD><?php echo number_format($filas1['entrantes']); ?> </TD>
-                            <TD><?php echo number_format($filas1['salientes']); ?> </TD>
+                            <TD><?php
+                                $base = $filas1['base'];
+                                $sumbase = $sumbase + $base;
+                                echo number_format($base) ?> </TD>
+                            <TD><?php
+                                $cobro = $filas1['cobro'];
+                                $sumcobro = $sumcobro + $cobro;
+                                echo number_format($cobro) ?> </TD>
+                            <TD><?php
+                                $pleno = $filas1['pleno'];
+                                $sumpleno = $sumpleno + $pleno;
+                                echo number_format($filas1['pleno']); ?> </TD>
+                            <TD><?php
+                                $prestamo = $filas1['prestamo'];
+                                $sumprestamos = $sumprestamos + $prestamo;
+                                echo number_format($filas1['prestamo']); ?> </TD>
+                            <TD><?php
+                                $papeleria = $filas1['papeleria'];
+                                $sumpapeleria = $sumpapeleria + $papeleria;
+                                echo number_format($papeleria); ?> </TD>
+                            <TD><?php
+                                $gasto = $filas1['gastos'];
+                                $sumgastos = $sumgastos + $gasto;
+                                echo number_format($filas1['gastos']); ?> </TD>
+                            <TD><?php
+                                echo number_format($filas1['efectivo']); ?> </TD>
+                            <TD><?php
+                                $nuevo = $filas1['nuevos'];
+                                $sumnuevos = $sumnuevos + $gasto;
+                                echo number_format($nuevo); ?> </TD>
+                            <TD><?php
+                                echo number_format($filas1['entrantes']); ?> </TD>
+                            <TD><?php
+                                echo number_format($filas1['salientes']); ?> </TD>
                             <TD><?php echo ($filas1['clientes']); ?> </TD>
 
 
@@ -176,6 +211,24 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
 
                         </TR>
                     <?php } ?>
+                    <tr>
+                        <td> <b>TOTAL</b></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td> <?php echo number_format($sumbase) ?></td>
+                        <td> <?php echo number_format($sumcobro) ?></td>
+                        <td> <?php echo number_format($sumpleno) ?></td>
+                        <td> <?php echo number_format($sumprestamos) ?> </td>
+                        <td> <?php echo number_format($sumpapeleria) ?></td>
+                        <td> <?php echo number_format($sumgastos) ?></td>
+                        <td> </td>
+                        <td> <?php echo number_format($sumnuevos) ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </TBODY>
             </TABLE>
             <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
