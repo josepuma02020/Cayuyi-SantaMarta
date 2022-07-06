@@ -29,6 +29,11 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
     } else {
         $desde = date("Y-m-01");
     }
+    if (isset($_GET['ruta'])) {
+        $ruta = $_GET['ruta'];
+    } else {
+        $ruta = 0;
+    }
     if (isset($_GET['hasta'])) {
         $hasta = $_GET['hasta'];
     } else {
@@ -67,6 +72,22 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
             </section>
             <section class="parametros">
                 <div class="form-group col-md-3">
+                    <h4>Buscar:</h4>
+                    <select id="buscarruta" class="form-control input-sm">
+                        <?php
+                        $consultausuarios = "select a.*,COUNT(b.id_prestamo)'recorridos',c.nombre,c.apellido from rutas a left join prestamos b on a.id_ruta = b.ruta inner join usuarios c on c.id_usuario = a.encargado GROUP by a.id_ruta";
+                        $query = mysqli_query($link, $consultausuarios) or die($consultausuarios);
+                        ?> <option value="0"></option>
+                        <?php
+                        while ($filas1 = mysqli_fetch_array($query)) {
+                        ?>
+                            <option value="<?php echo $filas1['id_ruta'] ?>"><?php echo $filas1['ruta'] . '  -  ' . $filas1['nombre'] . ' ' . $filas1['apellido'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
                     <h3>Desde:</h3>
                     <input class="form-control input-sm" type="date" id="desde" value="<?php echo $desde ?>">
                 </div>
@@ -74,6 +95,7 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                     <h3>Hasta:</h3>
                     <input class="form-control input-sm" type="date" id="hasta" value="<?php echo $hasta ?>">
                 </div>
+
                 <button type="button" id="buscar" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -111,7 +133,11 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
                 </THEAD>
                 <TBODY>
                     <?php
-                    $consultarutas = "SELECT a.*,b.nombre,b.apellido,c.ruta 'nruta',c.id_ruta,d.nombre 'nombreliq',d.apellido'apellidoliq'  from revisionesrutas a inner join usuarios b on a.encargado=b.id_usuario inner join rutas c on c.id_ruta=a.ruta inner join usuarios d on d.id_usuario=a.idliquidador where fecha between '$desde' and '$hasta'";
+                    if ($ruta == 0) {
+                        $consultarutas = "SELECT a.*,b.nombre,b.apellido,c.ruta 'nruta',c.id_ruta,d.nombre 'nombreliq',d.apellido'apellidoliq'  from revisionesrutas a inner join usuarios b on a.encargado=b.id_usuario inner join rutas c on c.id_ruta=a.ruta inner join usuarios d on d.id_usuario=a.idliquidador where fecha between '$desde' and '$hasta'";
+                    } else {
+                        $consultarutas = "SELECT a.*,b.nombre,b.apellido,c.ruta 'nruta',c.id_ruta,d.nombre 'nombreliq',d.apellido'apellidoliq'  from revisionesrutas a inner join usuarios b on a.encargado=b.id_usuario inner join rutas c on c.id_ruta=a.ruta inner join usuarios d on d.id_usuario=a.idliquidador where  a.ruta=$ruta  and   fecha between '$desde' and '$hasta'";
+                    }
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
                     while ($filas1 = mysqli_fetch_array($query)) {
                     ?>
@@ -222,8 +248,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
         $('#buscar').click(function() {
             desde = $('#desde').val();
             hasta = $('#hasta').val();
+            ruta = $('#buscarruta').val();
             console.log(desde);
-            location.href = `contabilidad.php?desde=${desde}&hasta=${hasta}`;
+            location.href = `contabilidad.php?desde=${desde}&hasta=${hasta}&ruta=${ruta}`;
         });
         tabla = $('#tablarevisiones').DataTable({
             language: {
