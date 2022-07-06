@@ -24,13 +24,16 @@ if ($_SESSION['usuario']) {
     $consultaruta = "select a.encargado from rutas a where id_ruta=$ide";
     $query = mysqli_query($link, $consultaruta) or die($consultaruta);
     $filas1 = mysqli_fetch_array($query);
-    //descontar base
-    $consulta = "UPDATE `rutas` SET `base`=$efectivo WHERE id_ruta=$ide";
-    $query = mysqli_query($link, $consulta) or die($consulta);
+
     //InsertarRegistro
     $consulta = "INSERT INTO `revisionesrutas`(`idhistorial`, `base`, `cobro`, `prestamo`, `gastos`, `pleno`, `nuevos`, `entrantes`, `salientes`, `clientes`, `ruta`, `encargado`, `fecha`,papeleria,efectivo,idliquidador,hora,valorprestamosnuevos) VALUES "
         . "('','$base','$cobro','$prestamo','$gasto','$pleno','$nuevos','$entrantes','$salientes','$clientes','$ide',$filas1[encargado],'$fecha_actual',$papeleria,$efectivo,$_SESSION[id_usuario],'$hora',$valornuevos)";
-    echo $query = mysqli_query($link, $consulta) or die($consulta);
+    if ($query = mysqli_query($link, $consulta) or die($consulta) == 1) {
+        echo 1;
+        //descontar base
+        $consulta = "UPDATE `rutas` SET `base`=$efectivo WHERE id_ruta=$ide";
+        $query = mysqli_query($link, $consulta) or die($consulta);
+    }
 } else {
     session_destroy();
     echo "<script type=''>
