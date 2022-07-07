@@ -89,8 +89,8 @@ if ($_SESSION['usuario']) {
     $years = floor($dateDifference / (365 * 60 * 60 * 24));
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
     $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-    $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo) VALUES "
-        . "('$idcuota',$id,$domingo,'$fecha','$filaid[saldo]','$atraso','$diascuota','$filaid[valorapagar]',$consecutivo) ";
+    $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo,liquidado) VALUES "
+        . "('$idcuota',$id,$domingo,'$fecha','$filaid[saldo]','$atraso','$diascuota','$filaid[valorapagar]',$consecutivo,1) ";
     $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
     header('Location: ' . "usuarios/cerrarsesion.php");

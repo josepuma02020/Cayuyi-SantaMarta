@@ -572,13 +572,17 @@ if ($_SESSION['usuario']) {
             idu = $('#idu').val();
             ncuota = $('#ncuota').val();
             editarcuota(idu, ncuota);
-            window.location.reload();
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
         });
         $('#eliminarregistro').click(function() {
             a = 0;
             idu = $('#idu').val();
             eliminarcuota(idu);
-            window.location.reload();
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
         });
         $('#buscar').click(function() {
             a = 0;
