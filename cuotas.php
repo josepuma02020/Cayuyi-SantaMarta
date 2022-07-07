@@ -613,7 +613,7 @@ if ($_SESSION['usuario']) {
             fecha = $('#fechabuscar').val();
             revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes, salientes, clientes, papeleria, efectivo, fecha, valornuevos);
             setTimeout(function() {
-                // window.location.reload();
+                window.location.reload();
             }, 1000);
 
         })
