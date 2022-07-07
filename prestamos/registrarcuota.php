@@ -14,7 +14,7 @@ if ($_SESSION['usuario']) {
     $consulta = "select valorapagar/dias_prestamo 'cuota',(valorapagar-abonado)-$recoger 'debe',ruta,valorapagar from prestamos where id_prestamo=$id ";
     $query = mysqli_query($link, $consulta) or die($consulta);
     $filas1 = mysqli_fetch_array($query);
-    $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha' and prestamo = $id and liquidado != 2 ";
+    echo $consultaverificarcuota = "SELECT * FROM `registros_cuota` WHERE fecha = '$fecha' and prestamo = $id and liquidado != 2 ";
     $queryverificar = mysqli_query($link, $consultaverificarcuota) or die($consultaverificarcuota);
     $filasverificar = mysqli_fetch_array($queryverificar);
     //ingresar registro
@@ -30,7 +30,7 @@ if ($_SESSION['usuario']) {
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
     'dias' . $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
     //Agregar cuota
-    echo $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where id_registro like '%$ano$mes$dia%'";
+    $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where id_registro like '%$ano$mes$dia%'";
     $queryconsecutivo = mysqli_query($link, $consultaconsecutivo) or die($consultaconsecutivo);
     $filaconsecutivo = mysqli_fetch_array($queryconsecutivo);
     if (isset($filaconsecutivo)) {

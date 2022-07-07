@@ -29,7 +29,7 @@ if ($_SESSION['usuario']) {
     if (isset($_GET['fecha'])) {
         $fecha = $_GET['fecha'];
     } else {
-        $fecha = $fecha_actual = date("Y-m-j");
+        $fecha = $fecha_actual = date("Y-m-d");
     }
 
 ?>
@@ -83,7 +83,7 @@ if ($_SESSION['usuario']) {
                 $queryliquidada = mysqli_query($link, $consultaliquidada) or die($consultaliquidada);
                 $filaliquidada = mysqli_fetch_array($queryliquidada);
                 if (isset($filaliquidada)) {
-                ?><h3> La ruta ya ha sido liquidada </h3>
+                ?><h3> La ruta ya ha sido liquidada el <?php echo $fecha; ?> </h3>
                     <?php
                 } else {
                     $query = mysqli_query($link, $consultarutas) or die($consultarutas);
@@ -333,9 +333,13 @@ if ($_SESSION['usuario']) {
         $('#no').click(function() {
             a = 0;
             idu = $('#idu').val();
+            recoger = 0;
+            fecha = $('#fecha').val();
             if (a == 0) {
-                registrarcuota(idu, a);
-                window.location.reload();
+                registrarcuota(idu, recoger, fecha);
+                setTimeout(function() {
+                    //window.location.reload();
+                }, 1000);
             }
         })
     })
