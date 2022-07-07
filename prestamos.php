@@ -706,7 +706,9 @@ if ($_SESSION['usuario'] && ($_SESSION['Rol'] == 1 || $_SESSION['Rol'] == 2)) {
             comentario = $('#comentariou').val();
             if (a == 0) {
                 editarprestamo(dias, valor, ruta, id, comentario);
-                //window.location.reload();
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             }
         })
     });

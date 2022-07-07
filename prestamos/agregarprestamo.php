@@ -72,7 +72,7 @@ if ($_SESSION['usuario']) {
     $consultaatraso = "select dias_atraso,fecha,dias_prestamo from prestamos where id_prestamo=$id ";
     $query1 = mysqli_query($link, $consultaatraso) or die($consultaatraso);
     $filas2 = mysqli_fetch_array($query1);
-    $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where fecha = '$fecha'";
+    echo  $consultaconsecutivo = "select max(consecutivo)'consecutivo' from registros_cuota where id_registro like '%$ano$mes$dia%'";
     $queryconsecutivo = mysqli_query($link, $consultaconsecutivo) or die($consultaconsecutivo);
     $filaconsecutivo = mysqli_fetch_array($queryconsecutivo);
     if (isset($filaconsecutivo)) {
@@ -80,7 +80,7 @@ if ($_SESSION['usuario']) {
     } else {
         $consecutivo = 1;
     }
-    echo $idcuota = $ano . $mes . $dia . $consecutivo;
+    $idcuota = $ano . $mes . $dia . $consecutivo;
     $atraso = $filas2['dias_atraso'];
     $diasprestamo = $filas2['dias_prestamo'];
     $diasprestamo--;
@@ -89,8 +89,23 @@ if ($_SESSION['usuario']) {
     $years = floor($dateDifference / (365 * 60 * 60 * 24));
     $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
     $diascuota = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+
+    //dias para vencimiento de prestamo activo
+    $fecha_actual = date_create($fecha_actual);
+    $diasprestamoactivo = $filas2['dias_prestamo'];
+    $fechaprestamoactivo = $filas2['fecha'];
+    $fechaprestamoactivo = date_create($fechaprestamoactivo);
+    date_add($fechaprestamoactivo, date_interval_create_from_date_string("$diasprestamoactivo days"));
+    $fechafinprestamo = date_format($fechaprestamoactivo, "d-m-Y");
+    $diff = $fecha_actual->diff($fechaprestamoactivo);
+    $vencimiento = $diff->days;
+    $fechafinprestamo = date_create($fechafinprestamo);
+    if ($fechafinprestamo > $fecha_actual) {
+        $vencimiento = $vencimiento * -1;
+    }
+    echo $vencimiento;
     $consulta = "INSERT INTO `registros_cuota`(`id_registro`, `prestamo`, `cuota`, `fecha`,saldo,atraso,diasvence,valorpagar,consecutivo,liquidado) VALUES "
-        . "('$idcuota',$id,$domingo,'$fecha','$filaid[saldo]','$atraso','$diascuota','$filaid[valorapagar]',$consecutivo,1) ";
+        . "('$idcuota',$id,$domingo,'$fecha','$filaid[saldo]','$atraso','$vencimiento','$filaid[valorapagar]',$consecutivo,1) ";
     $query = mysqli_query($link, $consulta) or die($consulta);
 } else {
     header('Location: ' . "usuarios/cerrarsesion.php");

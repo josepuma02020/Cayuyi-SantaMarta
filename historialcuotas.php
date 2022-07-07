@@ -212,8 +212,8 @@ if ($_SESSION['usuario']) {
                             ?>
                             <TD style="background-color: <?php echo $color; ?> ;"><?php echo $dias; ?> </TD>
                             <?php
-                            $diasvencidos = $filas1['dias_prestamo'] - $filas1['diasvence'];
-                            if ($diasvencidos <= 0) {
+                            $diasvencidos = $filas1['diasvence'];
+                            if ($diasvencidos > 0) {
                                 $color = "#F34A4A";
                             } else {
                                 $color = "";
