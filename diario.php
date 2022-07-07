@@ -26,7 +26,11 @@ if ($_SESSION['usuario']) {
         $consultarutas = "select a.formapago,a.id_prestamo,dias_atraso 'atraso' from prestamos a inner join rutas b on b.id_ruta=a.ruta where b.encargado = '$idencargado' and (a.valorapagar - a.abonado) > 0 order by a.posicion_ruta ";
         $buscar = 0;
     }
-
+    if (isset($_GET['fecha'])) {
+        $fecha = $_GET['fecha'];
+    } else {
+        $fecha = $fecha_actual = date("Y-m-j");
+    }
 
 ?>
     <HTML>
@@ -53,15 +57,26 @@ if ($_SESSION['usuario']) {
             <?php include_once($_SESSION['menu']); ?>
         </header>
         <main>
-            <div style="display:inline-block;" class="form-group col-sm-3">
+            <?php
+            if ($_SESSION['Rol'] == 1 or $_SESSION['Rol'] == 2) {
+            ?>
+                <div style="display: inline-block ;" class="form-group col-sm-3">
+                    <h4>Fecha:</h4>
+                    <input class="form-control input-sm" type="date" id="fecha" name="fecha" value="<?php echo $fecha ?>">
+                </div>
+            <?php
+            }
+            ?>
+            <div style="display: inline-block ;" class="form-group col-sm-3">
                 <h4>Buscar:</h4>
-                <input style="max-width: 80% ;display:inline-block;min-width:45%" class="form-control" type="text" id="textbuscar" name="textbuscar" value="<?php ''; ?>">
-                <button type="button" id="buscar" class="btn btn-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                    </svg>
-                </button>
+                <input style="max-width: 80% ;min-width:45%" class="form-control" type="text" id="textbuscar" name="textbuscar" value="<?php ''; ?>">
             </div>
+            <button type="button" id="buscar" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </button>
+
             <section class=" container container-md" id="lista-tarjetas">
                 <?php
                 $query = mysqli_query($link, $consultarutas) or die($consultarutas);
@@ -111,7 +126,7 @@ if ($_SESSION['usuario']) {
                     } else {
                         $class = "";
                     }
-                    $consultaverificado = "select liquidado from registros_cuota where prestamo = $idprestamo and  fecha = '$fecha_actual' order by liquidado asc limit 1 ";
+                    $consultaverificado = "select liquidado from registros_cuota where prestamo = $idprestamo and  fecha = '$fecha' order by liquidado asc limit 1 ";
                     $queryverificado = mysqli_query($link, $consultaverificado) or die($consultaverificado);
                     $filaverificado = mysqli_fetch_array($queryverificado);
                     if (isset($filaverificado)) {
@@ -278,15 +293,16 @@ if ($_SESSION['usuario']) {
         $('#buscar').click(function() {
             a = 0;
             buscar = $('#textbuscar').val();
+            fecha = $('#fecha').val();
             if (a == 0) {
-                location.href = `diario.php?buscar=${buscar}`;
+                location.href = `diario.php?buscar=${buscar}&fecha=${fecha}`;
             }
         });
         $('#recoger').click(function() {
             a = 0;
             idu = $('#idu').val();
             recoger = $('#dinero').val();
-
+            fecha = $('#fecha').val();
             if (recoger <= 0) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'El valor de la Cuota debe ser mayor a 1', function() {
@@ -294,9 +310,10 @@ if ($_SESSION['usuario']) {
                 });
             }
             if (a == 0) {
-                registrarcuota(idu, recoger);
+                console.log(fecha);
+                registrarcuota(idu, recoger, fecha);
                 setTimeout(function() {
-                    // window.location.reload();
+                    window.location.reload();
                 }, 1000);
             }
         })

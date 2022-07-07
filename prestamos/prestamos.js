@@ -26,11 +26,11 @@ function editarprestamo(dias, valor, ruta, id, comentario) {
         success: function (r) {
             if (r == 11) {
                 console.log(r);
-                debugger;
+                // debugger;
                 //window.location.reload();
             } else {
                 console.log(r);
-                debugger;
+                // debugger;
             }
         }
     });
@@ -66,15 +66,15 @@ function revisarruta(ide, pleno, base, cobro, prestamo, gasto, nuevos, entrantes
             if (r == 11) {
                 // window.location.reload();
             } else {
-                console.log(r);
-                debugger;
+                // console.log(r);
+                // debugger;
             }
         }
     });
 }
 
-function registrarcuota(idu, recoger) {
-    cadenau = "idu=" + idu + "&recoger=" + recoger;
+function registrarcuota(idu, recoger, fecha) {
+    cadenau = "idu=" + idu + "&recoger=" + recoger + "&fecha=" + fecha;
 
     $.ajax({
         type: "POST",
@@ -83,11 +83,11 @@ function registrarcuota(idu, recoger) {
         success: function (r) {
             if (r == 11) {
                 console.log(r);
-                debugger;
-                //window.location.reload();
+                // debugger;
+                window.location.reload();
             } else {
                 console.log(r);
-                debugger;
+                //debugger;
             }
         }
     });
